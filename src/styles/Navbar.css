@@ -1,0 +1,40 @@
+nav {
+  position: absolute;
+  z-index: 1;
+  padding-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  height: 5.5rem;
+}
+
+.nav-logo {
+  margin-left: 2rem;
+  width: 10rem;
+}
+nav ul {
+  height: 5.5rem;
+
+}
+nav li {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-links {
+  position: fixed;
+  right: 0;
+  margin-right: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  font-size: 1.2rem;
+}
+.nav-icon {
+  width: 3rem;
+}
