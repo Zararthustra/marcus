@@ -32,7 +32,7 @@ function App() {
       {/* {data?.results.map((item, index) => {
         return <div key={index}>{item.title}</div>;
       })} */}
-      <Users />
+      <Users userName="Arthur" genderMovie={['Fiction', "Fantastique", "Érotique"]} masterPieces={2} critics={5} votes={0} watchList={2} />
       <Footer />
     </div>
   );

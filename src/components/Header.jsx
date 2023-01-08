@@ -2,7 +2,7 @@ import "../styles/Header.css";
 
 export const Header = () => {
   return (
-    <header>
+    <header className="headerLanding">
       <p>Le site des cinéphiles qui ont un avis.</p>
       <input
         type="text"
