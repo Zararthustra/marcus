@@ -1,0 +1,671 @@
+{
+	"info": {
+		"_postman_id": "b9e66313-499c-41f7-8a03-b7c3d53002a9",
+		"name": "Marcus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18563608"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/register",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{app}}{{host}}{{port}}"
+							],
+							"path": [
+								"{{baseUri}}",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/token/",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{app}}{{host}}{{port}}"
+							],
+							"path": [
+								"{{baseUri}}",
+								"token",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"{{username}}\",\r\n    \"password\": \"{{passwordX}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/{{baseUri}}/token/",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{baseUri}}",
+										"token",
+										""
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 17 Oct 2022 14:10:29 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.7"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "WWW-Authenticate",
+									"value": "Bearer realm=\"api\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"detail\": \"No active account found with the given credentials\"\n}"
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"{{username}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/{{baseUri}}/token/",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{baseUri}}",
+										"token",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 18 Oct 2022 13:29:05 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.7"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "523"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY2NjE4NjE0NSwiaWF0IjoxNjY2MDk5NzQ1LCJqdGkiOiIyNmU0YWE2NmU2YTg0MTQ0ODM5OTlmZTRjMTAzMWFkZiIsInVzZXJfaWQiOjEsIm5hbWUiOiJhcnRoeSJ9.KrmGSkxmSgRp5mfT4wNcMAWnUeAJz1qZPtszPepZ274\",\n    \"access\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY2MTAwMDQ1LCJpYXQiOjE2NjYwOTk3NDUsImp0aSI6ImE1ZjE0OWMyYzIyZTRkZTJiZmM5Mzg5NjgzOWZmMjFlIiwidXNlcl9pZCI6MSwibmFtZSI6ImFydGh5In0.phcAoGJDJ9ZmEdPLdTXgO5EWx4dkkhDjmxE-so8f-7s\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh\": \"{{refreshToken}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/token/refresh/",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{app}}{{host}}{{port}}"
+							],
+							"path": [
+								"{{baseUri}}",
+								"token",
+								"refresh",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"refresh\": \"{{refreshTokenX}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/{{baseUri}}/token/refresh/",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{baseUri}}",
+										"token",
+										"refresh",
+										""
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 17 Oct 2022 14:08:07 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.7"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "WWW-Authenticate",
+									"value": "Bearer realm=\"api\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"detail\": \"Token is invalid or expired\",\n    \"code\": \"token_not_valid\"\n}"
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"refresh\": \"{{refreshToken}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/{{baseUri}}/token/refresh/",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{baseUri}}",
+										"token",
+										"refresh",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 18 Oct 2022 13:29:53 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.10.7"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "523"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY2MTAwMDkzLCJpYXQiOjE2NjYwOTk3NDUsImp0aSI6ImE5ODI5ODEwMTA1NzRlOGQ4YWY5ZjE0NzBkZGU5NDhiIiwidXNlcl9pZCI6MSwibmFtZSI6ImFydGh5In0.rPz5V-h3TL20S0F22PP82qi9pErs9WPgIUhWmN7Q6HM\",\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY2NjE4NjE5MywiaWF0IjoxNjY2MDk5NzkzLCJqdGkiOiJiMGJhYTUyYTJjNmE0MjQ5YmFkMWY0ODFjZTc1ZmUyNyIsInVzZXJfaWQiOjEsIm5hbWUiOiJhcnRoeSJ9.jRgeySD-ovIinwpvojTXoU3qFXo0mKhkr-NH573fDQM\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/users",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{app}}{{host}}{{port}}"
+					],
+					"path": [
+						"{{baseUri}}",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movie Search",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/movies?movie=titanic",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{app}}{{host}}{{port}}"
+					],
+					"path": [
+						"{{baseUri}}",
+						"movies"
+					],
+					"query": [
+						{
+							"key": "movie",
+							"value": "titanic"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/movies?movie=titanic",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{app}}{{host}}{{port}}"
+							],
+							"path": [
+								"{{baseUri}}",
+								"movies"
+							],
+							"query": [
+								{
+									"key": "movie",
+									"value": "titanic"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 10 Jan 2023 17:48:13 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "12320"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Origin"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"page\": 1,\n    \"results\": [\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/3WjbxaqYB4vAbdUfdr5vbglD2JZ.jpg\",\n            \"genre_ids\": [\n                18,\n                10749\n            ],\n            \"id\": 597,\n            \"original_language\": \"en\",\n            \"original_title\": \"Titanic\",\n            \"overview\": \"Southampton, 10 avril 1912. Le paquebot le plus grand et le plus moderne du monde, réputé pour son insubmersibilité, le « Titanic », appareille pour son premier voyage. Quatre jours plus tard, il heurte un iceberg. À son bord, un artiste pauvre et une grande bourgeoise tombent amoureux.\",\n            \"popularity\": 142.552,\n            \"poster_path\": \"/ji9EZpKQKK9wLvfnysztUWdfDQh.jpg\",\n            \"release_date\": \"1997-11-18\",\n            \"title\": \"Titanic\",\n            \"video\": false,\n            \"vote_average\": 7.9,\n            \"vote_count\": 22045\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/5DCIRgOrCTayoCGggVn1kyqs1Vh.jpg\",\n            \"genre_ids\": [\n                53,\n                27\n            ],\n            \"id\": 945657,\n            \"original_language\": \"en\",\n            \"original_title\": \"Titanic 666\",\n            \"overview\": \"\",\n            \"popularity\": 62.422,\n            \"poster_path\": \"/EX0ITg5YqDgFHjujpTNhEPaJSL.jpg\",\n            \"release_date\": \"2022-04-15\",\n            \"title\": \"Titanic 666\",\n            \"video\": false,\n            \"vote_average\": 6.2,\n            \"vote_count\": 120\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/e9XRikkyth0GtG8RkU3XNm0oMsA.jpg\",\n            \"genre_ids\": [\n                28,\n                12,\n                53\n            ],\n            \"id\": 44918,\n            \"original_language\": \"en\",\n            \"original_title\": \"Titanic II\",\n            \"overview\": \"Avril 2012. Des promoteurs ont décidé d'organiser une traversée commémorant le centenaire de la tragédie. Un navire ultramoderne embarque des centaines de passagers sur les traces du célèbre paquebot disparu. Tout au long d'un périlleux voyage, ils vont affronter de redoutables icebergs et un tsunami...\",\n            \"popularity\": 31.351,\n            \"poster_path\": \"/3m12UeP1DMfhYZyvpLftaJGsyp3.jpg\",\n            \"release_date\": \"2010-08-07\",\n            \"title\": \"Titanic : Odyssée 2012\",\n            \"video\": false,\n            \"vote_average\": 5,\n            \"vote_count\": 329\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/3oShsRvAyZiQQ5lP2hszWN9Ri0b.jpg\",\n            \"genre_ids\": [\n                18,\n                10749\n            ],\n            \"id\": 16535,\n            \"original_language\": \"en\",\n            \"original_title\": \"Titanic\",\n            \"overview\": \"Pour soustraire ses enfants Annette et Norman à l'influence de son mari dont elle est séparée, Julia Sturges décide de les emmener à bord du paquebot Titanic. Son mari Richard parvient à embarquer au dernier moment pour récupérer ses enfants. Ils rencontrent d'autres passagers comme Maud Young, une jeune femme fortement inspirée de Margaret Brown, Gifford Rogers, un jeune joueur de tennis qui tombe rapidement amoureux de la jeune Annette et George S. Headley, un prêtre suspendu pour alcoolisme.\",\n            \"popularity\": 18.807,\n            \"poster_path\": \"/tyUIFX3AtnUJK5EaBJ5fR8EnuvO.jpg\",\n            \"release_date\": \"1953-04-11\",\n            \"title\": \"Titanic\",\n            \"video\": false,\n            \"vote_average\": 6.4,\n            \"vote_count\": 91\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/edHgXEtPbyVIQ7xKb1cvJJqTVhA.jpg\",\n            \"genre_ids\": [\n                28,\n                18,\n                36\n            ],\n            \"id\": 11021,\n            \"original_language\": \"de\",\n            \"original_title\": \"Titanic\",\n            \"overview\": \"La White Star Line, compagnie maritime britannique, connaît de graves soucis financiers à cause de la construction de son dernier navire, le Titanic. Pour garantir des profits conséquents, son président, Bruce Ismay, décide de lancer le navire à toute vitesse dans l'Atlantique Nord pour lui faire remporter le Ruban bleu au mépris de la sécurité des passagers. Il fait donc pression sur le capitaine pour l'inciter à augmenter la vitesse du paquebot. Seul le premier officier Petersen, un Allemand, critique ouvertement cette idée.\",\n            \"popularity\": 10.803,\n            \"poster_path\": \"/qkMvazIj6s8eQAFCQTenl3OILU6.jpg\",\n            \"release_date\": \"1943-11-10\",\n            \"title\": \"Titanic\",\n            \"video\": false,\n            \"vote_average\": 6.1,\n            \"vote_count\": 48\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/q3b8Vi2W6j72aXKggiVoDnEyDgU.jpg\",\n            \"genre_ids\": [\n                12\n            ],\n            \"id\": 24575,\n            \"original_language\": \"en\",\n            \"original_title\": \"Raise the Titanic\",\n            \"overview\": \"Les Etats-Unis ont mis au point un nouveau système de défense, nécessitant une puissance source d’énergie : le byzanium, un métal rarissime, que l’on ne trouve que dans des régions reculées. Des chercheurs découvrent que des quantités importantes du précieux métal avaient été embarquées sur le Titanic. Les autorités américaines tentent de renflouer le navire, mais certains en ont décidé autrement : la guerre des abîmes s’engage…\",\n            \"popularity\": 12.415,\n            \"poster_path\": \"/xxjwcApc0zojhwJCg3SnicwZUpE.jpg\",\n            \"release_date\": \"1980-08-01\",\n            \"title\": \"La Guerre des abîmes\",\n            \"video\": false,\n            \"vote_average\": 5.5,\n            \"vote_count\": 74\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/82tRA7Vdf7TwdyJYILUh6FuY88L.jpg\",\n            \"genre_ids\": [\n                99\n            ],\n            \"id\": 198901,\n            \"original_language\": \"en\",\n            \"original_title\": \"Titanic: 100 Years On\",\n            \"overview\": \"La Véritable Histoire du Titanic, pour commémorer le 100e anniversaire de son naufrage...\",\n            \"popularity\": 11.697,\n            \"poster_path\": \"/uAaXfaJpKjmsA3F1KgowcRJPKPM.jpg\",\n            \"release_date\": \"2012-06-01\",\n            \"title\": \"Titanic, 100 ans après le naufrage\",\n            \"video\": false,\n            \"vote_average\": 6.9,\n            \"vote_count\": 18\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/sdtfwZulErbQ7y9RVbaOuWVouD6.jpg\",\n            \"genre_ids\": [\n                36,\n                18,\n                53,\n                10770\n            ],\n            \"id\": 86938,\n            \"original_language\": \"en\",\n            \"original_title\": \"S.O.S. Titanic\",\n            \"overview\": \"Le Titanic quitte Southampton le 10 avril 1912. Le film suit différents passagers que sont, en première classe John Jacob Astor et son épouse ainsi que le couple Marvin, en voyage de noces. En deuxième, le film suit Lawrence Beesley, ensuite auteur d'un ouvrage sur le naufrage. En troisième classe, l'histoire se focalise sur un groupe d'émigrants irlandais.\\r Le film passe d'un groupe à l'autre et montre leur vie pendant la traversée. Au bout de quatre jours, le navire heurte un iceberg et sombre. Les passagers doivent alors lutter pour leur survie (source Wikipedia).\",\n            \"popularity\": 6.087,\n            \"poster_path\": \"/ao4LnSYYVrDJ9uH7tiPHF1ffZA2.jpg\",\n            \"release_date\": \"1980-02-29\",\n            \"title\": \"S.O.S. Titanic\",\n            \"video\": false,\n            \"vote_average\": 6.1,\n            \"vote_count\": 30\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/4Sddw1BFQFHOIQZ3DY7QS0mGnVe.jpg\",\n            \"genre_ids\": [\n                16,\n                10751\n            ],\n            \"id\": 71235,\n            \"original_language\": \"it\",\n            \"original_title\": \"Titanic: La leggenda continua\",\n            \"overview\": \"Angelica embarque à bord du fabuleux paquebot Titanic, bien décidée à retrouver sa mère dont elle garde le portrait dans un médaillon. Sa cruelle belle-mère et ses deux pestes de soeurs l'accompagnent sur le bateau. Hélas dés le début du voyage, Angelica s'aperçoit que son médaillon a disparu ! Dans sa recherche, Angelica est aidée par une famille de souris facétieuses, une mouette et des chiens courageux. C'est alors qu'elle fait la connaissance du beau William. Ils vont tomber amoureux l'un de l'autre sans se douter de la terrible tragédie qui se prépare...\",\n            \"popularity\": 6.822,\n            \"poster_path\": \"/yvPonyjof6InCE6O9ruaE8u1hTm.jpg\",\n            \"release_date\": \"2000-09-15\",\n            \"title\": \"Titanic, la légende continue\",\n            \"video\": false,\n            \"vote_average\": 2.4,\n            \"vote_count\": 53\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": null,\n            \"genre_ids\": [\n                35,\n                27\n            ],\n            \"id\": 4240,\n            \"original_language\": \"en\",\n            \"original_title\": \"Titanic 2000\",\n            \"overview\": \"\",\n            \"popularity\": 3.864,\n            \"poster_path\": \"/91p8xU2nykmw8psADIJOlBLdlXK.jpg\",\n            \"release_date\": \"1999-01-01\",\n            \"title\": \"Titanic 2000\",\n            \"video\": false,\n            \"vote_average\": 3.3,\n            \"vote_count\": 10\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/9PolVogZuHd07JIPOPTDnFAFj1p.jpg\",\n            \"genre_ids\": [\n                99\n            ],\n            \"id\": 489493,\n            \"original_language\": \"en\",\n            \"original_title\": \"Titanic: 20 Years Later with James Cameron\",\n            \"overview\": \"Le 7 janvier 1998, le film « Titanic », de James Cameron sortait en salles. Le long-métrage est devenu l'un des plus gros succès du cinéma en France. Il figure également parmi les plus populaires de l'histoire du grand écran. Les acteurs, Leonardo DiCaprio et Kate Winslet, sont des stars mondiales. Cette réalisation a glané de nombreuses récompenses et notamment, 11 Oscars. Le document revient sur les dessous de cette superproduction et les coulisses de ce tournage hors norme. L'occasion, entre autres, de découvrir les secrets qui se cachent derrière la chanson de Céline Dion « My Heart Will Go On », désormais un tube planétaire.\",\n            \"popularity\": 8.291,\n            \"poster_path\": \"/5w18P8qU9sHRcW6pH3NVGVVIKFw.jpg\",\n            \"release_date\": \"2017-11-26\",\n            \"title\": \"Titanic 20 ans d'un film culte\",\n            \"video\": false,\n            \"vote_average\": 6.5,\n            \"vote_count\": 32\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": null,\n            \"genre_ids\": [\n                99,\n                36\n            ],\n            \"id\": 530108,\n            \"original_language\": \"en\",\n            \"original_title\": \"The Unsinkable Titanic\",\n            \"overview\": \"\",\n            \"popularity\": 4.043,\n            \"poster_path\": \"/m3py1JoOPM3s3RTRv965tMC8Fqy.jpg\",\n            \"release_date\": \"2008-11-03\",\n            \"title\": \"The Unsinkable Titanic\",\n            \"video\": false,\n            \"vote_average\": 7,\n            \"vote_count\": 3\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/djFWCethTNYz5WPqIso6IVXTtFU.jpg\",\n            \"genre_ids\": [\n                10749,\n                18\n            ],\n            \"id\": 115872,\n            \"original_language\": \"fr\",\n            \"original_title\": \"La femme de chambre du Titanic\",\n            \"overview\": \"En 1912 dans un village de Lorraine, Horty remporte une fois de plus la course annuelle qu'organise le patron de sa fonderie. Il gagne un voyage à Southampton pour voir appareiller le \\\"Titanic\\\". En Angleterre, il rencontre Marie, une jeune femme qui doit embarquer le lendemain comme femme de chambre sur le paquebot. Elle n'a pas d'endroit où dormir. Il lui cède son lit. Elle lui fait vite une place à côté de lui. Au matin, Horty se réveille, seul, tandis que le \\\"Titanic\\\" s'éloigne.\",\n            \"popularity\": 5.097,\n            \"poster_path\": \"/mMPED3zn786jkID7TWtLPt3WMyR.jpg\",\n            \"release_date\": \"1997-10-10\",\n            \"title\": \"La femme de chambre du Titanic\",\n            \"video\": false,\n            \"vote_average\": 5.9,\n            \"vote_count\": 19\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/oTR3KI1kVQ6ULrR2X6TobDlYVzO.jpg\",\n            \"genre_ids\": [\n                16,\n                10751\n            ],\n            \"id\": 44310,\n            \"original_language\": \"it\",\n            \"original_title\": \"La leggenda del Titanic\",\n            \"overview\": \"\",\n            \"popularity\": 3.222,\n            \"poster_path\": \"/8I2hNivSXdENN6wKvdkMpymwvjF.jpg\",\n            \"release_date\": \"1999-04-17\",\n            \"title\": \"La leggenda del Titanic\",\n            \"video\": false,\n            \"vote_average\": 3.4,\n            \"vote_count\": 34\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": null,\n            \"genre_ids\": [\n                18\n            ],\n            \"id\": 357517,\n            \"original_language\": \"de\",\n            \"original_title\": \"Titanic\",\n            \"overview\": \"\",\n            \"popularity\": 2.08,\n            \"poster_path\": \"/yi73me6Jl3zDelS9pQK5jtMRhsc.jpg\",\n            \"release_date\": \"1984-01-01\",\n            \"title\": \"Titanic\",\n            \"video\": false,\n            \"vote_average\": 7,\n            \"vote_count\": 1\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/dxdN3RxJRVYzFxVSR0fNhSBqBSL.jpg\",\n            \"genre_ids\": [\n                99\n            ],\n            \"id\": 682666,\n            \"original_language\": \"en\",\n            \"original_title\": \"Back to the Titanic\",\n            \"overview\": \"Mission Titanic : les premières plongées sur le Titanic depuis 15 ans. De nouvelles images révèlent une dégradation récente et mettent en lumière l'avenir du navire.\",\n            \"popularity\": 3.787,\n            \"poster_path\": \"/8VRFXL1iUfxtcVH3s0llhdhBSaS.jpg\",\n            \"release_date\": \"2020-02-23\",\n            \"title\": \"Mission Titanic\",\n            \"video\": false,\n            \"vote_average\": 7,\n            \"vote_count\": 5\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/hDfaa3Nj3K3SkXBr8eALYfPT5pF.jpg\",\n            \"genre_ids\": [\n                99\n            ],\n            \"id\": 428950,\n            \"original_language\": \"en\",\n            \"original_title\": \"Drain the Titanic\",\n            \"overview\": \"\",\n            \"popularity\": 2.901,\n            \"poster_path\": \"/qGqgdquSj9bPiIcqei9ol4lozwA.jpg\",\n            \"release_date\": \"2016-05-05\",\n            \"title\": \"Le Titanic dévoilé\",\n            \"video\": false,\n            \"vote_average\": 7.2,\n            \"vote_count\": 17\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/v6kUC2dsDwSfhwCWdAgldXB7Knu.jpg\",\n            \"genre_ids\": [\n                10770,\n                99,\n                18\n            ],\n            \"id\": 102370,\n            \"original_language\": \"en\",\n            \"original_title\": \"Saving the Titanic\",\n            \"overview\": \"\",\n            \"popularity\": 2.67,\n            \"poster_path\": \"/gei8kg0KouyPJKUmxDwTNSnBUTV.jpg\",\n            \"release_date\": \"2012-04-15\",\n            \"title\": \"Saving the Titanic\",\n            \"video\": false,\n            \"vote_average\": 7.6,\n            \"vote_count\": 11\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/yFD05fZjJKgZ4t7LGJB2ILPdZ2X.jpg\",\n            \"genre_ids\": [\n                36\n            ],\n            \"id\": 287347,\n            \"original_language\": \"en\",\n            \"original_title\": \"Titanic: The Aftermath\",\n            \"overview\": \"\",\n            \"popularity\": 2.155,\n            \"poster_path\": \"/3LqoUNnbHAolDXI2pLPEXko9wFt.jpg\",\n            \"release_date\": \"2012-04-01\",\n            \"title\": \"Titanic: The Aftermath\",\n            \"video\": false,\n            \"vote_average\": 5,\n            \"vote_count\": 1\n        },\n        {\n            \"adult\": false,\n            \"backdrop_path\": \"/4F9sK5R1P9L21msosfWXSXOJJIg.jpg\",\n            \"genre_ids\": [\n                99\n            ],\n            \"id\": 438579,\n            \"original_language\": \"en\",\n            \"original_title\": \"Titanic: The New Evidence\",\n            \"overview\": \"Le 15 avril 1912, après avoir heurté un iceberg, le Titanic sombre dans les eaux glacées de l'Atlantique nord. Le bilan humain est l'un des plus lourds de l'histoire maritime. Le choc entre l'iceberg et le transatlantique a longtemps été considéré comme la seule raison de la catastrophe. Aujourd'hui, à la lumière de nouveaux indices, cette hypothèse est remise en cause. L'enquête officielle, menée l'année même du drame, a-t-elle été au fond des choses ? Senan Molony, journaliste irlandais, qui enquête depuis près de trente ans, est persuadé depuis longtemps que la véritable raison du naufrage reste à découvrir.\",\n            \"popularity\": 2.48,\n            \"poster_path\": \"/aveEdkdjWE6HoXPfKEpnPDX8ZGE.jpg\",\n            \"release_date\": \"2017-01-21\",\n            \"title\": \"Titanic, la vérité dévoilée\",\n            \"video\": false,\n            \"vote_average\": 7,\n            \"vote_count\": 5\n        }\n    ],\n    \"total_pages\": 8,\n    \"total_results\": 150\n}"
+				}
+			]
+		},
+		{
+			"name": "Movie By id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/movies/:movie_id",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{app}}{{host}}{{port}}"
+					],
+					"path": [
+						"{{baseUri}}",
+						"movies",
+						":movie_id"
+					],
+					"variable": [
+						{
+							"key": "movie_id",
+							"value": "671"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/movies/:movie_id",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{app}}{{host}}{{port}}"
+							],
+							"path": [
+								"{{baseUri}}",
+								"movies",
+								":movie_id"
+							],
+							"variable": [
+								{
+									"key": "movie_id",
+									"value": "671"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 10 Jan 2023 17:47:48 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1695"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Origin"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"adult\": false,\n    \"backdrop_path\": \"/5jkE2SzR5uR2egEb1rRhF22JyWN.jpg\",\n    \"belongs_to_collection\": {\n        \"id\": 1241,\n        \"name\": \"Harry Potter - Saga\",\n        \"poster_path\": \"/iK5s34WRr3OoSKgWPfEsp3ZAsMK.jpg\",\n        \"backdrop_path\": \"/4gV0rKUjB1nLUdZB4zIltLvNZZr.jpg\"\n    },\n    \"budget\": 125000000,\n    \"genres\": [\n        {\n            \"id\": 12,\n            \"name\": \"Aventure\"\n        },\n        {\n            \"id\": 14,\n            \"name\": \"Fantastique\"\n        }\n    ],\n    \"homepage\": \"\",\n    \"id\": 671,\n    \"imdb_id\": \"tt0241527\",\n    \"original_language\": \"en\",\n    \"original_title\": \"Harry Potter and the Philosopher's Stone\",\n    \"overview\": \"Orphelin, Harry Potter a été élevé sans amour par son oncle et sa tante Dursley, béats devant leur exécrable fils, Dudley. Le jour de ses 11 ans, un brave colosse nommé Hagrid lui apprend qu'il est un grand magicien. Comme l'étaient ses parents, tués par le maléfique Voldemort. L'heure est venue pour Harry de rejoindre la célèbre école de sorcellerie de Poudlard\",\n    \"popularity\": 202.336,\n    \"poster_path\": \"/fbxQ44VRdM2PVzHSNajUseUteem.jpg\",\n    \"production_companies\": [\n        {\n            \"id\": 174,\n            \"logo_path\": \"/IuAlhI9eVC9Z8UQWOIDdWRKSEJ.png\",\n            \"name\": \"Warner Bros. Pictures\",\n            \"origin_country\": \"US\"\n        },\n        {\n            \"id\": 436,\n            \"logo_path\": \"/A7WCkG3F0NFvjGCwUnclpGdIu9E.png\",\n            \"name\": \"1492 Pictures\",\n            \"origin_country\": \"US\"\n        },\n        {\n            \"id\": 437,\n            \"logo_path\": \"/nu20mtwbEIhUNnQ5NXVhHsNknZj.png\",\n            \"name\": \"Heyday Films\",\n            \"origin_country\": \"GB\"\n        }\n    ],\n    \"production_countries\": [\n        {\n            \"iso_3166_1\": \"GB\",\n            \"name\": \"United Kingdom\"\n        },\n        {\n            \"iso_3166_1\": \"US\",\n            \"name\": \"United States of America\"\n        }\n    ],\n    \"release_date\": \"2001-11-16\",\n    \"revenue\": 976475550,\n    \"runtime\": 153,\n    \"spoken_languages\": [\n        {\n            \"english_name\": \"English\",\n            \"iso_639_1\": \"en\",\n            \"name\": \"English\"\n        }\n    ],\n    \"status\": \"Released\",\n    \"tagline\": \"Un voyage au‐delà de votre imagination.\",\n    \"title\": \"Harry Potter à l'école des sorciers\",\n    \"video\": false,\n    \"vote_average\": 7.917,\n    \"vote_count\": 23838\n}"
+				}
+			]
+		}
+	]
+}
