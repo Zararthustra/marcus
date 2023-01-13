@@ -8,7 +8,7 @@ import { ReactComponent as Profil } from "../assets/svg/profil.svg";
 export const Navbar = () => {
   return (
     <>
-      <nav class="nav">
+      <nav className="nav">
         <Link to="/">
           <Logo className="nav-logo" />
         </Link>
