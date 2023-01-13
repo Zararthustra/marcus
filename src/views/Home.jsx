@@ -1,8 +1,6 @@
 import "../styles/Home.css";
 // import axios from "axios";
 // import { useQuery } from "react-query";
-import { Navbar } from "../components/Navbar.jsx";
-import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import { Users } from "../components/Users";
 
@@ -24,8 +22,7 @@ const Home = () => {
     // console.log(error);
 
     return (
-        <div className="Home">
-            <Navbar />
+        <div className="App">
             <Header />
             {/* {isLoading && isLoading} */}
             {/* {error && error} */}
@@ -33,7 +30,6 @@ const Home = () => {
         return <div key={index}>{item.title}</div>;
       })} */}
             <Users userName="Arthur" genderMovie={['Fiction', "Fantastique", "Érotique"]} masterPieces={2} critics={5} votes={0} watchList={2} />
-            <Footer />
         </div>
     );
 }

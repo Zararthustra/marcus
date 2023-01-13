@@ -1,40 +1,40 @@
-nav {
-  position: absolute;
-  z-index: 1;
-  padding-top: 1rem;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+.nav {
   align-items: center;
-  color: white;
+  color: #FFF;
+  display: flex;
   height: 5.5rem;
+  justify-content: space-between;
+  padding-top: 1rem;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
 }
 
 .nav-logo {
   margin-left: 2rem;
   width: 10rem;
 }
-nav ul {
-  height: 5.5rem;
 
-}
-nav li {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
 .nav-links {
+  align-items: center;
+  display: flex;
+  font-size: .9rem;
+  gap: 4rem;
+  height: 5.5rem;
+  justify-content: space-around;
+  margin-right: 5rem;
   position: fixed;
   right: 0;
-  margin-right: 5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4rem;
-  font-size: 1.2rem;
+  top: .5rem;
+  width: 20%;
 }
-.nav-icon {
-  width: 3rem;
+
+.links {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  text-align: center;
+  width: 100%;
 }
