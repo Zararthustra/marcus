@@ -5,10 +5,10 @@ import { ReactComponent as Home } from "../assets/svg/home.svg";
 import { ReactComponent as Communaute } from "../assets/svg/communaute.svg";
 import { ReactComponent as Profil } from "../assets/svg/profil.svg";
 
-export const Navbar = () => {
+const Navbar = () => {
   return (
     <>
-      <nav class="nav">
+      <nav className="nav">
         <Link to="/">
           <Logo className="nav-logo" />
         </Link>
@@ -37,3 +37,5 @@ export const Navbar = () => {
     </>
   );
 };
+
+export default Navbar;
