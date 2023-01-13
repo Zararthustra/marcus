@@ -1,6 +1,6 @@
 import "../styles/Header.css";
 
-export const Header = () => {
+const Header = () => {
   return (
     <header className="headerLanding">
       <p>Le site des cinéphiles qui ont un avis.</p>
@@ -11,3 +11,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export default Header;

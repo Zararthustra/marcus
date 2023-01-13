@@ -6,7 +6,7 @@ import { ReactComponent as Critics } from "../assets/svg/critics.svg";
 import { ReactComponent as Votes } from "../assets/svg/votes.svg";
 import { ReactComponent as WatchList } from "../assets/svg/watchList.svg";
 
-export const Users = ({userName, genderMovie, masterPieces, critics, votes, watchList}) => {
+const Users = ({userName, genderMovie, masterPieces, critics, votes, watchList}) => {
   return (
     <section className="users">
       <header>
@@ -39,3 +39,5 @@ export const Users = ({userName, genderMovie, masterPieces, critics, votes, watc
     </section>
   );
 };
+
+export default Users;

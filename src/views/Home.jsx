@@ -1,8 +1,9 @@
 import "../styles/Home.css";
 // import axios from "axios";
 // import { useQuery } from "react-query";
-import { Header } from "../components/Header";
-import { Users } from "../components/Users";
+import Header from "../components/Header";
+import Users from "../components/Users";
+import UserDatas from "../components/UserDatas";
 
 const Home = () => {
     // const basePath = "https://api.themoviedb.org/3";
@@ -21,6 +22,13 @@ const Home = () => {
     // console.log(isLoading);
     // console.log(error);
 
+    const dataObject = {
+        "critic": 27,
+        "note": 54,
+        "masterpiece": 12,
+        "watchlist": 5
+    }
+
     return (
         <div className="App">
             <Header />
@@ -30,6 +38,7 @@ const Home = () => {
         return <div key={index}>{item.title}</div>;
       })} */}
             <Users userName="Arthur" genderMovie={['Fiction', "Fantastique", "Érotique"]} masterPieces={2} critics={5} votes={0} watchList={2} />
+            <UserDatas data={dataObject} />
         </div>
     );
 }

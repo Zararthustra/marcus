@@ -1,6 +1,6 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
     return (
@@ -13,4 +13,4 @@ const Profile = () => {
     )
 }
 
-export default Profile
+export default Profile;
