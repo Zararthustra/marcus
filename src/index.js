@@ -1,15 +1,19 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import reportWebVitals from "./reportWebVitals";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { RouterProvider } from 'react-router-dom';
+
+import { Footer } from "./components/Footer";
+import routes from './router/routes'; 
 
 const queryClient = new QueryClient();
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <RouterProvider router={routes} />
+      <Footer />
     </QueryClientProvider>
   </React.StrictMode>
 );
