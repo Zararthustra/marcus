@@ -29,7 +29,7 @@
     right: .5rem;
 }
 
-.notes div {
+.user-datas div {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -37,13 +37,16 @@
     justify-content: space-between;
 }
 
-.notes div p {
+.user-datas div p {
     font-size: 1.2rem;
     margin: 0;
 }
+.user-datas div svg {
+    fill: white;
+}
 
 .genderMovie,
-.notes {
+.user-datas {
     align-items: center;
     display: flex;
     justify-content: space-evenly;

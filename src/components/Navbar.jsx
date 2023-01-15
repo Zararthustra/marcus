@@ -22,13 +22,12 @@ const Navbar = () => {
           ) : (
             <>
               <li
-                style={{ marginTop: ".5rem" }}
                 className="button-active"
                 onClick={() => setIsLogged(!isLogged)}
               >
                 Se connecter
               </li>
-              <li style={{ marginTop: ".5rem", cursor: "pointer" }}>
+              <li style={{ cursor: "pointer" }}>
                 Créer un compte
               </li>
             </>

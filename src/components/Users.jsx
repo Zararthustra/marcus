@@ -18,7 +18,7 @@ const Users = ({userName, genderMovie, masterPieces, critics, votes, watchList})
           return (<p key={index}>{gender}</p>)
         })}
       </article>
-      <article className="notes">
+      <article className="user-datas">
         <div>
           <Palette />
           <p>{masterPieces}</p>
