@@ -1,12 +1,11 @@
 import "../styles/Navbar.css";
 import { Link, Outlet } from "react-router-dom";
 import { ReactComponent as Logo } from "../assets/svg/logo.svg";
-import { ReactComponent as Home } from "../assets/svg/home.svg";
-import { ReactComponent as Communaute } from "../assets/svg/communaute.svg";
 import { ReactComponent as Profil } from "../assets/svg/profil.svg";
+import { useState } from "react";
 
 const Navbar = () => {
-  const isLogged = false;
+  const [isLogged, setIsLogged] = useState(false);
   return (
     <>
       <nav className="nav">
@@ -22,10 +21,14 @@ const Navbar = () => {
             </li>
           ) : (
             <>
-              <li style={{ marginTop: ".5rem" }} className="button-active">
+              <li
+                style={{ marginTop: ".5rem" }}
+                className="button-active"
+                onClick={() => setIsLogged(!isLogged)}
+              >
                 Se connecter
               </li>
-              <li style={{ marginTop: ".5rem", cursor: "pointer" }} >
+              <li style={{ marginTop: ".5rem", cursor: "pointer" }}>
                 Créer un compte
               </li>
             </>
