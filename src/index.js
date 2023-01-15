@@ -4,6 +4,7 @@ import reportWebVitals from "./reportWebVitals";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { RouterProvider } from 'react-router-dom';
 
+import "./styles/Global.css";
 import Footer from "./components/Footer";
 import routes from './router/routes'; 
 

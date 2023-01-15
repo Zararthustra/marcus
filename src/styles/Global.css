@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;700&family=Limelight&display=swap");
+
+:root {
+  background: linear-gradient(90deg, #111523, #1d2a57);
+  --font-title: "Limelight", cursive;
+  --font-text: "Josefin Sans", sans-serif;
+  font-family: var(--font-text);
+  font-size: 16px;
+  color: white;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-icon {
+  width: 3rem;
+}
+
+/*
+** Active Button
+*/
+.button-active {
+  /* background: linear-gradient(90deg, #142A79, #44558D); */
+  background: linear-gradient(30deg, #0b0b70, #a70417);
+  padding: .6rem 2rem;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all .5s;
+}
+.button-active:hover {
+  background: #a70417;
+}

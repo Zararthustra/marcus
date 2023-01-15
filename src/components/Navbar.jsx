@@ -1,11 +1,12 @@
 import "../styles/Navbar.css";
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet } from "react-router-dom";
 import { ReactComponent as Logo } from "../assets/svg/logo.svg";
 import { ReactComponent as Home } from "../assets/svg/home.svg";
 import { ReactComponent as Communaute } from "../assets/svg/communaute.svg";
 import { ReactComponent as Profil } from "../assets/svg/profil.svg";
 
 const Navbar = () => {
+  const isLogged = false;
   return (
     <>
       <nav className="nav">
@@ -13,24 +14,22 @@ const Navbar = () => {
           <Logo className="nav-logo" />
         </Link>
         <ul className="nav-links">
-          <li className="nav-link">
-            <Link to="/" className="links">
-              <Home className="nav-icon" />
-              <p>Home</p>
-            </Link>
-          </li>
-          <li className="nav-link">
-            <Link to="/community" className="links">
-              <Communaute className="nav-icon" />
-              <p>Communauté</p>
-            </Link>            
-          </li>
-          <li className="nav-link">
-            <Link to="/profile" className="links">
-              <Profil className="nav-icon" />
-              <p>Profil</p>
-            </Link>   
-          </li>
+          {isLogged ? (
+            <li>
+              <Link to="/profile">
+                <Profil className="nav-icon" />
+              </Link>
+            </li>
+          ) : (
+            <>
+              <li style={{ marginTop: ".5rem" }} className="button-active">
+                Se connecter
+              </li>
+              <li style={{ marginTop: ".5rem", cursor: "pointer" }} >
+                Créer un compte
+              </li>
+            </>
+          )}
         </ul>
       </nav>
       <Outlet />
