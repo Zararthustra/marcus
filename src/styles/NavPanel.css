@@ -1,0 +1,34 @@
+.navPanel {
+  background: linear-gradient(30deg, #19223d 20%, #a3091b);
+  width: 100%;
+  padding: 2rem 0;
+  position: sticky;
+  top: 0rem;
+  z-index: 1;
+}
+
+.navPanel ul {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navPanel ul li svg {
+  width: 3.5rem;
+  height: 3.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.navPanel ul li:hover svg {
+  fill: white;
+  stroke: white;
+}
+
+.tab-active {
+  fill: white;
+  stroke: white;
+}
+.tab {
+  fill: #8a8989;
+  stroke: #8a8989;
+}

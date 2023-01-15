@@ -36,13 +36,13 @@ a {
 ** Active Button
 */
 .button-active {
-  background: linear-gradient(30deg, #0b0b70, #a70417);
-  padding: .6rem 2rem;
+  background-color: #0b0b70;
+  padding: 0.6rem 2rem 0.5rem;
   border-radius: 5px;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background-color .5s;
+  transition: background-color 0.5s;
 }
 .button-active:hover {
-  background: #a70417;
+  background-color: #1a1a94;
 }
