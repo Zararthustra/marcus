@@ -27,9 +27,7 @@ const Navbar = () => {
               >
                 Se connecter
               </li>
-              <li style={{ cursor: "pointer" }}>
-                Créer un compte
-              </li>
+              <li style={{ cursor: "pointer" }}>Créer un compte</li>
             </>
           )}
         </ul>
