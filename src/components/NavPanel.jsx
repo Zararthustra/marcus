@@ -7,6 +7,39 @@ import { ReactComponent as Release } from "../assets/svg/movieSearch.svg";
 import { ReactComponent as Communaute } from "../assets/svg/communaute.svg";
 
 const NavPanel = ({ activeTab, setActiveTab }) => {
+  const formatTabName = (tabName) => {
+    switch (tabName) {
+      case "critic":
+        return "Critiques";
+      case "note":
+        return "Notes";
+      case "masterpiece":
+        return "Chef d'oeuvres";
+      case "release":
+        return "Sorties";
+      case "community":
+        return "Communauté";
+      default:
+        return "";
+    }
+  };
+  const moveTabBar = (tabName) => {
+    switch (tabName) {
+      case "critic":
+        return "5rem";
+      case "note":
+        return "14rem";
+      case "masterpiece":
+        return "23rem";
+      case "release":
+        return "31.9rem";
+      case "community":
+        return "40.8rem";
+      default:
+        return "";
+    }
+  };
+
   return (
     <nav className="navPanel">
       <ul>
@@ -29,7 +62,11 @@ const NavPanel = ({ activeTab, setActiveTab }) => {
             className={activeTab === "community" ? "tab-active" : "tab"}
           />
         </li>
+        <li className="tab-bar" style={{ left: moveTabBar(activeTab) }}></li>
       </ul>
+      <div className="tab-name">
+        <h1>{formatTabName(activeTab)}</h1>
+      </div>
     </nav>
   );
 };

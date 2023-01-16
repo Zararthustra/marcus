@@ -22,7 +22,7 @@ const Navbar = () => {
           ) : (
             <>
               <li
-                className="button-active"
+                className="button-primary"
                 onClick={() => setIsLogged(!isLogged)}
               >
                 Se connecter

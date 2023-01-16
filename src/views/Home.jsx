@@ -21,6 +21,7 @@ return (
     <div className="App">
       <Header />
       <NavPanel activeTab={activeTab} setActiveTab={setActiveTab}/>
+      <div style={{width: "30rem", height: "2px", backgroundColor: "#8a898971", margin: "2rem 0"}}></div>
       <Users
         userName="Arthur"
         genderMovie={["Fiction", "Fantastique", "Érotique"]}
