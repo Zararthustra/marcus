@@ -3,11 +3,13 @@ import { Link, Outlet } from "react-router-dom";
 import { ReactComponent as Logo } from "../assets/svg/logo.svg";
 import { ReactComponent as Profil } from "../assets/svg/profil.svg";
 import { useState } from "react";
+import Login from "./Login"
 
 const Navbar = () => {
   const [isLogged, setIsLogged] = useState(false);
   return (
     <>
+    {isLogged && <Login />}
       <nav className="nav">
         <Link to="/">
           <Logo className="nav-logo" />

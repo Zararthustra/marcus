@@ -43,8 +43,12 @@ a {
   background: linear-gradient(30deg, #122257 15%, #b3051a);
   padding: 0.6rem 2rem 0.5rem;
   border-radius: 5px;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   cursor: pointer;
+  border: none;
+  outline: none;
+  color: white;
+  font-family: var(--font-text);
   transition: all 0.5s;
 }
 .button-primary:hover {
