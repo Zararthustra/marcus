@@ -5,25 +5,25 @@ import '../styles/UserDatas.css';
 const UserDatas = ({ data }) => {
     return (
         <section className="userDatas">
-            {data.critic.status === 'success' ? (
-                <UserData data="critic" value={data.critic.data} />
-            ) : (
+            {data.critic.status === 'loading' ? (
                 <p>Loading critics...</p>
-            )}
-            {data.note.status === 'success' ? (
-                <UserData data="note" value={data.note.data} />
             ) : (
+                <UserData data="critic" value={data.critic.data} />
+            )}
+            {data.note.status === 'loading' ? (
                 <p>Loading votes...</p>
-            )}
-            {data.masterpiece.status === 'success' ? (
-                <UserData data="masterpiece" value={data.masterpiece.data} />
             ) : (
+                <UserData data="note" value={data.note.data} />
+            )}
+            {data.masterpiece.status === 'loading' ? (
                 <p>Loading masterpieces...</p>
-            )}
-            {data.watchlist.status === 'success' ? (
-                <UserData data="watchlist" value={data.watchlist.data} />
             ) : (
+                <UserData data="masterpiece" value={data.masterpiece.data} />
+            )}
+            {data.watchlist.status === 'loading' ? (
                 <p>Loading watchlists...</p>
+            ) : (
+                <UserData data="watchlist" value={data.watchlist.data} />
             )}
         </section>
     )

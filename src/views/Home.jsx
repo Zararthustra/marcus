@@ -1,21 +1,53 @@
 import '../styles/Home.css';
-import { useQuery } from 'react-query';
-
 import Header from '../components/Header';
 import Users from '../components/Users';
 import NavPanel from '../components/NavPanel';
-import UserDatas from '../components/UserDatas';
-
-import { userData } from '../services/mockApi/userData';
 import { useState } from 'react';
 
-import { getMasterpieces, getWatchlists, getVotes, getCritics } from '../services/api/getUserDatas';
+import { userData } from '../services/mockApi/userData';
+
+// import { useEffect } from 'react';
+// import { useQuery } from 'react-query';
+// import { getMasterpieces, getWatchlists, getVotes, getCritics } from '../services/api/getUserDatas';
+// import UserDatas from '../components/UserDatas';
 
 const Home = () => {
-  const [activeTab, setActiveTab] = useState('');
+  const [activeTab, setActiveTab] = useState('critic');
+  // let userId = 1;
 
-  let userId = 1;
+  /*
+  * Premiere façon de faire avec UseEffect
+  const [masterpieces, setMasterpieces] = useState([]);
+  const [watchlists, setWatchlists] = useState([]);
+  const [votes, setVotes] = useState([]);
+  const [critics, setCritics] = useState([]);
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [masterpiecesRes, watchlistsRes, votesRes, criticsRes] = await Promise.all([
+          getMasterpieces(userId),
+          getWatchlists(userId),
+          getVotes(userId),
+          getCritics(userId)
+        ]);
+        setMasterpieces(masterpiecesRes.data);
+        setWatchlists(watchlistsRes.data);
+        setVotes(votesRes.data);
+        setCritics(criticsRes.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  console.log(masterpieces, watchlists, votes, critics);
+  <UserDatas data={objectDatas} />
+  */  
+
+  /*
+  * 2ème façon de faire avec UseQuery
   const { data: masterpiecesData, status: masterpiecesStatus } = useQuery('masterpieces', () => getMasterpieces(userId));
   const { data: watchlistsData, status: watchlistsStatus } = useQuery('watchlists', () => getWatchlists(userId));
   const { data: votesData, status: votesStatus } = useQuery('votes', () => getVotes(userId));
@@ -38,12 +70,16 @@ const Home = () => {
       data: watchlistsData.data.total,
       status: watchlistsStatus,
     }
-  };
+  }; 
+
+  console.log(objectDatas);
+  <UserDatas data={objectDatas} />
+  */
 
   const activeData = (activeData) => {
     switch (activeData) {
       case 'critic':
-        return <UserDatas data={objectDatas} />
+        return <h2>[Critiques]</h2>;
       case 'note':
         return <h2>[Notes]</h2>;
       case 'masterpiece':
