@@ -1,12 +1,18 @@
 import axios from "axios";
 
-const PROTOCOL = { unsecure: "http", secure: "https" };
-const HOST = { ip: "13.39.16.245", domain: "marcusback.arthurmayer.fr" };
+const PROTOCOL = {
+  unsecure: "http",
+  secure: "https",
+};
+const HOST = {
+  ip: "13.39.16.245",
+  domain: "marcusback.arthurmayer.fr",
+};
 // const token = getLocalStorage('accessToken')
 
 //axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
-axios.defaults.baseURL = PROTOCOL.secure + "://" + HOST.ip + "/api";
+axios.defaults.baseURL = PROTOCOL.secure + "://" + HOST.domain + "/api";
 
 export const getMasterpieces = (userId) => {
   return axios.get(`/masterpieces?user_id=${userId}`);
