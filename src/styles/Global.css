@@ -62,3 +62,33 @@ a {
 .button-primary:hover {
   background: var(--primary-color);
 }
+
+/*
+** ScrollBar
+*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #0d0324;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--light-text);
+}
+
+::selection {
+  background-color: black;
+  color: white;
+}
