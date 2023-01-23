@@ -1,23 +1,50 @@
-import '../styles/Home.css';
-import Header from '../components/Header';
-import Users from '../components/Users';
-import NavPanel from '../components/NavPanel';
-import { useState } from 'react';
+import "../styles/Home.css";
+import Header from "../components/Header";
+import Users from "../components/Users";
+import NavPanel from "../components/NavPanel";
+import { useState, React } from "react";
+import { useQuery } from "react-query";
 
-import { useQuery } from 'react-query';
-import { getMasterpieces, getWatchlists, getVotes, getCritics, getUsersData } from '../services/api/getUserDatas';
-import { masterpieces, critics, watchlists, votes, users_data } from '../services/mockApi/mockedDatas';
-import UserDatas from '../components/UserDatas';
+import Critics from "./Critics";
+
+import {
+  getMasterpieces,
+  getWatchlists,
+  getVotes,
+  getCritics,
+  getUsersData,
+} from "../services/api/getUserDatas";
+import {
+  masterpieces,
+  critics,
+  watchlists,
+  votes,
+  users_data,
+} from "../services/mockApi/mockedDatas";
+import UserDatas from "../components/UserDatas";
 
 const Home = () => {
-  const [activeTab, setActiveTab] = useState('critic');
+  const [activeTab, setActiveTab] = useState("critic");
   let userId = 1;
 
-  const { data: masterpiecesData, status: masterpiecesStatus } = useQuery('masterpieces', () => getMasterpieces(userId, masterpieces));
-  const { data: watchlistsData, status: watchlistsStatus } = useQuery('watchlists', () => getWatchlists(userId, watchlists));
-  const { data: votesData, status: votesStatus } = useQuery('votes', () => getVotes(userId, votes));
-  const { data: criticsData, status: criticsStatus } = useQuery('critics', () => getCritics(userId, critics));
-  const { data: usersData, status: usersDataStatus } = useQuery('usersData', () => getUsersData(users_data));
+  const { data: masterpiecesData, status: masterpiecesStatus } = useQuery(
+    "masterpieces",
+    () => getMasterpieces(userId, masterpieces)
+  );
+  const { data: watchlistsData, status: watchlistsStatus } = useQuery(
+    "watchlists",
+    () => getWatchlists(userId, watchlists)
+  );
+  const { data: votesData, status: votesStatus } = useQuery("votes", () =>
+    getVotes(userId, votes)
+  );
+  const { data: criticsData, status: criticsStatus } = useQuery("critics", () =>
+    getCritics(userId, critics)
+  );
+  const { data: usersData, status: usersDataStatus } = useQuery(
+    "usersData",
+    () => getUsersData(users_data)
+  );
 
   const objectDatas = {
     critic: {
@@ -35,21 +62,25 @@ const Home = () => {
     watchlist: {
       data: watchlistsData?.total,
       status: watchlistsStatus,
-    }
+    },
   };
 
   const activeData = (activeData) => {
     switch (activeData) {
-      case 'critic':
-        return <UserDatas data={objectDatas} />
-      case 'note':
-        return <h2>[Notes]</h2>;
-      case 'masterpiece':
+      case "critic":
+        return criticsStatus === "loading" ? (
+          <p>Loading critics...</p>
+        ) : (
+          <Critics critics={criticsData?.data} />
+        );
+      case "note":
+        return <UserDatas data={objectDatas} />;
+      case "masterpiece":
         return <h2>[Chefs d'oeuvres]</h2>;
-      case 'release':
+      case "release":
         return <h2>[Sorties]</h2>;
-      case 'community':
-        return usersDataStatus === 'loading' ? (
+      case "community":
+        return usersDataStatus === "loading" ? (
           <p>Loading datas...</p>
         ) : (
           usersData.map((user, index) => {
@@ -70,24 +101,25 @@ const Home = () => {
     }
   };
   return (
-    <div className='App'>
+    <div className="App">
       <Header />
       <NavPanel activeTab={activeTab} setActiveTab={setActiveTab} />
       <div
         style={{
-          width: '30rem',
-          height: '2px',
-          backgroundColor: '#8a898971',
-          margin: '2rem 0',
+          width: "30rem",
+          height: "2px",
+          backgroundColor: "#8a898971",
+          margin: "2rem 0",
         }}
       />
       <main
         style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: '2rem',
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap",
+          flexDirection: "column",
+          gap: "3rem",
         }}
       >
         {activeData(activeTab)}
