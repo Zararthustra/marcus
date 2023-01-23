@@ -1,69 +1,72 @@
 .critic {
-    padding: 2rem;
-    margin: 2rem;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: #121626;
-    border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 50rem;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 15px;
 }
 
 .critic-header {
-    padding: 1rem;
-    align-items: center;
-    width: 100%;
+  width: 100%;
 }
-
+.critic-header h2 {
+  margin: 0;
+}
 .critic-header-title {
-    font-family: 'Limelight';
-    font-weight: 400;
-    line-height: 58px;
-    color: #FFFFFF;
+  font-family: "Limelight";
+  font-weight: 400;
+  line-height: 58px;
+  color: #ffffff;
 }
 
 .critic-main {
-    padding: 1rem;
-    align-items: center;
-    width: 100%;
-    text-align: center;
+  align-items: center;
+  text-align: center;
+  width: 40rem;
 }
 
 .critic-main-content {
-    font-family: 'Josefin Sans';
-    font-weight: 300;
-    font-size: 35px;
-    line-height: 35px;
-    color: #FFFFFF;
+  font-family: "Josefin Sans";
+  text-align: justify;
+  font-weight: 300;
+  font-size: 1.1rem;
+  line-height: 30px;
+  color: #ffffff;
 }
 
 .critic-footer {
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  gap: 10rem;
 }
 
 .critic-footer-userName {
-    padding: 1rem;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 70%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
 
-
-    font-family: 'Josefin Sans';
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 45px;
+  font-family: "Josefin Sans";
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 45px;
 }
 
 .critic-footer-icons {
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    width: 20%;
-    justify-content: space-evenly;
-    color: rgba(255, 255, 255, 0.78);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-evenly;
+}
+
+.critic-footer-icons svg {
+  fill: var(--light-text);
+  width: 2rem;
+  cursor: pointer;
+  transition: 0.5s fill;
+}
+.critic-footer-icons svg:hover {
+  fill: white;
 }

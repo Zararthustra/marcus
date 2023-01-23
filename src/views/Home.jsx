@@ -118,7 +118,8 @@ const Home = () => {
           justifyContent: "center",
           alignItems: "center",
           flexWrap: "wrap",
-          gap: "2rem",
+          flexDirection: "column",
+          gap: "3rem",
         }}
       >
         {activeData(activeTab)}
