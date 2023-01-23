@@ -1,5 +1,11 @@
 .navPanel {
-  background: linear-gradient(90deg, #151a2e 1%, #111523 15%, #111523 85%, #151a2e 99%);
+  background: linear-gradient(
+    90deg,
+    #151a2e 1%,
+    #111523 15%,
+    #111523 85%,
+    #151a2e 99%
+  );
   width: 100%;
   position: sticky;
   top: 0rem;
@@ -20,8 +26,8 @@
 }
 
 .navPanel ul li svg {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
   cursor: pointer;
   transition: all 0.3s;
 }
@@ -32,12 +38,11 @@
 
 .tab-bar {
   position: absolute;
-  top: 5rem;
-  width: 4rem;
-  height: 0.3rem;
+  top: 3.5rem;
+  width: 2.8rem;
+  height: 0.2rem;
   border-radius: 25px;
   background-color: white;
-  left: 2rem;
   transition: left 0.3s cubic-bezier(0.31, -0.2, 0.73, 1.21);
 }
 
@@ -45,15 +50,17 @@
   fill: white;
   stroke: white;
 }
+
 .tab {
   fill: #8a8989;
   stroke: #8a8989;
 }
+
 .tab-name {
-  height: 10rem;
+  height: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   width: 100%;
 }

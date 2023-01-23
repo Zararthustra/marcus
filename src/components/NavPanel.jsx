@@ -26,15 +26,15 @@ const NavPanel = ({ activeTab, setActiveTab }) => {
   const moveTabBar = (tabName) => {
     switch (tabName) {
       case "critic":
-        return "5rem";
+        return "6rem";
       case "note":
-        return "14rem";
+        return "14.9rem";
       case "masterpiece":
-        return "23rem";
+        return "23.7rem";
       case "release":
-        return "31.9rem";
+        return "32.4rem";
       case "community":
-        return "40.8rem";
+        return "41.2rem";
       default:
         return "";
     }

@@ -109,7 +109,7 @@ const Home = () => {
           width: "30rem",
           height: "2px",
           backgroundColor: "#8a898971",
-          margin: "2rem 0",
+          margin: "1rem 0 5rem",
         }}
       />
       <main

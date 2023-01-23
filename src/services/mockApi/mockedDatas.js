@@ -29,14 +29,15 @@ export const critics = {
       movie_name: "Star Wars",
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eligendi molestiae velit provident dolorum, ab repudiandae deleniti nam porro aspernatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eligendi molestiae velit provident dolorum, ab repudiandae deleniti nam porro aspernatur.",
-      user_id: 1,
+      user_id: 2,
       user_name: "JordanMotoRider18",
     },
     {
       movie_id: 107,
       movie_name: "Jupiter Ascending",
-      content: "cool cool cool",
-      user_id: 1,
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eligendi molestiae velit provident dolorum, ab repudiandae deleniti nam porro aspernatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eligendi molestiae velit provident dolorum, ab repudiandae deleniti nam porro aspernatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eligendi molestiae velit provident dolorum, ab repudiandae deleniti nam porro aspernatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum eligendi molestiae velit provident dolorum, ab repudiandae deleniti nam porro aspernatur.",
+      user_id: 3,
       user_name: "Gab",
     },
   ],
