@@ -83,9 +83,7 @@ export const users_data = [
             "Romantique",
             "XXX",
             "Documentaire",
-            "Humour",
-            "Thriller",
-            "Faudrait faire quelque chose là",
+            "Humour"
         ],
         critic: 59,
         note: 16,
@@ -93,8 +91,8 @@ export const users_data = [
         watchlist: 4,
     },
     {
-        userName: "Robert",
-        genders: ["Science fiction", "Action", "Drame"],
+        userName: "Arty",
+        genders: ["Dessin Animé", "Adulte", "Télé-réalité"],
         critic: 27,
         note: 54,
         masterpiece: 12,
