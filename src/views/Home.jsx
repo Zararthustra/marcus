@@ -4,106 +4,69 @@ import Users from '../components/Users';
 import NavPanel from '../components/NavPanel';
 import { useState } from 'react';
 
-import { userData } from '../services/mockApi/userData';
-
-// import { useEffect } from 'react';
-// import { useQuery } from 'react-query';
-// import { getMasterpieces, getWatchlists, getVotes, getCritics } from '../services/api/getUserDatas';
-// import UserDatas from '../components/UserDatas';
+import { useQuery } from 'react-query';
+import { getMasterpieces, getWatchlists, getVotes, getCritics, getUsersData } from '../services/api/getUserDatas';
+import { masterpieces, critics, watchlists, votes, users_data } from '../services/mockApi/mockedDatas';
+import UserDatas from '../components/UserDatas';
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState('critic');
-  // let userId = 1;
+  let userId = 1;
 
-  /*
-  * Premiere façon de faire avec UseEffect
-  const [masterpieces, setMasterpieces] = useState([]);
-  const [watchlists, setWatchlists] = useState([]);
-  const [votes, setVotes] = useState([]);
-  const [critics, setCritics] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const [masterpiecesRes, watchlistsRes, votesRes, criticsRes] = await Promise.all([
-          getMasterpieces(userId),
-          getWatchlists(userId),
-          getVotes(userId),
-          getCritics(userId)
-        ]);
-        setMasterpieces(masterpiecesRes.data);
-        setWatchlists(watchlistsRes.data);
-        setVotes(votesRes.data);
-        setCritics(criticsRes.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchData();
-  }, []);
-
-  console.log(masterpieces, watchlists, votes, critics);
-  <UserDatas data={objectDatas} />
-  */  
-
-  /*
-  * 2ème façon de faire avec UseQuery
-  const { data: masterpiecesData, status: masterpiecesStatus } = useQuery('masterpieces', () => getMasterpieces(userId));
-  const { data: watchlistsData, status: watchlistsStatus } = useQuery('watchlists', () => getWatchlists(userId));
-  const { data: votesData, status: votesStatus } = useQuery('votes', () => getVotes(userId));
-  const { data: criticsData, status: criticsStatus } = useQuery('critics', () => getCritics(userId));
+  const { data: masterpiecesData, status: masterpiecesStatus } = useQuery('masterpieces', () => getMasterpieces(userId, masterpieces));
+  const { data: watchlistsData, status: watchlistsStatus } = useQuery('watchlists', () => getWatchlists(userId, watchlists));
+  const { data: votesData, status: votesStatus } = useQuery('votes', () => getVotes(userId, votes));
+  const { data: criticsData, status: criticsStatus } = useQuery('critics', () => getCritics(userId, critics));
+  const { data: usersData, status: usersDataStatus } = useQuery('usersData', () => getUsersData(users_data));
 
   const objectDatas = {
     critic: {
-      data: criticsData.data.total,
+      data: criticsData?.total,
       status: criticsStatus,
     },
     note: {
-      data: votesData.data.total,
+      data: votesData?.total,
       status: votesStatus,
     },
     masterpiece: {
-      data: masterpiecesData.data.total,
+      data: masterpiecesData?.total,
       status: masterpiecesStatus,
     },
     watchlist: {
-      data: watchlistsData.data.total,
+      data: watchlistsData?.total,
       status: watchlistsStatus,
     }
-  }; 
-
-  console.log(objectDatas);
-  <UserDatas data={objectDatas} />
-  */
+  };
 
   const activeData = (activeData) => {
     switch (activeData) {
       case 'critic':
-        return <h2>[Critiques]</h2>;
+        return <UserDatas data={objectDatas} />
       case 'note':
         return <h2>[Notes]</h2>;
       case 'masterpiece':
         return <h2>[Chefs d'oeuvres]</h2>;
       case 'release':
         return <h2>[Sorties]</h2>;
-
       case 'community':
-        return userData.map((user, index) => {
-          return (
-            <Users
-              key={index}
-              userName={user.userName}
-              genderMovie={user.genders}
-              masterPieces={user.masterpiece}
-              critics={user.critic}
-              votes={user.note}
-              watchList={user.watchlist}
-            />
-          );
-        });
-
+        return usersDataStatus === 'loading' ? (
+          <p>Loading datas...</p>
+        ) : (
+          usersData.map((user, index) => {
+            return (
+              <Users
+                key={index}
+                userName={user.userName}
+                genderMovie={user.genders}
+                masterPieces={user.masterpiece}
+                critics={user.critic}
+                votes={user.note}
+                watchList={user.watchlist}
+              />
+            );
+          })
+        );
       default:
-        return;
     }
   };
   return (
