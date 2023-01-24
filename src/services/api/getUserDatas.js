@@ -19,6 +19,11 @@ export const getMasterpieces = (userId, mockedData) => {
   return axios.get(`/masterpieces?user_id=${userId}`);
 };
 
+export const getMasterpiece = (userId, mockedData) => {
+  if (mockedData) return mockedData
+  return axios.get(`/masterpiece?user_id=${userId}`);
+};
+
 export const getWatchlists = (userId, mockedData) => {
   if (mockedData) return mockedData
   return axios.get(`/watchlists?user_id=${userId}`);

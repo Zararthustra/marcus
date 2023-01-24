@@ -1,0 +1,93 @@
+.masterpiece {
+    align-items: center;
+    border-radius: .938rem;
+    display: flex;
+    justify-content: space-between;
+    width: 50rem;
+}
+
+.masterpiece-left {
+    padding: 1rem;
+}
+
+.masterpiece-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.masterpiece-left img {
+    border-radius: .625rem;
+    height: 26.188rem;
+    object-fit: cover;
+    width: 18.625rem;
+}
+
+.masterpiece-description {
+    color: #fff;
+    font-family: "Josefin Sans";
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.25rem;
+    text-align: justify;
+}
+
+.masterpiece-release-director {
+    display: flex;
+    font-family: 'Josefin Sans';
+    font-size: .938rem;
+    justify-content: space-between;
+    line-height: 1.75rem;
+    width: 50%;
+}
+
+.masterpiece-title {
+    color: #fff;
+    font-family: Limelight;
+    font-size: 1.875rem;
+    font-weight: 400;
+}
+
+.masterpiece-footer {
+    display: flex;
+    gap: 10rem;
+    padding: 0;
+    width: 100%;
+}
+
+.masterpiece-footer-userName {
+    font-family: "Josefin Sans";
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 2.813rem;
+    text-align: right;
+    width: 100%;
+}
+
+.masterpiece-footer-userName a {
+    color: var(--light-text);
+    transition: .5s color;
+}
+
+.masterpiece-footer-userName a:hover {
+    color: #FFF;
+}
+
+.masterpiece-footer-icons {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-evenly;
+}
+
+.masterpiece-footer-icons svg {
+    cursor: pointer;
+    fill: var(--light-text);
+    transition: .5s fill;
+    width: 2rem;
+}
+
+.masterpiece-footer-icons svg:hover {
+    fill: #FFF;
+}
