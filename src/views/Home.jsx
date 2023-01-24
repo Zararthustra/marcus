@@ -5,7 +5,7 @@ import NavPanel from "../components/NavPanel";
 import { useState, React } from "react";
 import { useQuery } from "react-query";
 
-import Critics from "./Critics";
+import Critic from "../components/Critic";
 
 import {
   getMasterpieces,
@@ -29,17 +29,17 @@ const Home = () => {
 
   const { data: masterpiecesData, status: masterpiecesStatus } = useQuery(
     "masterpieces",
-    () => getMasterpieces(userId, masterpieces)
+    () => getMasterpieces(userId)
   );
   const { data: watchlistsData, status: watchlistsStatus } = useQuery(
     "watchlists",
-    () => getWatchlists(userId, watchlists)
+    () => getWatchlists(userId)
   );
   const { data: votesData, status: votesStatus } = useQuery("votes", () =>
-    getVotes(userId, votes)
+    getVotes(userId)
   );
   const { data: criticsData, status: criticsStatus } = useQuery("critics", () =>
-    getCritics(userId, critics)
+    getCritics(userId)
   );
   const { data: usersData, status: usersDataStatus } = useQuery(
     "usersData",
@@ -48,19 +48,19 @@ const Home = () => {
 
   const objectDatas = {
     critic: {
-      data: criticsData?.total,
+      data: criticsData?.data.total,
       status: criticsStatus,
     },
     note: {
-      data: votesData?.total,
+      data: votesData?.data.total,
       status: votesStatus,
     },
     masterpiece: {
-      data: masterpiecesData?.total,
+      data: masterpiecesData?.data.total,
       status: masterpiecesStatus,
     },
     watchlist: {
-      data: watchlistsData?.total,
+      data: watchlistsData?.data.total,
       status: watchlistsStatus,
     },
   };
@@ -71,8 +71,18 @@ const Home = () => {
         return criticsStatus === "loading" ? (
           <p>Loading critics...</p>
         ) : (
-          <Critics critics={criticsData?.data} />
+          criticsData.data.data.map((critic, index) => (
+            <Critic
+              key={index}
+              movieId={critic.movie_id}
+              movieName={critic.movie_name}
+              content={critic.content}
+              userId={critic.user_id}
+              userName={critic.user_name}
+            />
+          ))
         );
+
       case "note":
         return <UserDatas data={objectDatas} />;
       case "masterpiece":
