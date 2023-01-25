@@ -13,6 +13,11 @@
 }
 .critic-header h2 {
   margin: 0;
+  width: fit-content;
+  cursor: pointer;
+}
+.critic-header h2:hover {
+  text-decoration: underline;
 }
 .critic-header-title {
   font-family: "Limelight";
