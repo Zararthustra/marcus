@@ -15,17 +15,17 @@ const HOST = {
 axios.defaults.baseURL = PROTOCOL.unsecure + "://" + HOST.localhost + "/api";
 
 export const getMasterpieces = (userId, mockedData) => {
-  if (mockedData) return mockedData
+  if (mockedData) return mockedData;
   return axios.get(`/masterpieces?user_id=${userId}`);
 };
 
 export const getWatchlists = (userId, mockedData) => {
-  if (mockedData) return mockedData
+  if (mockedData) return mockedData;
   return axios.get(`/watchlists?user_id=${userId}`);
 };
 
 export const getVotes = (userId, mockedData) => {
-  if (mockedData) return mockedData
+  if (mockedData) return mockedData;
   return axios.get(`/votes?user_id=${userId}`);
 };
 
@@ -34,6 +34,6 @@ export const getCritics = (userId, mockedData) => {
 };
 
 export const getUsersData = (mockedData) => {
-  if (mockedData) return mockedData
+  if (mockedData) return mockedData;
   return axios.get(`/users`);
 };

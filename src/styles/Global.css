@@ -1,24 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;700&family=Limelight&display=swap");
 
 :root {
-  background: linear-gradient(
+  /* background: linear-gradient(
     90deg,
     #151a2e 1%,
     #111523 15%,
     #111523 85%,
     #151a2e 99%
-  );
-
+  ); */
+  
   --primary-color: #152047;
-
+  --light-text: #949393;
+  --background: #f0f0f0;
   --font-title: "Limelight", cursive;
   --font-text: "Josefin Sans", sans-serif;
-
-  --light-text: #ffffff8f;
-
+  
   font-family: var(--font-text);
   font-size: 16px;
-  color: white;
+  background-color: var(--background);
 }
 
 body {
@@ -37,7 +36,7 @@ li {
 
 a {
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
 .nav-icon {

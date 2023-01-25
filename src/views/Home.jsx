@@ -64,14 +64,17 @@ const Home = () => {
       status: watchlistsStatus,
     },
   };
-
+console.log(criticsStatus);
+console.log(criticsData);
   const activeData = (activeData) => {
     switch (activeData) {
       case "critic":
         return criticsStatus === "loading" ? (
           <p>Loading critics...</p>
-        ) : (
-          criticsData.data.data.map((critic, index) => (
+        ) : criticsStatus === "error" ? (
+          <p>Error</p>
+        ) :(
+          criticsData?.data.data.map((critic, index) => (
             <Critic
               key={index}
               movieId={critic.movie_id}
@@ -124,12 +127,14 @@ const Home = () => {
       />
       <main
         style={{
+          padding: "5rem 0",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           flexWrap: "wrap",
-          flexDirection: "column",
+          flexDirection: activeTab === "community" ? "row" : "column",
           gap: "3rem",
+          width: "100%"
         }}
       >
         {activeData(activeTab)}

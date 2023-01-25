@@ -6,8 +6,11 @@
   align-items: center;
   flex-direction: column;
   background-color: #111;
+  color: white;
 }
-
+.app-footer a {
+  color: #444;
+}
 .ARR {
   color: #444;
 }

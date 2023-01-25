@@ -1,10 +1,11 @@
 .critic {
   display: flex;
   flex-direction: column;
-  width: 50rem;
+  width: 45rem;
   justify-content: space-evenly;
   align-items: center;
   border-radius: 15px;
+  color: black;
 }
 
 .critic-header {
@@ -17,13 +18,12 @@
   font-family: "Limelight";
   font-weight: 400;
   line-height: 58px;
-  color: #ffffff;
 }
 
 .critic-main {
   align-items: center;
   text-align: center;
-  width: 40rem;
+  width: 37rem;
 }
 
 .critic-main-content {
@@ -32,7 +32,6 @@
   font-weight: 300;
   font-size: 1.1rem;
   line-height: 30px;
-  color: #ffffff;
 }
 
 .critic-footer {
@@ -56,7 +55,7 @@
   transition: 0.5s color;
 }
 .critic-footer-userName a:hover {
-  color: white;
+  color: black;
 }
 .critic-footer-icons {
   display: flex;
@@ -72,5 +71,5 @@
   transition: 0.5s fill;
 }
 .critic-footer-icons svg:hover {
-  fill: white;
+  fill: black;
 }
