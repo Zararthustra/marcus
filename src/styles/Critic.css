@@ -24,9 +24,8 @@
 }
 
 .critic-header-title {
-  color: #fff;
-  font-family: Limelight;
-  font-weight: 400;
+  text-transform: capitalize;
+  font-weight: 600;
   line-height: 58px;
 }
 
@@ -37,7 +36,6 @@
 }
 
 .critic-main-content {
-  color: #fff;
   font-family: "Josefin Sans";
   font-size: 1.1rem;
   font-weight: 300;
