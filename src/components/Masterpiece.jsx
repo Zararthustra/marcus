@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { ReactComponent as CriticInfo } from "../assets/svg/criticInfo.svg";
 import { ReactComponent as CriticWatchList } from "../assets/svg/criticWatchList.svg";
+
+import Movie from "./Movie";
+
 import "../styles/Masterpiece.css";
 
 const Masterpiece = ({
@@ -17,7 +20,9 @@ const Masterpiece = ({
   const [showMovie, setShowMovie] = useState(false);
 
   return (
-    <article className="masterpiece">
+    <>
+      {showMovie && <Movie />}
+      <article className="masterpiece">
       <div className="masterpiece-left">
         <img src={poster} alt={movieName} />
       </div>
@@ -48,6 +53,7 @@ const Masterpiece = ({
         </footer>
       </div>
     </article>
+    </>
   );
 };
 
