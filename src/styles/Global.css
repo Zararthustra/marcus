@@ -10,14 +10,15 @@
   ); */
   
   --primary-color: #152047;
-  --light-text: #949393;
-  --background: #f0f0f0;
+  --background-color: #f0f0f0;
+  --light-color: #949393;
+  --dark-color: #111;
   --font-title: "Limelight", cursive;
   --font-text: "Josefin Sans", sans-serif;
   
   font-family: var(--font-text);
   font-size: 16px;
-  background-color: var(--background);
+  background-color: var(--background-color);
 }
 
 body {
@@ -36,7 +37,7 @@ li {
 
 a {
   text-decoration: none;
-  color: black;
+  color: var(--dark-color);
 }
 
 .nav-icon {
@@ -84,10 +85,10 @@ a {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--light-text);
+  background: var(--light-color);
 }
 
 ::selection {
-  background-color: black;
+  background-color: var(--dark-color);
   color: white;
 }

@@ -115,7 +115,7 @@ export const users_data = [
   {
     userName: "Robert",
     genders: ["Science fiction", "Action", "Drame"],
-    critic: 27,
+    critic: 26,
     note: 54,
     masterpiece: 12,
     watchlist: 5,

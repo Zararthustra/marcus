@@ -67,6 +67,14 @@ const NavPanel = ({ activeTab, setActiveTab }) => {
       <div className="tab-name">
         <h1>{formatTabName(activeTab)}</h1>
       </div>
+      <div
+        style={{
+          width: "30rem",
+          height: "2px",
+          backgroundColor: "#8a898971",
+          margin: "1rem 0 0",
+        }}
+      />
     </nav>
   );
 };

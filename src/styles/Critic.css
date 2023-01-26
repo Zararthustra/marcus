@@ -5,7 +5,7 @@
   justify-content: space-evenly;
   align-items: center;
   border-radius: 15px;
-  color: black;
+  color: var(--dark-color);
 }
 
 .critic-header {
@@ -56,11 +56,11 @@
   line-height: 45px;
 }
 .critic-footer-userName a {
-  color: var(--light-text);
+  color: var(--light-color);
   transition: 0.5s color;
 }
 .critic-footer-userName a:hover {
-  color: black;
+  color: var(--dark-color);
 }
 .critic-footer-icons {
   display: flex;
@@ -70,7 +70,7 @@
 }
 
 .critic-footer-icons svg {
-  fill: var(--light-text);
+  fill: var(--light-color);
   width: 2rem;
   cursor: pointer;
   transition: 0.5s fill;

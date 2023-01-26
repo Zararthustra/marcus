@@ -43,7 +43,7 @@
 
 .users svg {
   width: 2.5rem;
-  fill: black;
+  fill: var(--dark-color);
 }
 
 .genderMovie,

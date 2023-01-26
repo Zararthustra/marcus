@@ -11,7 +11,7 @@
 }
 
 .user-data-icon {
-  fill: black;
+  fill: var(--dark-color);
 }
 
 .user-data-title {

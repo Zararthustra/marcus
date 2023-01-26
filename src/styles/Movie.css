@@ -18,7 +18,7 @@
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-  background-color: var(--background);
-  color: black;
+  background-color: var(--background-color);
+  color: var(--dark-color);
   z-index: 2;
 }

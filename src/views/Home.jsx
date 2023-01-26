@@ -117,14 +117,7 @@ console.log(criticsData);
     <div className="App">
       <Header />
       <NavPanel activeTab={activeTab} setActiveTab={setActiveTab} />
-      <div
-        style={{
-          width: "30rem",
-          height: "2px",
-          backgroundColor: "#8a898971",
-          margin: "1rem 0 5rem",
-        }}
-      />
+      
       <main
         style={{
           padding: "5rem 0",
@@ -134,6 +127,7 @@ console.log(criticsData);
           flexWrap: "wrap",
           flexDirection: activeTab === "community" ? "row" : "column",
           gap: "3rem",
+          backgroundColor: "var(--background-color)",
           width: "100%"
         }}
       >
