@@ -5,9 +5,12 @@
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-  background-color: #111;
+  background-color: var(--dark-color);
+  color: white;
 }
-
+.app-footer a {
+  color: #444;
+}
 .ARR {
   color: #444;
 }

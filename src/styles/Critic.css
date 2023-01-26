@@ -3,8 +3,11 @@
   border-radius: .938rem;
   display: flex;
   flex-direction: column;
+  width: 45rem;
   justify-content: space-evenly;
-  width: 50rem;
+  align-items: center;
+  border-radius: 15px;
+  color: var(--dark-color);
 }
 
 .critic-header {
@@ -13,19 +16,24 @@
 
 .critic-header h2 {
   margin: 0;
+  width: fit-content;
+  cursor: pointer;
+}
+.critic-header h2:hover {
+  text-decoration: underline;
 }
 
 .critic-header-title {
   color: #fff;
   font-family: Limelight;
   font-weight: 400;
-  line-height: 3.625rem;
+  line-height: 58px;
 }
 
 .critic-main {
   align-items: center;
   text-align: center;
-  width: 40rem;
+  width: 37rem;
 }
 
 .critic-main-content {
@@ -54,12 +62,12 @@
 }
 
 .critic-footer-userName a {
-  color: var(--light-text);
-  transition: .5s color;
+  color: var(--light-color);
+  transition: 0.5s color;
 }
 
 .critic-footer-userName a:hover {
-  color: #FFF;
+  color: var(--dark-color);
 }
 
 .critic-footer-icons {
@@ -71,11 +79,11 @@
 
 .critic-footer-icons svg {
   cursor: pointer;
-  fill: var(--light-text);
   transition: .5s fill;
+  fill: var(--light-color);
   width: 2rem;
 }
 
 .critic-footer-icons svg:hover {
-  fill: #FFF;
+  fill: var(--dark-color);
 }
