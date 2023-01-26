@@ -5,10 +5,13 @@ import NavPanel from "../components/NavPanel";
 import { useState, React } from "react";
 import { useQuery } from "react-query";
 
+import Masterpieces from "./Masterpieces";
 import Critic from "../components/Critic";
+
 
 import {
   getMasterpieces,
+  getMasterpiece,
   getWatchlists,
   getVotes,
   getCritics,
@@ -16,6 +19,7 @@ import {
 } from "../services/api/getUserDatas";
 import {
   masterpieces,
+  masterpiece,
   critics,
   watchlists,
   votes,
@@ -44,6 +48,10 @@ const Home = () => {
   const { data: usersData, status: usersDataStatus } = useQuery(
     "usersData",
     () => getUsersData(users_data)
+  );
+  const { data: masterpieceData, status: masterpieceStatus } = useQuery(
+    "masterpiece",
+    () => getMasterpiece(userId, masterpiece)
   );
 
   const objectDatas = {
@@ -89,7 +97,11 @@ console.log(criticsData);
       case "note":
         return <UserDatas data={objectDatas} />;
       case "masterpiece":
-        return <h2>[Chefs d'oeuvres]</h2>;
+        return masterpieceStatus === "loading" ? (
+          <p>Loading masterpieces...</p>
+        ) : (
+          <Masterpieces masterpieces={masterpieceData} />
+        );
       case "release":
         return <h2>[Sorties]</h2>;
       case "community":

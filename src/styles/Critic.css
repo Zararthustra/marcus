@@ -1,4 +1,6 @@
 .critic {
+  align-items: center;
+  border-radius: .938rem;
   display: flex;
   flex-direction: column;
   width: 45rem;
@@ -11,6 +13,7 @@
 .critic-header {
   width: 100%;
 }
+
 .critic-header h2 {
   margin: 0;
   width: fit-content;
@@ -19,8 +22,10 @@
 .critic-header h2:hover {
   text-decoration: underline;
 }
+
 .critic-header-title {
-  font-family: "Limelight";
+  color: #fff;
+  font-family: Limelight;
   font-weight: 400;
   line-height: 58px;
 }
@@ -32,49 +37,53 @@
 }
 
 .critic-main-content {
+  color: #fff;
   font-family: "Josefin Sans";
-  text-align: justify;
-  font-weight: 300;
   font-size: 1.1rem;
-  line-height: 30px;
+  font-weight: 300;
+  line-height: 1.875rem;
+  text-align: justify;
 }
 
 .critic-footer {
-  padding: 0;
   display: flex;
-  width: 100%;
   gap: 10rem;
+  padding: 0;
+  width: 100%;
 }
 
 .critic-footer-userName {
+  font-family: "Josefin Sans";
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 2.813rem;
   text-align: right;
   width: 100%;
-
-  font-family: "Josefin Sans";
-  font-weight: 700;
-  font-size: 1.2rem;
-  line-height: 45px;
 }
+
 .critic-footer-userName a {
   color: var(--light-color);
   transition: 0.5s color;
 }
+
 .critic-footer-userName a:hover {
   color: var(--dark-color);
 }
+
 .critic-footer-icons {
-  display: flex;
   align-items: center;
+  display: flex;
   gap: 1rem;
   justify-content: space-evenly;
 }
 
 .critic-footer-icons svg {
+  cursor: pointer;
+  transition: .5s fill;
   fill: var(--light-color);
   width: 2rem;
-  cursor: pointer;
-  transition: 0.5s fill;
 }
+
 .critic-footer-icons svg:hover {
-  fill: black;
+  fill: var(--dark-color);
 }
