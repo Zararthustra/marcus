@@ -14,9 +14,9 @@ const UserData = ({ data, value }) => {
             icon = <Critics alt="Critic Icon" className="user-data-icon" />;
             title = 'Critiques';
             break;
-        case 'note':
+        case 'vote':
             icon = <Votes alt="Vote Icon" className="user-data-icon" />;
-            title = 'Notes';
+            title = 'Votes';
             break;
         case 'masterpiece':
             icon = <Palette alt="Masterpiece Icon" className="user-data-icon" />;

@@ -20,12 +20,17 @@
   height: 3rem;
   margin: 0;
   width: 10.5rem;
+  cursor: pointer;
+}
+.users header h3:hover {
+  text-decoration: underline;
 }
 
 .addUser {
   bottom: 3rem;
   position: absolute;
   right: 0.5rem;
+  cursor: pointer;
 }
 
 .user-datas div {

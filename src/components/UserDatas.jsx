@@ -10,10 +10,10 @@ const UserDatas = ({ data }) => {
             ) : (
                 <UserData data="critic" value={data.critic.data} />
             )}
-            {data.note.status === 'loading' ? (
+            {data.vote.status === 'loading' ? (
                 <p>Loading votes...</p>
             ) : (
-                <UserData data="note" value={data.note.data} />
+                <UserData data="vote" value={data.vote.data} />
             )}
             {data.masterpiece.status === 'loading' ? (
                 <p>Loading masterpieces...</p>

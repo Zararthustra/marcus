@@ -5,61 +5,55 @@ import NavPanel from "../components/NavPanel";
 import { useState, React } from "react";
 import { useQuery } from "react-query";
 
-import Masterpieces from "./Masterpieces";
 import Critic from "../components/Critic";
-
+// import Masterpiece from "../components/Masterpiece";
 
 import {
   getMasterpieces,
-  getMasterpiece,
   getWatchlists,
   getVotes,
   getCritics,
   getUsersData,
 } from "../services/api/getUserDatas";
 import {
-  masterpieces,
-  masterpiece,
-  critics,
-  watchlists,
-  votes,
+  // masterpieces,
+  // masterpiece,
+  // critics,
+  // watchlists,
+  // votes,
   users_data,
 } from "../services/mockApi/mockedDatas";
 import UserDatas from "../components/UserDatas";
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState("critic");
-  let userId = 1;
 
   const { data: masterpiecesData, status: masterpiecesStatus } = useQuery(
     "masterpieces",
-    () => getMasterpieces(userId)
+    () => getMasterpieces()
   );
   const { data: watchlistsData, status: watchlistsStatus } = useQuery(
     "watchlists",
-    () => getWatchlists(userId)
+    () => getWatchlists()
   );
   const { data: votesData, status: votesStatus } = useQuery("votes", () =>
-    getVotes(userId)
+    getVotes()
   );
   const { data: criticsData, status: criticsStatus } = useQuery("critics", () =>
-    getCritics(userId)
+    getCritics()
   );
   const { data: usersData, status: usersDataStatus } = useQuery(
     "usersData",
     () => getUsersData(users_data)
   );
-  const { data: masterpieceData, status: masterpieceStatus } = useQuery(
-    "masterpiece",
-    () => getMasterpiece(userId, masterpiece)
-  );
 
+  // To be deleted
   const objectDatas = {
     critic: {
       data: criticsData?.data.total,
       status: criticsStatus,
     },
-    note: {
+    vote: {
       data: votesData?.data.total,
       status: votesStatus,
     },
@@ -72,8 +66,7 @@ const Home = () => {
       status: watchlistsStatus,
     },
   };
-console.log(criticsStatus);
-console.log(criticsData);
+
   const activeData = (activeData) => {
     switch (activeData) {
       case "critic":
@@ -81,7 +74,7 @@ console.log(criticsData);
           <p>Loading critics...</p>
         ) : criticsStatus === "error" ? (
           <p>Error</p>
-        ) :(
+        ) : (
           criticsData?.data.data.map((critic, index) => (
             <Critic
               key={index}
@@ -94,13 +87,30 @@ console.log(criticsData);
           ))
         );
 
-      case "note":
+      case "vote":
         return <UserDatas data={objectDatas} />;
       case "masterpiece":
-        return masterpieceStatus === "loading" ? (
+        return masterpiecesStatus === "loading" ? (
           <p>Loading masterpieces...</p>
+        ) : masterpiecesStatus === "error" ? (
+          <p>Error</p>
         ) : (
-          <Masterpieces masterpieces={masterpieceData} />
+          <h2>[Chefs d'oeuvre]</h2>
+          // masterpiecesData?.data.map((masterpiece, index) => {
+          //   return (
+          //     <Masterpiece
+          //       key={index}
+          //       movieName={masterpiece.movieName}
+          //       movieId={masterpiece.movieId}
+          //       releasedDate={masterpiece.releasedDate}
+          //       director={masterpiece.director}
+          //       description={masterpiece.description}
+          //       userName={masterpiece.userName}
+          //       userId={masterpiece.userId}
+          //       poster={masterpiece.poster}
+          //     />
+          //   );
+          // })
         );
       case "release":
         return <h2>[Sorties]</h2>;
@@ -116,7 +126,7 @@ console.log(criticsData);
                 genderMovie={user.genders}
                 masterPieces={user.masterpiece}
                 critics={user.critic}
-                votes={user.note}
+                votes={user.vote}
                 watchList={user.watchlist}
               />
             );
@@ -129,7 +139,7 @@ console.log(criticsData);
     <div className="App">
       <Header />
       <NavPanel activeTab={activeTab} setActiveTab={setActiveTab} />
-      
+
       <main
         style={{
           padding: "5rem 0",
@@ -140,7 +150,7 @@ console.log(criticsData);
           flexDirection: activeTab === "community" ? "row" : "column",
           gap: "3rem",
           backgroundColor: "var(--background-color)",
-          width: "100%"
+          width: "100%",
         }}
       >
         {activeData(activeTab)}

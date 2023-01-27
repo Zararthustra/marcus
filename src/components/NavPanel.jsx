@@ -1,7 +1,7 @@
 import "../styles/NavPanel.css";
 
 import { ReactComponent as Critic } from "../assets/svg/critics.svg";
-import { ReactComponent as Note } from "../assets/svg/votes.svg";
+import { ReactComponent as Vote } from "../assets/svg/votes.svg";
 import { ReactComponent as Masterpiece } from "../assets/svg/palette.svg";
 import { ReactComponent as Release } from "../assets/svg/movieSearch.svg";
 import { ReactComponent as Communaute } from "../assets/svg/communaute.svg";
@@ -11,10 +11,10 @@ const NavPanel = ({ activeTab, setActiveTab }) => {
     switch (tabName) {
       case "critic":
         return "Critiques";
-      case "note":
-        return "Notes";
+      case "vote":
+        return "Votes";
       case "masterpiece":
-        return "Chef d'oeuvres";
+        return "Chefs d'oeuvre";
       case "release":
         return "Sorties";
       case "community":
@@ -27,7 +27,7 @@ const NavPanel = ({ activeTab, setActiveTab }) => {
     switch (tabName) {
       case "critic":
         return "6rem";
-      case "note":
+      case "vote":
         return "14.9rem";
       case "masterpiece":
         return "23.7rem";
@@ -46,8 +46,8 @@ const NavPanel = ({ activeTab, setActiveTab }) => {
         <li onClick={() => setActiveTab("critic")}>
           <Critic className={activeTab === "critic" ? "tab-active" : "tab"} />
         </li>
-        <li onClick={() => setActiveTab("note")}>
-          <Note className={activeTab === "note" ? "tab-active" : "tab"} />
+        <li onClick={() => setActiveTab("vote")}>
+          <Vote className={activeTab === "vote" ? "tab-active" : "tab"} />
         </li>
         <li onClick={() => setActiveTab("masterpiece")}>
           <Masterpiece
