@@ -13,7 +13,6 @@ const PROTOCOL = {
   secure: "https",
 };
 const HOST = {
-  ip: "13.39.16.245",
   domain: "planifit.pythonanywhere.com",
   localhost: "localhost:8000",
 };
