@@ -1,70 +1,222 @@
-# Getting Started with Create React App
+## [Marcus live](https://marcus.arthurmayer.fr/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Contrat d'interface
+> You can get the Postman collection in the repository
 
-## Available Scripts
+<table>
 
-In the project directory, you can run:
+<tr>
+<th>ENDPOINT</th>
+<th>METHOD</th>
+<th>HEADER</th>
+<th>QUERY PARAMETER</th>
+<th>BODY</th>
+<th>RESPONSE</th>
+</tr>
 
-### `npm start`
+<tr>
+<td>/masterpieces</td>
+<td>GET</td>
+<td></td>
+<td>user_id<br><strong>optional</strong></td>
+<td></td>
+<td>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```json
+{
+  "total": 1,
+  "data": [
+    {
+      "movie_id": 108,
+      "movie_name": "Matrix",
+      "user_id": 18,
+      "user_name": "roberto17"
+    }
+  ]
+}
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+</td>
+</tr>
 
-### `npm test`
+<tr>
+<td></td>
+<td>POST</td>
+<td>Authorization: Bearer <i>token<i/></td>
+<td></td>
+<td>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```json
+{
+  "movie_id": 101,
+  "movie_name": "Le monde de Némo"
+}
+```
 
-### `npm run build`
+</td>
+<td>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```json
+{
+  "message": "Movie 101 Le monde de Némo successfully added to Masterpiece."
+}
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+</td>
+</tr>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<tr>
+<td>/watchlists</td>
+<td>GET</td>
+<td></td>
+<td>user_id<br><strong>optional</strong></td>
+<td></td>
+<td>
 
-### `npm run eject`
+```json
+{
+  "total": 1,
+  "data": [
+    {
+      "movie_id": 254,
+      "movie_name": "Alice au pays des merveilles"
+    }
+  ]
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+</td>
+</tr>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<tr>
+<td></td>
+<td>POST</td>
+<td>Authorization: Bearer <i>token<i/></td>
+<td></td>
+<td>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```json
+{
+  "movie_id": 124,
+  "movie_name": "Star Trek"
+}
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+</td>
+<td>
 
-## Learn More
+```json
+{
+  "message": "Movie 124 Star Trek successfully added to Watchlist."
+}
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+</td>
+</tr>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<tr>
+<td>/votes</td>
+<td>GET</td>
+<td></td>
+<td>user_id<br><strong>optional</strong></td>
+<td></td>
+<td>
 
-### Code Splitting
+```json
+{
+    "total": 1,
+    "data": [
+        {
+            "movie_id": 508,
+            "movie_name": "Le cercle des poètes disparus",
+            "value": 4.5,
+            "user_id": 2,
+            "user_name": "Robert"
+    ]
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+</td>
+</tr>
 
-### Analyzing the Bundle Size
+<tr>
+<td></td>
+<td>POST</td>
+<td>Authorization: Bearer <i>token<i/></td>
+<td></td>
+<td>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```json
+{
+  "movie_id": 503,
+  "movie_name": "Inspecteur Gadget",
+  "value": 3.0
+}
+```
 
-### Making a Progressive Web App
+</td>
+<td>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```json
+{
+  "message": "Movie 503 Inspecteur Gadget successfully added to Vote."
+}
+```
 
-### Advanced Configuration
+</td>
+</tr>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<tr>
+<td>/critics</td>
+<td>GET</td>
+<td></td>
+<td>user_id<br><strong>optional</strong></td>
+<td></td>
+<td>
 
-### Deployment
+```json
+{
+    "total": 1,
+    "data": [
+        {
+            "movie_id": 165,
+            "movie_name": "Titanic",
+            "content": "J'adooooore ce film mais à la fin il meurt."
+            "user_id": 2,
+            "user_name": "Robert"
+        }
+    ]
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+</td>
+</tr>
 
-### `npm run build` fails to minify
+<tr>
+<td></td>
+<td>POST</td>
+<td>Authorization: Bearer <i>token<i/></td>
+<td></td>
+<td>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```json
+{
+  "movie_id": 189,
+  "movie_name": "Star Wars: La revanche des Siths",
+  "content": "Pas ouf..."
+}
+```
+
+</td>
+<td>
+
+```json
+{
+  "message": "Movie 189 Star Wars: La revanche des Siths successfully added to Critic."
+}
+```
+
+</td>
+</tr>
+
+</table>
