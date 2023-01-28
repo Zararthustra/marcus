@@ -15,14 +15,7 @@ import {
   getCritics,
   getUsersData,
 } from "../services/api/getUserDatas";
-import {
-  // masterpieces,
-  // masterpiece,
-  // critics,
-  // watchlists,
-  // votes,
-  users_data,
-} from "../services/mockApi/mockedDatas";
+
 import UserDatas from "../components/UserDatas";
 
 const Home = () => {
@@ -44,7 +37,7 @@ const Home = () => {
   );
   const { data: usersData, status: usersDataStatus } = useQuery(
     "usersData",
-    () => getUsersData(users_data)
+    () => getUsersData()
   );
 
   // To be deleted
