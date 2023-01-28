@@ -61,6 +61,7 @@ const Login = ({ triggerToaster, setTriggerToaster, setShowLogin }) => {
             top: "1rem",
             right: "1rem",
             cursor: "pointer",
+            fill: "white",
           }}
         />
         <h1>Se connecter</h1>

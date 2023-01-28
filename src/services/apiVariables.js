@@ -10,7 +10,7 @@ const host = {
 };
 
 // Toggle this value to get data from server or from mockedAPI
-export const IS_MOCKED_DATA = true;
+export const IS_MOCKED_DATA = false;
 // const IS_MOCKED_DATA = false
 
 // Toggle this value to get data from local or prod environment

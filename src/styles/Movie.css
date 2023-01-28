@@ -11,14 +11,53 @@
   color: white;
 }
 .movie {
+  position: relative;
   border-radius: 5px;
-  min-height: 90%;
   width: 90%;
+  height: 90vh;
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
+  gap: 5rem;
   background-color: var(--background-color);
   color: var(--dark-color);
   z-index: 2;
+  overflow: scroll;
+}
+
+.movie-description {
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+.movie-description img {
+  width: 15rem;
+  border-radius: 5px;
+  box-shadow: 4px 4px 10px #00000057;
+}
+.movie-infos {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  text-align: justify;
+  width: 40rem;
+  gap: 1rem;
+  line-height: 30px;
+  padding: 0 2rem;
+}
+
+.movie-critics {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.movie-critics h1 {
+  align-self: flex-start;
 }
