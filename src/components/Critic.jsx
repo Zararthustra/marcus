@@ -12,7 +12,7 @@ const Critic = ({ movieId, movieName, content, userId, userName }) => {
 
   return (
     <>
-      {showMovie && <Movie movieId={movieId}/>}
+      {showMovie && <Movie movieId={movieId} setShowMovie={setShowMovie}/>}
       <article className="critic">
         <header className="critic-header">
           <h2

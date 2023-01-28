@@ -21,7 +21,7 @@ const Masterpiece = ({
 
   return (
     <>
-      {showMovie && <Movie movieId={movieId}/>}
+      {showMovie && <Movie movieId={movieId} setShowMovie={setShowMovie}/>}
       <article className="masterpiece">
       <div className="masterpiece-left">
         <img src={poster} alt={movieName} />
