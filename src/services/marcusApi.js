@@ -5,8 +5,8 @@ import {
   watchlists,
   votes,
   users_data,
-} from "../mockApi/mockedDatas";
-import { MARCUS_BASE_PATH, IS_MOCKED_DATA } from "../servicesVariables";
+} from "./mockedApi";
+import { MARCUS_BASE_PATH, IS_MOCKED_DATA } from "./apiVariables";
 
 
 export const getMasterpieces = () => {
