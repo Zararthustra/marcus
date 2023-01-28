@@ -4,12 +4,15 @@ import { ReactComponent as Logo } from "../assets/svg/logo.svg";
 import { ReactComponent as Profil } from "../assets/svg/profil.svg";
 import { useState } from "react";
 import Login from "./Login"
+import { getLocalStorage } from "../utils/localStorage";
 
 const Navbar = () => {
-  const [isLogged, setIsLogged] = useState(false);
+  const isLogged = getLocalStorage("access");
+  const [showLogin, setShowLogin] = useState(false);
+
   return (
     <>
-    {isLogged && <Login />}
+    {showLogin && <Login setShowLogin={setShowLogin}/>}
       <nav className="nav">
         <Link to="/">
           <Logo className="nav-logo" />
@@ -25,7 +28,7 @@ const Navbar = () => {
             <>
               <li
                 className="button-primary"
-                onClick={() => setIsLogged(!isLogged)}
+                onClick={() => setShowLogin(true)}
               >
                 Se connecter
               </li>
