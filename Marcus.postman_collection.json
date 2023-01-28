@@ -434,7 +434,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"movie_id\": 105\r\n}",
+							"raw": "{\r\n    \"movie_id\": 109,\r\n    \"movie_name\": \"Nemo\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -450,6 +450,13 @@
 							"path": [
 								"{{baseUri}}",
 								"watchlists"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "2",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -461,7 +468,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"movie_id\": 104\r\n}",
+									"raw": "{\r\n    \"movie_id\": 109,\r\n    \"movie_name\": \"Nemo\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -477,6 +484,13 @@
 									"path": [
 										"{{baseUri}}",
 										"watchlists"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "2",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -486,15 +500,19 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Thu, 12 Jan 2023 18:18:43 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.11.0"
+									"value": "Sat, 28 Jan 2023 09:59:09 GMT"
 								},
 								{
 									"key": "Content-Type",
 									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
 								},
 								{
 									"key": "Vary",
@@ -509,10 +527,6 @@
 									"value": "DENY"
 								},
 								{
-									"key": "Content-Length",
-									"value": "56"
-								},
-								{
 									"key": "X-Content-Type-Options",
 									"value": "nosniff"
 								},
@@ -523,10 +537,18 @@
 								{
 									"key": "Cross-Origin-Opener-Policy",
 									"value": "same-origin"
+								},
+								{
+									"key": "X-Clacks-Overhead",
+									"value": "GNU Terry Pratchett"
+								},
+								{
+									"key": "Server",
+									"value": "PythonAnywhere"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"message\": \"Movie 104 successfully added to Watchlist.\"\n}"
+							"body": "{\n    \"message\": \"Movie 109 Nemo successfully added to Watchlist.\"\n}"
 						}
 					]
 				},
@@ -539,7 +561,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/watchlists?user_id=2",
+							"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/watchlists",
 							"protocol": "{{protocol}}",
 							"host": [
 								"{{app}}{{host}}{{port}}"
@@ -551,7 +573,8 @@
 							"query": [
 								{
 									"key": "user_id",
-									"value": "2"
+									"value": "1",
+									"disabled": true
 								}
 							]
 						}
@@ -563,7 +586,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/watchlists?user_id=2",
+									"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/watchlists",
 									"protocol": "{{protocol}}",
 									"host": [
 										"{{app}}{{host}}{{port}}"
@@ -575,7 +598,8 @@
 									"query": [
 										{
 											"key": "user_id",
-											"value": "2"
+											"value": "1",
+											"disabled": true
 										}
 									]
 								}
@@ -586,15 +610,19 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Thu, 12 Jan 2023 21:33:47 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.11.0"
+									"value": "Sat, 28 Jan 2023 09:59:26 GMT"
 								},
 								{
 									"key": "Content-Type",
 									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
 								},
 								{
 									"key": "Vary",
@@ -609,10 +637,6 @@
 									"value": "DENY"
 								},
 								{
-									"key": "Content-Length",
-									"value": "54"
-								},
-								{
 									"key": "X-Content-Type-Options",
 									"value": "nosniff"
 								},
@@ -623,10 +647,18 @@
 								{
 									"key": "Cross-Origin-Opener-Policy",
 									"value": "same-origin"
+								},
+								{
+									"key": "X-Clacks-Overhead",
+									"value": "GNU Terry Pratchett"
+								},
+								{
+									"key": "Server",
+									"value": "PythonAnywhere"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"total\": 2,\n    \"data\": [\n        {\n            \"movie_id\": 103\n        },\n        {\n            \"movie_id\": 104\n        }\n    ]\n}"
+							"body": "{\n    \"total\": 1,\n    \"data\": [\n        {\n            \"movie_id\": 109,\n            \"movie_name\": \"Nemo\"\n        }\n    ]\n}"
 						}
 					]
 				}
@@ -652,7 +684,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"movie_id\": 111,\r\n    \"value\": 3.5\r\n}",
+							"raw": "{\r\n    \"movie_id\": 106,\r\n    \"movie_name\": \"nemo\",\r\n    \"value\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -747,13 +779,13 @@
 							"body": "{\n    \"error\": \"Value must be in [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]\"\n}"
 						},
 						{
-							"name": "200",
+							"name": "201",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"movie_id\": 111,\r\n    \"value\": 3.5\r\n}",
+									"raw": "{\r\n    \"movie_id\": 106,\r\n    \"movie_name\": \"nemo\",\r\n    \"value\": 2\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -778,15 +810,19 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Fri, 13 Jan 2023 08:53:15 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.11.0"
+									"value": "Sat, 28 Jan 2023 09:57:53 GMT"
 								},
 								{
 									"key": "Content-Type",
 									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
 								},
 								{
 									"key": "Vary",
@@ -801,10 +837,6 @@
 									"value": "DENY"
 								},
 								{
-									"key": "Content-Length",
-									"value": "66"
-								},
-								{
 									"key": "X-Content-Type-Options",
 									"value": "nosniff"
 								},
@@ -815,10 +847,18 @@
 								{
 									"key": "Cross-Origin-Opener-Policy",
 									"value": "same-origin"
+								},
+								{
+									"key": "X-Clacks-Overhead",
+									"value": "GNU Terry Pratchett"
+								},
+								{
+									"key": "Server",
+									"value": "PythonAnywhere"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"message\": \"Movie 111 with Value 3.5 successfully added to Vote.\"\n}"
+							"body": "{\n    \"message\": \"Movie 106 nemo successfully added to Vote.\"\n}"
 						}
 					]
 				},
@@ -831,7 +871,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/votes?user_id=2",
+							"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/votes",
 							"protocol": "{{protocol}}",
 							"host": [
 								"{{app}}{{host}}{{port}}"
@@ -843,7 +883,8 @@
 							"query": [
 								{
 									"key": "user_id",
-									"value": "2"
+									"value": "2",
+									"disabled": true
 								}
 							]
 						}
@@ -855,7 +896,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/votes?user_id=2",
+									"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/votes",
 									"protocol": "{{protocol}}",
 									"host": [
 										"{{app}}{{host}}{{port}}"
@@ -867,7 +908,8 @@
 									"query": [
 										{
 											"key": "user_id",
-											"value": "2"
+											"value": "2",
+											"disabled": true
 										}
 									]
 								}
@@ -878,15 +920,19 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Fri, 13 Jan 2023 07:49:17 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.11.0"
+									"value": "Sat, 28 Jan 2023 09:58:38 GMT"
 								},
 								{
 									"key": "Content-Type",
 									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "101"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
 								},
 								{
 									"key": "Vary",
@@ -901,10 +947,6 @@
 									"value": "DENY"
 								},
 								{
-									"key": "Content-Length",
-									"value": "49"
-								},
-								{
 									"key": "X-Content-Type-Options",
 									"value": "nosniff"
 								},
@@ -915,10 +957,18 @@
 								{
 									"key": "Cross-Origin-Opener-Policy",
 									"value": "same-origin"
+								},
+								{
+									"key": "X-Clacks-Overhead",
+									"value": "GNU Terry Pratchett"
+								},
+								{
+									"key": "Server",
+									"value": "PythonAnywhere"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"total\": 1,\n    \"data\": [\n        {\n            \"movie_id\": 105,\n            \"value\": 5\n        }\n    ]\n}"
+							"body": "{\n    \"total\": 1,\n    \"data\": [\n        {\n            \"movie_id\": 106,\n            \"movie_name\": \"nemo\",\n            \"value\": 2,\n            \"user_id\": 1,\n            \"user_name\": \"arthy\"\n        }\n    ]\n}"
 						}
 					]
 				}
@@ -944,7 +994,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"movie_id\": 112,\r\n    \"content\": \"J'aime pas ce film\"\r\n}",
+							"raw": "{\r\n    \"movie_id\": 273,\r\n    \"movie_name\": \"Matrix\",\r\n    \"content\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -965,13 +1015,13 @@
 					},
 					"response": [
 						{
-							"name": "200",
+							"name": "201",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"movie_id\": 112,\r\n    \"content\": \"J'aime pas ce film\"\r\n}",
+									"raw": "{\r\n    \"movie_id\": 268,\r\n    \"movie_name\": \"titanic\",\r\n    \"content\": \"cool cool cfool\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -996,7 +1046,7 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Fri, 13 Jan 2023 08:56:15 GMT"
+									"value": "Sat, 21 Jan 2023 11:36:06 GMT"
 								},
 								{
 									"key": "Server",
@@ -1020,7 +1070,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "53"
+									"value": "61"
 								},
 								{
 									"key": "X-Content-Type-Options",
@@ -1036,7 +1086,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"message\": \"Movie 112 successfully added to Critic.\"\n}"
+							"body": "{\n    \"message\": \"Movie 268 titanic successfully added to Critic.\"\n}"
 						}
 					]
 				},
@@ -1049,7 +1099,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/critics?user_id=2",
+							"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/critics",
 							"protocol": "{{protocol}}",
 							"host": [
 								"{{app}}{{host}}{{port}}"
@@ -1061,7 +1111,8 @@
 							"query": [
 								{
 									"key": "user_id",
-									"value": "2"
+									"value": "1",
+									"disabled": true
 								}
 							]
 						}
@@ -1073,7 +1124,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/critics?user_id=2",
+									"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/critics",
 									"protocol": "{{protocol}}",
 									"host": [
 										"{{app}}{{host}}{{port}}"
@@ -1085,7 +1136,8 @@
 									"query": [
 										{
 											"key": "user_id",
-											"value": "2"
+											"value": "2",
+											"disabled": true
 										}
 									]
 								}
@@ -1096,7 +1148,7 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Fri, 13 Jan 2023 08:56:38 GMT"
+									"value": "Fri, 20 Jan 2023 18:27:26 GMT"
 								},
 								{
 									"key": "Server",
@@ -1120,7 +1172,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "116"
+									"value": "307"
 								},
 								{
 									"key": "X-Content-Type-Options",
@@ -1136,7 +1188,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"total\": 2,\n    \"data\": [\n        {\n            \"movie_id\": 111,\n            \"content\": \"J'aime pas ce film\"\n        },\n        {\n            \"movie_id\": 112,\n            \"content\": \"J'aime pas ce film\"\n        }\n    ]\n}"
+							"body": "{\n    \"total\": 3,\n    \"data\": [\n        {\n            \"movie_id\": 107,\n            \"movie_name\": \"\",\n            \"content\": \"cool cool cool\",\n            \"user_id\": 1,\n            \"user_name\": \"arthy\"\n        },\n        {\n            \"movie_id\": 108,\n            \"movie_name\": \"titanicc\",\n            \"content\": \"cool cool cool\",\n            \"user_id\": 1,\n            \"user_name\": \"arthy\"\n        },\n        {\n            \"movie_id\": 256,\n            \"movie_name\": \"wtf\",\n            \"content\": \"cool cool cool\",\n            \"user_id\": 1,\n            \"user_name\": \"arthy\"\n        }\n    ]\n}"
 						}
 					]
 				}
@@ -1162,7 +1214,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"movie_id\": 103,\r\n    \"position\": 4\r\n}",
+							"raw": "{\r\n    \"movie_id\": 108,\r\n    \"movie_name\": \"matrix\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1189,7 +1241,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"movie_id\": 209,\r\n    \"position\": 9\r\n}",
+									"raw": "{\r\n    \"movie_id\": 108,\r\n    \"movie_name\": \"matrix\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1214,15 +1266,19 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Thu, 12 Jan 2023 22:07:29 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.11.0"
+									"value": "Sat, 28 Jan 2023 09:56:23 GMT"
 								},
 								{
 									"key": "Content-Type",
 									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
 								},
 								{
 									"key": "Vary",
@@ -1237,10 +1293,6 @@
 									"value": "DENY"
 								},
 								{
-									"key": "Content-Length",
-									"value": "74"
-								},
-								{
 									"key": "X-Content-Type-Options",
 									"value": "nosniff"
 								},
@@ -1251,10 +1303,18 @@
 								{
 									"key": "Cross-Origin-Opener-Policy",
 									"value": "same-origin"
+								},
+								{
+									"key": "X-Clacks-Overhead",
+									"value": "GNU Terry Pratchett"
+								},
+								{
+									"key": "Server",
+									"value": "PythonAnywhere"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"message\": \"Movie 209 with position 9 successfully added to Masterpiece.\"\n}"
+							"body": "{\n    \"message\": \"Movie 108 matrix successfully added to Masterpiece.\"\n}"
 						}
 					]
 				},
@@ -1267,7 +1327,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/masterpieces?user_id=1",
+							"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/masterpieces",
 							"protocol": "{{protocol}}",
 							"host": [
 								"{{app}}{{host}}{{port}}"
@@ -1279,7 +1339,8 @@
 							"query": [
 								{
 									"key": "user_id",
-									"value": "1"
+									"value": "1",
+									"disabled": true
 								}
 							]
 						}
@@ -1291,7 +1352,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/masterpieces?user_id=1",
+									"raw": "{{protocol}}://{{app}}{{host}}{{port}}/{{baseUri}}/masterpieces",
 									"protocol": "{{protocol}}",
 									"host": [
 										"{{app}}{{host}}{{port}}"
@@ -1303,7 +1364,8 @@
 									"query": [
 										{
 											"key": "user_id",
-											"value": "1"
+											"value": "1",
+											"disabled": true
 										}
 									]
 								}
@@ -1314,15 +1376,19 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Thu, 12 Jan 2023 14:20:58 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.11.0"
+									"value": "Sat, 28 Jan 2023 09:56:40 GMT"
 								},
 								{
 									"key": "Content-Type",
 									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
 								},
 								{
 									"key": "Vary",
@@ -1337,10 +1403,6 @@
 									"value": "DENY"
 								},
 								{
-									"key": "Content-Length",
-									"value": "110"
-								},
-								{
 									"key": "X-Content-Type-Options",
 									"value": "nosniff"
 								},
@@ -1351,10 +1413,18 @@
 								{
 									"key": "Cross-Origin-Opener-Policy",
 									"value": "same-origin"
+								},
+								{
+									"key": "X-Clacks-Overhead",
+									"value": "GNU Terry Pratchett"
+								},
+								{
+									"key": "Server",
+									"value": "PythonAnywhere"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"total\": 3,\n    \"data\": [\n        {\n            \"movie_id\": 100,\n            \"position\": 1\n        },\n        {\n            \"movie_id\": 101,\n            \"position\": 2\n        },\n        {\n            \"movie_id\": 102,\n            \"position\": 3\n        }\n    ]\n}"
+							"body": "{\n    \"total\": 1,\n    \"data\": [\n        {\n            \"movie_id\": 108,\n            \"movie_name\": \"matrix\",\n            \"user_id\": 1,\n            \"user_name\": \"arthy\"\n        }\n    ]\n}"
 						}
 					]
 				}
