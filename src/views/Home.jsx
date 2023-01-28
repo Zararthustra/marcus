@@ -2,7 +2,7 @@ import "../styles/Home.css";
 import Header from "../components/Header";
 import Users from "../components/Users";
 import NavPanel from "../components/NavPanel";
-import { useState, React } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 
 import Critic from "../components/Critic";
@@ -14,7 +14,7 @@ import {
   getVotes,
   getCritics,
   getUsersData,
-} from "../services/api/getUserDatas";
+} from "../services/marcusApi";
 
 import UserDatas from "../components/UserDatas";
 
@@ -82,6 +82,7 @@ const Home = () => {
 
       case "vote":
         return <UserDatas data={objectDatas} />;
+
       case "masterpiece":
         return masterpiecesStatus === "loading" ? (
           <p>Loading masterpieces...</p>
@@ -105,8 +106,10 @@ const Home = () => {
           //   );
           // })
         );
+
       case "release":
         return <h2>[Sorties]</h2>;
+
       case "community":
         return usersDataStatus === "loading" ? (
           <p>Loading datas...</p>
@@ -125,7 +128,9 @@ const Home = () => {
             );
           })
         );
+
       default:
+        return <div>Si tu vois ça ya un vrai soucis là...</div>
     }
   };
   return (
@@ -161,7 +166,6 @@ export default Home;
 //   })}
 
 // const basePath = 'https://api.themoviedb.org/3';
-// const apiKey = '34e2e08fed7af733b62f781d945c6a7c';
 // const query = 'titanic';
 // const getMovies = async () => {
 //   const res = await axios.get(basePath + '/search/movie', {
@@ -170,7 +174,7 @@ export default Home;
 //   return res.data;
 // };
 
-// const { data, isLoading, error } = useQuery(['getMovies'], () => getMovies());
+// const { data, isLoading, error } = useQuery(['getMovie'], () => getMovie());
 
 // console.log(data);
 // console.log(isLoading);
