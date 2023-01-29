@@ -7,7 +7,7 @@ import {
   users_data,
 } from "./mockedApi";
 import { MARCUS_BASE_PATH, IS_MOCKED_DATA } from "./apiVariables";
-
+import { getLocalStorage } from "../utils/localStorage";
 
 export const getMasterpieces = () => {
   if (IS_MOCKED_DATA) return masterpieces;
@@ -17,6 +17,20 @@ export const getMasterpieces = () => {
 export const getWatchlists = () => {
   if (IS_MOCKED_DATA) return watchlists;
   return axios.get(`${MARCUS_BASE_PATH}/watchlists`);
+};
+
+export const addToWatchlist = (movieId, movieName) => {
+  axios
+    .post(
+      `${MARCUS_BASE_PATH}/watchlists`,
+      {
+        movie_id: movieId,
+        movie_name: movieName,
+      },
+      { headers: { authorization: "Bearer " + getLocalStorage("access") } }
+    )
+    .then((res) => console.log(res))
+    .catch((error) => console.error(error));
 };
 
 export const getVotes = () => {

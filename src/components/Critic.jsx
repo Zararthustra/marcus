@@ -1,10 +1,11 @@
 import { useState, React } from "react";
 import { ReactComponent as CriticInfo } from "../assets/svg/info.svg";
-import { ReactComponent as CriticWatchList } from "../assets/svg/criticWatchList.svg";
+import { ReactComponent as CriticWatchList } from "../assets/svg/watchList.svg";
 
 import Movie from "./Movie";
 
 import "../styles/Critic.css";
+import { addToWatchlist } from "../services/marcusApi";
 
 const Critic = ({
   movieId,
@@ -15,13 +16,9 @@ const Critic = ({
   currentPage,
   vote,
 }) => {
-  const [triggerToast, setTriggerToast] = useState(false);
+  // const [triggerToast, setTriggerToast] = useState(false);
   const [showMovie, setShowMovie] = useState(false);
 
-  const addToWatchlist = () => {
-    // Add useQuery mutation request here
-    setTriggerToast(!triggerToast);
-  };
 
   return (
     <>
@@ -47,8 +44,7 @@ const Critic = ({
                 <a href={`/users/${userId}`}>{userName}</a>
               </p>
               <div className="critic-footer-icons">
-                {/* {triggerToast && <p message={`Added ${movieName} to watchlist`} />} */}
-                <CriticWatchList onClick={() => addToWatchlist} />
+                <CriticWatchList onClick={() => addToWatchlist(movieId, movieName)} />
                 <CriticInfo onClick={() => setShowMovie(true)} />
               </div>
             </>

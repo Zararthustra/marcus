@@ -13,7 +13,7 @@
 .movie {
   position: relative;
   border-radius: 5px;
-  width: 90%;
+  max-width: 90%;
   height: 90vh;
   display: flex;
   align-items: center;
@@ -50,6 +50,17 @@
   gap: 1rem;
   line-height: 30px;
   padding: 0 2rem;
+}
+
+.movie-infos svg {
+  cursor: pointer;
+  fill: var(--light-color);
+  transition: 0.5s fill;
+  width: 2rem;
+}
+
+.movie-infos svg:hover {
+  fill: var(--dark-color);
 }
 
 .movie form {

@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 
 import Critic from "../components/Critic";
-// import Masterpiece from "../components/Masterpiece";
+import Masterpiece from "../components/Masterpiece";
 
 import {
   getMasterpieces,
@@ -89,22 +89,22 @@ const Home = () => {
         ) : masterpiecesStatus === "error" ? (
           <p>Error</p>
         ) : (
-          <h2>[Chefs d'oeuvre]</h2>
-          // masterpiecesData?.data.map((masterpiece, index) => {
-          //   return (
-          //     <Masterpiece
-          //       key={index}
-          //       movieName={masterpiece.movieName}
-          //       movieId={masterpiece.movieId}
-          //       releasedDate={masterpiece.releasedDate}
-          //       director={masterpiece.director}
-          //       description={masterpiece.description}
-          //       userName={masterpiece.userName}
-          //       userId={masterpiece.userId}
-          //       poster={masterpiece.poster}
-          //     />
-          //   );
-          // })
+          masterpiecesData?.data.data.map((masterpiece, index) => {
+            return (
+              <Masterpiece
+                key={index}
+                movieName={masterpiece.movie_name}
+                movieId={masterpiece.movie_id}
+                userName={masterpiece.user_name}
+                userId={masterpiece.user_id}
+                releasedDate={"XXXX"}
+                description={
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                }
+                poster={"/3WjbxaqYB4vAbdUfdr5vbglD2JZ.jpg"}
+              />
+            );
+          })
         );
 
       case "release":

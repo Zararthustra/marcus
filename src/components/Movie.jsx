@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { getMovieById } from "../services/tmdbApi";
 import { ReactComponent as Close } from "../assets/svg/close.svg";
 import MovieDescription from "./MovieDescription";
-import { getCritics } from "../services/marcusApi";
+import { addToWatchlist, getCritics } from "../services/marcusApi";
 import Critic from "./Critic";
 import { MARCUS_BASE_PATH } from "../services/apiVariables";
 import axios from "axios";
@@ -29,13 +29,8 @@ const Movie = ({ movieId, setShowMovie }) => {
   );
 
   const handleChange = (e) => {
-    switch (e.target.name) {
-      case "criticContent":
-        if (e.target.value.length > 1000) return;
-        return setCriticContent(e.target.value);
-      default:
-        break;
-    }
+    if (e.target.value.length > 1000) return;
+    return setCriticContent(e.target.value);
   };
   const handleCritic = (e) => {
     e.preventDefault();
@@ -92,6 +87,7 @@ const Movie = ({ movieId, setShowMovie }) => {
           title={data.data.title}
           synopsis={data.data.overview}
           releasedDate={data.data.release_date}
+          addToWatchlist={addToWatchlist}
         />
 
         {!criticSent && (
