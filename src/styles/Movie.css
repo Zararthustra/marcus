@@ -36,6 +36,7 @@
 }
 .movie-description img {
   width: 15rem;
+  margin: 0 1rem;
   border-radius: 5px;
   box-shadow: 4px 4px 10px #00000057;
 }

@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;700&family=Limelight&display=swap");
 
 /* Debug CSS */
-* {
+/* * {
   outline: 1px solid blue !important;
-}
+} */
 
 :root {
   /* background: linear-gradient(
