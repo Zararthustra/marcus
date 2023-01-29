@@ -7,9 +7,14 @@
   flex-direction: column;
   background-color: var(--dark-color);
   color: white;
+  text-align: center;
 }
 .app-footer a {
   color: #444;
+}
+.app-footer p {
+  margin: 0 1rem;
+  line-height: 30px;
 }
 .ARR {
   color: #444;

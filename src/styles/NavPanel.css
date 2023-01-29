@@ -59,3 +59,23 @@
   font-size: 1.2rem;
   width: 100%;
 }
+
+.separation-bar {
+  width: 50%;
+  max-width: 30rem;
+  height: 2px;
+  background-color: #8a898971;
+  margin: 1rem 0 0;
+}
+
+@media (max-width: 800px) {
+  .navPanel ul {
+    width: 100%;
+  }
+  .navPanel ul li svg {
+    width: 2rem;
+  }
+  .tab-bar {
+    display: none;
+  }
+}

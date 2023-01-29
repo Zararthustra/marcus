@@ -6,6 +6,7 @@ const protocol = {
 };
 const host = {
   domain: "planifit.pythonanywhere.com",
+  localIP: "192.168.1.44:8000",
   localhost: "localhost:8000",
 };
 
@@ -14,7 +15,7 @@ export const IS_MOCKED_DATA = false;
 // const IS_MOCKED_DATA = false
 
 // Toggle this value to get data from local or prod environment
-export const MARCUS_BASE_PATH = protocol.unsecure + "://" + host.localhost + "/api";
+export const MARCUS_BASE_PATH = protocol.unsecure + "://" + host.localIP + "/api";
 // export const MARCUS_BASE_PATH = protocol.secure + "://" + host.domain + "/api";
 
 // const token = getLocalStorage('accessToken')

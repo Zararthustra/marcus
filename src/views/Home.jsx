@@ -130,7 +130,7 @@ const Home = () => {
         );
 
       default:
-        return <div>Si tu vois ça ya un vrai soucis là...</div>
+        return <div>Si tu vois ça ya un vrai soucis là...</div>;
     }
   };
   return (
@@ -149,6 +149,7 @@ const Home = () => {
           gap: "3rem",
           backgroundColor: "var(--background-color)",
           width: "100%",
+          overflow: "hidden",
         }}
       >
         {activeData(activeTab)}

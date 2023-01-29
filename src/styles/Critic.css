@@ -1,13 +1,12 @@
 .critic {
   align-items: center;
-  border-radius: .938rem;
   display: flex;
   flex-direction: column;
-  width: 45rem;
+  max-width: 45rem;
   justify-content: space-evenly;
   align-items: center;
-  border-radius: 15px;
   color: var(--dark-color);
+  padding: 0 1rem;
 }
 
 .critic-header {
@@ -31,8 +30,6 @@
 
 .critic-main {
   align-items: center;
-  text-align: center;
-  width: 37rem;
 }
 
 .critic-main-content {
