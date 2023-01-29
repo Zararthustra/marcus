@@ -6,7 +6,15 @@ import Movie from "./Movie";
 
 import "../styles/Critic.css";
 
-const Critic = ({ movieId, movieName, content, userId, userName }) => {
+const Critic = ({
+  movieId,
+  movieName,
+  content,
+  userId,
+  userName,
+  currentPage,
+  vote,
+}) => {
   const [triggerToast, setTriggerToast] = useState(false);
   const [showMovie, setShowMovie] = useState(false);
 
@@ -24,21 +32,27 @@ const Critic = ({ movieId, movieName, content, userId, userName }) => {
             className="critic-header-title"
             onClick={() => setShowMovie(true)}
           >
-            {movieName}
+            {currentPage === "movie" ? userName : movieName}
           </h2>
         </header>
         <main className="critic-main">
           <p className="critic-main-content">{content}</p>
         </main>
         <footer className="critic-footer">
-          <p className="critic-footer-userName">
-            <a href={`/users/${userId}`}>{userName}</a>
-          </p>
-          <div className="critic-footer-icons">
-            <CriticWatchList onClick={() => addToWatchlist} />
-            <CriticInfo onClick={() => setShowMovie(true)} />
-            {triggerToast && <p message={`Added ${movieName} to watchlist`} />}
-          </div>
+          {currentPage === "movie" ? (
+            <div>{vote}</div>
+          ) : (
+            <>
+              <p className="critic-footer-userName">
+                <a href={`/users/${userId}`}>{userName}</a>
+              </p>
+              <div className="critic-footer-icons">
+                {/* {triggerToast && <p message={`Added ${movieName} to watchlist`} />} */}
+                <CriticWatchList onClick={() => addToWatchlist} />
+                <CriticInfo onClick={() => setShowMovie(true)} />
+              </div>
+            </>
+          )}
         </footer>
       </article>
     </>

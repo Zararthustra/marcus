@@ -2,7 +2,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  max-width: 45rem;
+  width: 45rem;
   justify-content: space-evenly;
   align-items: center;
   color: var(--dark-color);
@@ -10,7 +10,7 @@
 }
 
 .critic-header {
-  width: 100%;
+  width: 90%;
 }
 
 .critic-header h2 {
@@ -30,6 +30,7 @@
 
 .critic-main {
   align-items: center;
+  width: 90%;
 }
 
 .critic-main-content {
@@ -42,9 +43,10 @@
 
 .critic-footer {
   display: flex;
+  justify-content: flex-end;
   gap: 10rem;
   padding: 0;
-  width: 100%;
+  width: 90%;
 }
 
 .critic-footer-userName {
@@ -74,11 +76,18 @@
 
 .critic-footer-icons svg {
   cursor: pointer;
-  transition: .5s fill;
+  transition: 0.5s fill;
   fill: var(--light-color);
   width: 2rem;
 }
 
 .critic-footer-icons svg:hover {
   fill: var(--dark-color);
+}
+
+@media (max-width: 800px) {
+  .critic {
+    width: 100%;
+    padding: 0;
+  }
 }
