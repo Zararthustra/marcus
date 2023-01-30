@@ -1,0 +1,44 @@
+.vote {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 2fr;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  width: 45rem;
+}
+.vote div:first-child {
+  font-weight: 600;
+  cursor: pointer;
+}
+.vote div:first-child:hover {
+  text-decoration: underline;
+}
+
+.stars {
+  display: flex;
+  gap: 0.2rem;
+}
+.vote .stars svg {
+  fill: black;
+  width: 1.2rem;
+}
+
+.vote svg {
+  cursor: pointer;
+  transition: 0.5s fill;
+  fill: var(--light-color);
+  width: 2rem;
+}
+.vote svg:hover {
+  fill: var(--dark-color);
+}
+
+@media (max-width: 800px) {
+  .vote {
+    width: 100%;
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+  .vote div:last-child {
+    display: none !important;
+  }
+}

@@ -10,13 +10,12 @@ import Masterpiece from "../components/Masterpiece";
 
 import {
   getMasterpieces,
-  getWatchlists,
   getVotes,
   getCritics,
   getUsersData,
 } from "../services/marcusApi";
 
-import UserDatas from "../components/UserDatas";
+import Vote from "../components/Vote";
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState("critic");
@@ -24,10 +23,6 @@ const Home = () => {
   const { data: masterpiecesData, status: masterpiecesStatus } = useQuery(
     "masterpieces",
     () => getMasterpieces()
-  );
-  const { data: watchlistsData, status: watchlistsStatus } = useQuery(
-    "watchlists",
-    () => getWatchlists()
   );
   const { data: votesData, status: votesStatus } = useQuery("votes", () =>
     getVotes()
@@ -39,26 +34,6 @@ const Home = () => {
     "usersData",
     () => getUsersData()
   );
-
-  // To be deleted
-  const objectDatas = {
-    critic: {
-      data: criticsData?.data.total,
-      status: criticsStatus,
-    },
-    vote: {
-      data: votesData?.data.total,
-      status: votesStatus,
-    },
-    masterpiece: {
-      data: masterpiecesData?.data.total,
-      status: masterpiecesStatus,
-    },
-    watchlist: {
-      data: watchlistsData?.data.total,
-      status: watchlistsStatus,
-    },
-  };
 
   const activeData = (activeData) => {
     switch (activeData) {
@@ -81,7 +56,22 @@ const Home = () => {
         );
 
       case "vote":
-        return <UserDatas data={objectDatas} />;
+        return votesStatus === "loading" ? (
+          <p>Loading masterpieces...</p>
+        ) : votesStatus === "error" ? (
+          <p>Error</p>
+        ) : (
+          votesData?.data.data.map((vote, index) => (
+            <Vote
+              key={index}
+              movieName={vote.movie_name}
+              movieId={vote.movie_id}
+              userName={vote.user_name}
+              userId={vote.user_id}
+              value={vote.value}
+            />
+          ))
+        );
 
       case "masterpiece":
         return masterpiecesStatus === "loading" ? (
@@ -89,22 +79,20 @@ const Home = () => {
         ) : masterpiecesStatus === "error" ? (
           <p>Error</p>
         ) : (
-          masterpiecesData?.data.data.map((masterpiece, index) => {
-            return (
-              <Masterpiece
-                key={index}
-                movieName={masterpiece.movie_name}
-                movieId={masterpiece.movie_id}
-                userName={masterpiece.user_name}
-                userId={masterpiece.user_id}
-                releasedDate={"XXXX"}
-                description={
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                }
-                poster={"/3WjbxaqYB4vAbdUfdr5vbglD2JZ.jpg"}
-              />
-            );
-          })
+          masterpiecesData?.data.data.map((masterpiece, index) => (
+            <Masterpiece
+              key={index}
+              movieName={masterpiece.movie_name}
+              movieId={masterpiece.movie_id}
+              userName={masterpiece.user_name}
+              userId={masterpiece.user_id}
+              releasedDate={"XXXX"}
+              description={
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+              }
+              poster={"/3WjbxaqYB4vAbdUfdr5vbglD2JZ.jpg"}
+            />
+          ))
         );
 
       case "release":
@@ -114,19 +102,17 @@ const Home = () => {
         return usersDataStatus === "loading" ? (
           <p>Loading datas...</p>
         ) : (
-          usersData.map((user, index) => {
-            return (
-              <Users
-                key={index}
-                userName={user.userName}
-                genderMovie={user.genders}
-                masterPieces={user.masterpiece}
-                critics={user.critic}
-                votes={user.vote}
-                watchList={user.watchlist}
-              />
-            );
-          })
+          usersData.map((user, index) => (
+            <Users
+              key={index}
+              userName={user.userName}
+              genderMovie={user.genders}
+              masterPieces={user.masterpiece}
+              critics={user.critic}
+              votes={user.vote}
+              watchList={user.watchlist}
+            />
+          ))
         );
 
       default:
