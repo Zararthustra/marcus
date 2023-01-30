@@ -59,8 +59,21 @@
   width: 2rem;
 }
 
+.movie-vote {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4rem;
+}
 .movie-infos svg:hover {
   fill: var(--dark-color);
+}
+
+.movie-vote .stars svg {
+  fill: black;
+  width: 2rem;
+  cursor: pointer;
 }
 
 .movie form {

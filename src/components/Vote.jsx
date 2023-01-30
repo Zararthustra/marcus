@@ -15,10 +15,16 @@ const Vote = ({ movieName, movieId, value, userName, userId }) => {
       {showMovie && <Movie movieId={movieId} setShowMovie={setShowMovie} />}
       <div className="vote">
         <div onClick={() => setShowMovie(true)}>{movieName}</div>
-        {/* <div>{value}</div> */}
-        <Stars value={value} />
+        <Stars value={value} displayOnly={true} />
         <div>{userName}</div>
-        <div style={{display: "flex", justifyContent: "center", alignItems: "center", gap: "1rem"}}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "1rem",
+          }}
+        >
           <WatchList onClick={() => addToWatchlist(movieId, movieName)} />
           <Info onClick={() => setShowMovie(true)} />
         </div>

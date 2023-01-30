@@ -30,95 +30,91 @@ const Home = () => {
   const { data: criticsData, status: criticsStatus } = useQuery("critics", () =>
     getCritics()
   );
-  const { data: usersData, status: usersDataStatus } = useQuery(
+  const { data: usersData, status: communityStatus } = useQuery(
     "usersData",
     () => getUsersData()
   );
 
+  const activeStatus = (activeData) => {
+    switch (activeData) {
+      case "critic":
+        return criticsStatus;
+      case "vote":
+        return votesStatus;
+      case "masterpiece":
+        return masterpiecesStatus;
+      case "release":
+        return;
+      case "community":
+        return communityStatus;
+      default:
+        return;
+    }
+  };
+
   const activeData = (activeData) => {
     switch (activeData) {
       case "critic":
-        return criticsStatus === "loading" ? (
-          <p>Loading critics...</p>
-        ) : criticsStatus === "error" ? (
-          <p>Error</p>
-        ) : (
-          criticsData?.data.data.map((critic, index) => (
-            <Critic
-              key={index}
-              movieId={critic.movie_id}
-              movieName={critic.movie_name}
-              content={critic.content}
-              userId={critic.user_id}
-              userName={critic.user_name}
-            />
-          ))
-        );
+        return criticsData?.data.data.map((critic, index) => (
+          <Critic
+            key={index}
+            movieId={critic.movie_id}
+            movieName={critic.movie_name}
+            content={critic.content}
+            userId={critic.user_id}
+            userName={critic.user_name}
+          />
+        ));
 
       case "vote":
-        return votesStatus === "loading" ? (
-          <p>Loading masterpieces...</p>
-        ) : votesStatus === "error" ? (
-          <p>Error</p>
-        ) : (
-          votesData?.data.data.map((vote, index) => (
-            <Vote
-              key={index}
-              movieName={vote.movie_name}
-              movieId={vote.movie_id}
-              userName={vote.user_name}
-              userId={vote.user_id}
-              value={vote.value}
-            />
-          ))
-        );
+        return votesData?.data.data.map((vote, index) => (
+          <Vote
+            key={index}
+            movieName={vote.movie_name}
+            movieId={vote.movie_id}
+            userName={vote.user_name}
+            userId={vote.user_id}
+            value={vote.value}
+          />
+        ));
 
       case "masterpiece":
-        return masterpiecesStatus === "loading" ? (
-          <p>Loading masterpieces...</p>
-        ) : masterpiecesStatus === "error" ? (
-          <p>Error</p>
-        ) : (
-          masterpiecesData?.data.data.map((masterpiece, index) => (
-            <Masterpiece
-              key={index}
-              movieName={masterpiece.movie_name}
-              movieId={masterpiece.movie_id}
-              userName={masterpiece.user_name}
-              userId={masterpiece.user_id}
-              releasedDate={"XXXX"}
-              description={
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              }
-              poster={"/3WjbxaqYB4vAbdUfdr5vbglD2JZ.jpg"}
-            />
-          ))
-        );
+        return masterpiecesData?.data.data.map((masterpiece, index) => (
+          <Masterpiece
+            key={index}
+            movieName={masterpiece.movie_name}
+            movieId={masterpiece.movie_id}
+            userName={masterpiece.user_name}
+            userId={masterpiece.user_id}
+            releasedDate={"XXXX"}
+            description={
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            }
+            poster={"/3WjbxaqYB4vAbdUfdr5vbglD2JZ.jpg"}
+          />
+        ));
 
       case "release":
         return <h2>[Sorties]</h2>;
 
       case "community":
-        return usersDataStatus === "loading" ? (
-          <p>Loading datas...</p>
-        ) : (
-          usersData.map((user, index) => (
-            <Users
-              key={index}
-              userName={user.userName}
-              genderMovie={user.genders}
-              masterPieces={user.masterpiece}
-              critics={user.critic}
-              votes={user.vote}
-              watchList={user.watchlist}
-            />
-          ))
-        );
+        return usersData?.data.map((user, index) => (
+          <Users
+            key={index}
+            userName={user.userName}
+            genderMovie={user.genders}
+            masterPieces={user.masterpiece}
+            critics={user.critic}
+            votes={user.vote}
+            watchList={user.watchlist}
+          />
+        ));
 
       default:
-        return <div>Si tu vois ça ya un vrai soucis là...</div>;
+        return <div>Si tu vois ça ya un soucis là...</div>;
     }
   };
+
   return (
     <div className="App">
       <Header />
@@ -138,7 +134,13 @@ const Home = () => {
           overflow: "hidden",
         }}
       >
-        {activeData(activeTab)}
+        {activeStatus(activeTab) === "loading" ? (
+          <p>Loading ...</p>
+        ) : activeStatus(activeTab) === "error" ? (
+          <p>Error</p>
+        ) : (
+          activeData(activeTab)
+        )}
       </main>
     </div>
   );

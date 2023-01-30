@@ -4,12 +4,13 @@ import { useQuery } from "react-query";
 import { getMovieById } from "../services/tmdbApi";
 import { ReactComponent as Close } from "../assets/svg/close.svg";
 import MovieDescription from "./MovieDescription";
-import { addToWatchlist, getCritics } from "../services/marcusApi";
+import { addToWatchlist, getCritics, getVotes } from "../services/marcusApi";
 import Critic from "./Critic";
 import { MARCUS_BASE_PATH } from "../services/apiVariables";
 import axios from "axios";
 import { useState } from "react";
 import { getLocalStorage } from "../utils/localStorage";
+import Stars from "./Stars";
 
 const Movie = ({ movieId, setShowMovie }) => {
   const { data, isLoading, error } = useQuery(["getMovie"], () =>
@@ -18,9 +19,19 @@ const Movie = ({ movieId, setShowMovie }) => {
   const { data: critics, status: criticsStatus } = useQuery("critics", () =>
     getCritics()
   );
+  const { data: votes, status: votesStatus } = useQuery("votes", () =>
+    getVotes()
+  );
 
+  const [voteValue, setVoteValue] = useState(0);
   const [criticContent, setCriticContent] = useState("");
-  // Default do not show textarea if user has already criticized
+  // Default do not show if user has already voted or criticized
+  const [voteSent, setVoteSent] = useState(
+    votes?.data.data.filter(
+      (item) =>
+        item.movie_id === movieId && item.user_id === getLocalStorage("userid")
+    ).length > 0
+  );
   const [criticSent, setCriticSent] = useState(
     critics?.data.data.filter(
       (item) =>
@@ -48,6 +59,27 @@ const Movie = ({ movieId, setShowMovie }) => {
       .then((user) => {
         console.log(user);
         setCriticSent(true);
+      })
+      .catch((error) => {
+        return console.log(error);
+      });
+    return;
+  };
+  const handleVote = () => {
+    if (voteValue === 0) return; // toast here
+    axios
+      .post(
+        `${MARCUS_BASE_PATH}/votes`,
+        {
+          movie_id: data.data.id,
+          movie_name: data.data.title,
+          value: voteValue,
+        },
+        { headers: { authorization: "Bearer " + getLocalStorage("access") } }
+      )
+      .then((user) => {
+        console.log(user);
+        setVoteSent(true);
       })
       .catch((error) => {
         return console.log(error);
@@ -90,12 +122,23 @@ const Movie = ({ movieId, setShowMovie }) => {
           addToWatchlist={addToWatchlist}
         />
 
+        {!voteSent && (
+          <div className="movie-vote">
+            <Stars
+              displayOnly={false}
+              voteValue={voteValue}
+              setVoteValue={setVoteValue}
+            />
+            <div className="button-primary" onClick={handleVote}>
+              Voter
+            </div>
+          </div>
+        )}
+
         {!criticSent && (
           <form onSubmit={handleCritic}>
             <div className="inputLabel">
-              <label htmlFor="criticContent">
-                Que pensez-vous de ce film ?
-              </label>
+              <label htmlFor="criticContent">Donnez votre avis !</label>
               <textarea
                 required
                 rows="7"

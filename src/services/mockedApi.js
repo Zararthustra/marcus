@@ -69,48 +69,50 @@ export const masterpieces = {
 };
 
 // To be modified
-export const users_data = [
-  {
-    userName: "Ginédine",
-    genders: ["Romantique", "XXX", "Documentaire", "Humour"],
-    critic: 59,
-    vote: 16,
-    masterpiece: 17,
-    watchlist: 4,
-  },
-  {
-    userName: "Arty",
-    genders: ["Dessin Animé", "Adulte", "Télé-réalité"],
-    critic: 27,
-    vote: 54,
-    masterpiece: 12,
-    watchlist: 5,
-  },
-  {
-    userName: "Robert",
-    genders: ["Science fiction", "Action", "Drame"],
-    critic: 27,
-    vote: 54,
-    masterpiece: 12,
-    watchlist: 5,
-  },
-  {
-    userName: "Robert",
-    genders: ["Science fiction", "Action", "Drame"],
-    critic: 27,
-    vote: 54,
-    masterpiece: 12,
-    watchlist: 5,
-  },
-  {
-    userName: "Robert",
-    genders: ["Science fiction", "Action", "Drame"],
-    critic: 26,
-    vote: 54,
-    masterpiece: 12,
-    watchlist: 5,
-  },
-];
+export const users_data = {
+  data: [
+    {
+      userName: "Ginédine",
+      genders: ["Romantique", "XXX", "Documentaire", "Humour"],
+      critic: 59,
+      vote: 16,
+      masterpiece: 17,
+      watchlist: 4,
+    },
+    {
+      userName: "Arty",
+      genders: ["Dessin Animé", "Adulte", "Télé-réalité"],
+      critic: 27,
+      vote: 54,
+      masterpiece: 12,
+      watchlist: 5,
+    },
+    {
+      userName: "Robert",
+      genders: ["Science fiction", "Action", "Drame"],
+      critic: 27,
+      vote: 54,
+      masterpiece: 12,
+      watchlist: 5,
+    },
+    {
+      userName: "Robert",
+      genders: ["Science fiction", "Action", "Drame"],
+      critic: 27,
+      vote: 54,
+      masterpiece: 12,
+      watchlist: 5,
+    },
+    {
+      userName: "Robert",
+      genders: ["Science fiction", "Action", "Drame"],
+      critic: 26,
+      vote: 54,
+      masterpiece: 12,
+      watchlist: 5,
+    },
+  ],
+};
 
 export const masterpiece = [
   {

@@ -21,6 +21,7 @@
 .vote .stars svg {
   fill: black;
   width: 1.2rem;
+  cursor: default;
 }
 
 .vote svg {
