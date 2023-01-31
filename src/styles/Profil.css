@@ -1,0 +1,22 @@
+.profil-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 10rem;
+}
+.profil {
+  width: 50rem;
+}
+.profil h1 {
+  align-self: flex-start;
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+}
+
+@media (max-width: 800px) {
+  .profil {
+    width: 100%;
+  }
+}

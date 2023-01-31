@@ -1,32 +1,61 @@
-import React from 'react';
-import UserData from './UserData';
-import '../styles/UserDatas.css';
+import React from "react";
+import UserData from "./UserData";
+import "../styles/UserDatas.css";
 
-const UserDatas = ({ data }) => {
-    return (
-        <section className="userDatas">
-            {data.critic.status === 'loading' ? (
-                <p>Loading critics...</p>
-            ) : (
-                <UserData data="critic" value={data.critic.data} />
-            )}
-            {data.vote.status === 'loading' ? (
-                <p>Loading votes...</p>
-            ) : (
-                <UserData data="vote" value={data.vote.data} />
-            )}
-            {data.masterpiece.status === 'loading' ? (
-                <p>Loading masterpieces...</p>
-            ) : (
-                <UserData data="masterpiece" value={data.masterpiece.data} />
-            )}
-            {data.watchlist.status === 'loading' ? (
-                <p>Loading watchlists...</p>
-            ) : (
-                <UserData data="watchlist" value={data.watchlist.data} />
-            )}
-        </section>
-    )
-}
+const UserDatas = ({
+  masterpieces,
+  votes,
+  critics,
+  watchlists,
+  masterpiecesStatus,
+  votesStatus,
+  criticsStatus,
+  watchlistsStatus,
+  setActiveTab,
+  activeTab,
+}) => (
+  <section className="userDatas">
+    {criticsStatus === "loading" ? (
+      <p>Loading critics...</p>
+    ) : (
+      <UserData
+        data="critic"
+        value={critics}
+        setActiveTab={setActiveTab}
+        activeTab={activeTab}
+      />
+    )}
+    {votesStatus === "loading" ? (
+      <p>Loading votes...</p>
+    ) : (
+      <UserData
+        data="vote"
+        value={votes}
+        setActiveTab={setActiveTab}
+        activeTab={activeTab}
+      />
+    )}
+    {masterpiecesStatus === "loading" ? (
+      <p>Loading masterpieces...</p>
+    ) : (
+      <UserData
+        data="masterpiece"
+        value={masterpieces}
+        setActiveTab={setActiveTab}
+        activeTab={activeTab}
+      />
+    )}
+    {watchlistsStatus === "loading" ? (
+      <p>Loading watchlists...</p>
+    ) : (
+      <UserData
+        data="watchlist"
+        value={watchlists}
+        setActiveTab={setActiveTab}
+        activeTab={activeTab}
+      />
+    )}
+  </section>
+);
 
 export default UserDatas;

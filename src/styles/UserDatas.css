@@ -1,5 +1,54 @@
 .userDatas {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.user-data {
+  background-color: white;
+  align-items: center;
+  border-radius: 7px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  gap: 2rem;
+  width: 8rem;
+  padding: 1rem;
+  height: 12rem;
+  cursor: pointer;
+}
+.user-data:hover {
+  background-color: var(--light-color);
+}
+.user-data-icon {
+  fill: var(--dark-color);
+}
+
+.user-data-title {
+  font-size: 1.2rem;
+}
+
+.user-data-value {
+  font-size: 2rem;
+}
+
+@media (max-width: 500px) {
+  .user-data-icon {
+    width: 2rem;
+  }
+  .user-data {
+    padding: 1rem 0.2rem;
+    width: 4.5rem;
+    height: 8rem;
+    gap: 0;
+  }
+  .user-data-title {
+    font-size: 0.8rem;
+  }
+  .user-data-value {
+    font-size: 1rem;
+  }
 }

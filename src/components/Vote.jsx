@@ -16,7 +16,7 @@ const Vote = ({ movieName, movieId, value, userName, userId }) => {
       <div className="vote">
         <div onClick={() => setShowMovie(true)}>{movieName}</div>
         <Stars value={value} displayOnly={true} />
-        <div>{userName}</div>
+        <a href={`/profil/${userId}`}>{userName}</a>
         <div
           style={{
             display: "flex",

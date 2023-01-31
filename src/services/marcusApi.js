@@ -9,13 +9,17 @@ import {
 import { MARCUS_BASE_PATH, IS_MOCKED_DATA } from "./apiVariables";
 import { getLocalStorage } from "../utils/localStorage";
 
-export const getMasterpieces = () => {
+export const getMasterpieces = (user_id) => {
   if (IS_MOCKED_DATA) return masterpieces;
+  if (user_id)
+    return axios.get(`${MARCUS_BASE_PATH}/masterpieces?user_id=${user_id}`);
   return axios.get(`${MARCUS_BASE_PATH}/masterpieces`);
 };
 
-export const getWatchlists = () => {
+export const getWatchlists = (user_id) => {
   if (IS_MOCKED_DATA) return watchlists;
+  if (user_id)
+    return axios.get(`${MARCUS_BASE_PATH}/watchlists?user_id=${user_id}`);
   return axios.get(`${MARCUS_BASE_PATH}/watchlists`);
 };
 
@@ -33,13 +37,16 @@ export const addToWatchlist = (movieId, movieName) => {
     .catch((error) => console.error(error));
 };
 
-export const getVotes = () => {
+export const getVotes = (user_id) => {
   if (IS_MOCKED_DATA) return votes;
+  if (user_id) return axios.get(`${MARCUS_BASE_PATH}/votes?user_id=${user_id}`);
   return axios.get(`${MARCUS_BASE_PATH}/votes`);
 };
 
-export const getCritics = () => {
+export const getCritics = (user_id) => {
   if (IS_MOCKED_DATA) return critics;
+  if (user_id)
+    return axios.get(`${MARCUS_BASE_PATH}/critics?user_id=${user_id}`);
   return axios.get(`${MARCUS_BASE_PATH}/critics`);
 };
 

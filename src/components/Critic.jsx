@@ -41,7 +41,7 @@ const Critic = ({
           ) : (
             <>
               <p className="critic-footer-userName">
-                <a href={`/users/${userId}`}>{userName}</a>
+                <a href={`/profil/${userId}`}>{userName}</a>
               </p>
               <div className="critic-footer-icons">
                 <CriticWatchList onClick={() => addToWatchlist(movieId, movieName)} />

@@ -46,7 +46,7 @@ const Masterpiece = ({
           </main>
           <footer className="masterpiece-footer">
             <p className="masterpiece-footer-userName">
-              <a href={`/users/${userId}`}>{userName}</a>
+              <a href={`/profil/${userId}`}>{userName}</a>
             </p>
             <div className="masterpiece-footer-icons">
               <CriticWatchList onClick={() => addToWatchlist(movieId, movieName)} />
