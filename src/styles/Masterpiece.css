@@ -1,46 +1,51 @@
 .masterpiece {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
   width: 50rem;
 }
 
+.masterpiece img {
+  border-radius: 5px;
+  width: 12rem;
+}
+
+.masterpiece-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 30rem;
+}
+
 .masterpiece-title {
+  margin-left: 1rem;
   cursor: pointer;
+  align-self: flex-start;
 }
 .masterpiece-title:hover {
   text-decoration: underline;
 }
 
-.masterpiece-right {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30rem;
-}
-
-.masterpiece-left img {
-  border-radius: 5px;
-  width: 12rem;
-  object-fit: cover;
+.masterpiece-director {
+  margin-left: 1rem;
+  align-self: flex-start;
 }
 
 .masterpiece-description {
-  font-family: "Josefin Sans";
   font-weight: 300;
-  line-height: 1.25rem;
+  line-height: 20px;
   text-align: justify;
-}
-
-.masterpiece-release-director {
-  display: flex;
-  justify-content: space-between;
-  width: 50%;
+  width: 90%;
 }
 
 .masterpiece-footer {
   display: flex;
+  justify-content: flex-end;
   gap: 10rem;
+  width: 90%;
 }
 
 .masterpiece-footer-userName {
@@ -75,4 +80,11 @@
 
 .masterpiece-footer-icons svg:hover {
   fill: var(--dark-color);
+}
+
+@media (max-width: 800px) {
+  .masterpiece {
+    width: 100%;
+    padding: 0;
+  }
 }

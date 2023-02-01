@@ -23,33 +23,24 @@ const Masterpiece = ({
     <>
       {showMovie && <Movie movieId={movieId} setShowMovie={setShowMovie} />}
       <article className="masterpiece">
-        <div className="masterpiece-left">
-          <img
-            src={`https://image.tmdb.org/t/p/original/${poster}`}
-            alt={movieName}
-          />
-        </div>
+        <img
+          src={`https://image.tmdb.org/t/p/original/${poster}`}
+          alt={movieName}
+        />
         <div className="masterpiece-right">
-          <header>
-            <h2
-              onClick={() => setShowMovie(true)}
-              className="masterpiece-title"
-            >
-              {movieName}
-            </h2>
-          </header>
-          <main>
-            <div className="masterpiece-release-director">
-              <p>{releasedDate}</p>
-            </div>
-            <p className="masterpiece-description">{description}</p>
-          </main>
+          <h2 onClick={() => setShowMovie(true)} className="masterpiece-title">
+            {movieName}
+          </h2>
+          <p className="masterpiece-director">{releasedDate}</p>
+          <p className="masterpiece-description">{description}</p>
           <footer className="masterpiece-footer">
             <p className="masterpiece-footer-userName">
               <a href={`/profil/${userId}`}>{userName}</a>
             </p>
             <div className="masterpiece-footer-icons">
-              <CriticWatchList onClick={() => addToWatchlist(movieId, movieName)} />
+              <CriticWatchList
+                onClick={() => addToWatchlist(movieId, movieName)}
+              />
               <CriticInfo onClick={() => setShowMovie(true)} />
             </div>
           </footer>
