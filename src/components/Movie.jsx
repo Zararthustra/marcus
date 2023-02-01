@@ -1,18 +1,23 @@
 import "../styles/Movie.css";
-// import { useState } from "react";
-import { useQuery } from "react-query";
-import { getMovieById } from "../services/tmdbApi";
-import { ReactComponent as Close } from "../assets/svg/close.svg";
-import MovieDescription from "./MovieDescription";
-import { addToWatchlist, getCritics, getVotes } from "../services/marcusApi";
-import Critic from "./Critic";
-import { MARCUS_BASE_PATH } from "../services/apiVariables";
+
 import axios from "axios";
 import { useState } from "react";
-import { getLocalStorage } from "../utils/localStorage";
+import { useQuery } from "react-query";
+
+import { ReactComponent as Close } from "../assets/svg/close.svg";
 import Stars from "./Stars";
 
+import { getMovieById } from "../services/tmdbApi";
+import { addToWatchlist, getCritics, getVotes } from "../services/marcusApi";
+import { MARCUS_BASE_PATH } from "../services/apiVariables";
+import { getLocalStorage } from "../utils/localStorage";
+
+import Critic from "./Critic";
+import MovieDescription from "./MovieDescription";
+
 const Movie = ({ movieId, setShowMovie }) => {
+  //___________________________________________________________ Variables
+
   const { data, isLoading, error } = useQuery(["getMovie"], () =>
     getMovieById(movieId)
   );
@@ -23,8 +28,10 @@ const Movie = ({ movieId, setShowMovie }) => {
     getVotes()
   );
 
+  // User inputs
   const [voteValue, setVoteValue] = useState(0);
   const [criticContent, setCriticContent] = useState("");
+
   // Default do not show if user has already voted or criticized
   const [voteSent, setVoteSent] = useState(
     votes?.data.data.filter(
@@ -38,6 +45,8 @@ const Movie = ({ movieId, setShowMovie }) => {
         item.movie_id === movieId && item.user_id === getLocalStorage("userid")
     ).length > 0
   );
+
+  //___________________________________________________________ Functions
 
   const handleChange = (e) => {
     if (e.target.value.length > 1000) return;
@@ -87,6 +96,8 @@ const Movie = ({ movieId, setShowMovie }) => {
     return;
   };
 
+  //___________________________________________________________ Render
+
   if (isLoading)
     return (
       <div className="movie-page">
@@ -121,6 +132,17 @@ const Movie = ({ movieId, setShowMovie }) => {
           releasedDate={data.data.release_date}
           addToWatchlist={addToWatchlist}
         />
+
+        {data?.data.videos.results.length > 0 && (
+          <div className="movie-trailer">
+            <iframe
+              src={`https://www.youtube.com/embed/${data?.data.videos.results[0].key}`}
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
 
         {!voteSent && (
           <div className="movie-vote">

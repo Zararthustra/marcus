@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import { ReactComponent as Logo } from "../assets/svg/logo.svg";
 import { ReactComponent as Profil } from "../assets/svg/profil.svg";
 import { useState } from "react";
-import Login from "./Login"
+import Login from "./Login";
 import { getLocalStorage } from "../utils/localStorage";
 
 const Navbar = () => {
@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <>
-    {showLogin && <Login setShowLogin={setShowLogin}/>}
+      {showLogin && <Login setShowLogin={setShowLogin} />}
       <nav className="nav">
         <Link to="/">
           <Logo className="nav-logo" />
@@ -20,16 +20,13 @@ const Navbar = () => {
         <ul className="nav-links">
           {isLogged ? (
             <li>
-              <Link to="/profile">
+              <Link to={`/profil/${getLocalStorage("userid")}`}>
                 <Profil className="nav-icon" />
               </Link>
             </li>
           ) : (
             <>
-              <li
-                className="button-primary"
-                onClick={() => setShowLogin(true)}
-              >
+              <li className="button-primary" onClick={() => setShowLogin(true)}>
                 Se connecter
               </li>
               <li style={{ cursor: "pointer" }}>Créer un compte</li>

@@ -15,6 +15,7 @@ import {
   getCritics,
   getUsersData,
 } from "../services/marcusApi";
+import Release from "../components/Release";
 
 const Home = () => {
   //___________________________________________________________ Variables
@@ -98,7 +99,12 @@ const Home = () => {
         ));
 
       case "release":
-        return <h2>[Sorties]</h2>;
+        return (
+          <>
+            <Release releaseType={"Cinéma"} />
+            {/* <Release releaseType={"Netflix"} /> */}
+          </>
+        );
 
       case "community":
         return usersData?.data.map((user, index) => (

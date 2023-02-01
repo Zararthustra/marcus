@@ -27,4 +27,6 @@ export const MARCUS_BASE_PATH = protocol.unsecure + "://" + host.localIP + "/api
 const apiKey = '34e2e08fed7af733b62f781d945c6a7c';
 
 export const TMDB_BASE_PATH = "https://api.themoviedb.org/3";
+export const TMDB_IMG_PATH = "https://image.tmdb.org/t/p/w500/";
 export const TMDB_BASE_PARAMS = { api_key: apiKey, language: "fr-FR" }
+
