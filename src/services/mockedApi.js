@@ -68,7 +68,14 @@ export const masterpieces = {
   },
 };
 
-// To be modified
+export const user_data = {
+  data: {
+    user_id: 1,
+    user_name: "Ginédine",
+    genders: ["Romantique", "XXX", "Documentaire", "Humour"],
+  },
+};
+
 export const users_data = {
   data: [
     {

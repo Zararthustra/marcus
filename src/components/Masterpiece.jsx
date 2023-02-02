@@ -15,6 +15,7 @@ const Masterpiece = ({
   userName,
   userId,
   poster,
+  currentPage,
 }) => {
   // const [triggerToast, setTriggerToast] = useState(false);
   const [showMovie, setShowMovie] = useState(false);
@@ -34,9 +35,13 @@ const Masterpiece = ({
           <p className="masterpiece-director">{releasedDate}</p>
           <p className="masterpiece-description">{description}</p>
           <footer className="masterpiece-footer">
-            <p className="masterpiece-footer-userName">
-              <a href={`/profil/${userId}`}>{userName}</a>
-            </p>
+            {currentPage === "profil" ? (
+              ""
+            ) : (
+              <p className="masterpiece-footer-userName">
+                <a href={`/profil/${userId}`}>{userName}</a>
+              </p>
+            )}
             <div className="masterpiece-footer-icons">
               <CriticWatchList
                 onClick={() => addToWatchlist(movieId, movieName)}

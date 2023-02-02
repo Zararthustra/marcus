@@ -19,7 +19,6 @@ const Critic = ({
   // const [triggerToast, setTriggerToast] = useState(false);
   const [showMovie, setShowMovie] = useState(false);
 
-
   return (
     <>
       {showMovie && <Movie movieId={movieId} setShowMovie={setShowMovie} />}
@@ -40,11 +39,17 @@ const Critic = ({
             <div>{vote}</div>
           ) : (
             <>
-              <p className="critic-footer-userName">
-                <a href={`/profil/${userId}`}>{userName}</a>
-              </p>
+              {currentPage === "profil" ? (
+                ""
+              ) : (
+                <p className="critic-footer-userName">
+                  <a href={`/profil/${userId}`}>{userName}</a>
+                </p>
+              )}
               <div className="critic-footer-icons">
-                <CriticWatchList onClick={() => addToWatchlist(movieId, movieName)} />
+                <CriticWatchList
+                  onClick={() => addToWatchlist(movieId, movieName)}
+                />
                 <CriticInfo onClick={() => setShowMovie(true)} />
               </div>
             </>

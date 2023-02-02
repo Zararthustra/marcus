@@ -6,7 +6,7 @@ import Movie from "./Movie";
 import { addToWatchlist } from "../services/marcusApi";
 import Stars from "./Stars";
 
-const Vote = ({ movieName, movieId, value, userName, userId }) => {
+const Vote = ({ movieName, movieId, value, userName, userId, currentPage }) => {
   // const [showLogin, setShowLogin] = useState(false);
   const [showMovie, setShowMovie] = useState(false);
 
@@ -16,7 +16,11 @@ const Vote = ({ movieName, movieId, value, userName, userId }) => {
       <div className="vote">
         <div onClick={() => setShowMovie(true)}>{movieName}</div>
         <Stars value={value} displayOnly={true} />
-        <a href={`/profil/${userId}`}>{userName}</a>
+        {currentPage === "profil" ? (
+          ""
+        ) : (
+          <a href={`/profil/${userId}`}>{userName}</a>
+        )}
         <div
           style={{
             display: "flex",

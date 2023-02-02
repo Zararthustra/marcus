@@ -10,7 +10,7 @@ import Vote from "./Vote";
 import {
   getCritics,
   getMasterpieces,
-  getUsersData,
+  getUserData,
   getVotes,
   getWatchlists,
 } from "../services/marcusApi";
@@ -38,9 +38,9 @@ const Profil = () => {
     () => getWatchlists(user_id)
   );
   const { data: usersData, status: usersStatus } = useQuery("usersData", () =>
-    getUsersData(user_id)
+    getUserData(user_id)
   );
-  console.log(usersStatus);
+
   //___________________________________________________________ Functions
 
   const activeStatus = (activeData) => {
@@ -69,6 +69,7 @@ const Profil = () => {
             content={critic.content}
             userId={critic.user_id}
             userName={critic.user_name}
+            currentPage={"profil"}
           />
         ));
 
@@ -81,6 +82,7 @@ const Profil = () => {
             userName={vote.user_name}
             userId={vote.user_id}
             value={vote.value}
+            currentPage={"profil"}
           />
         ));
 
@@ -97,11 +99,25 @@ const Profil = () => {
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
             }
             poster={"/3WjbxaqYB4vAbdUfdr5vbglD2JZ.jpg"}
+            currentPage={"profil"}
           />
         ));
 
       case "watchlist":
-        return <h2>Watchlist</h2>;
+        return watchlistsData?.data.data.map((watchlist, index) => (
+          <Masterpiece
+            key={index}
+            movieName={watchlist.movie_name}
+            movieId={watchlist.movie_id}
+            userName={watchlist.user_name}
+            userId={watchlist.user_id}
+            releasedDate={"XXXX"}
+            description={
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            }
+            poster={"/3WjbxaqYB4vAbdUfdr5vbglD2JZ.jpg"}
+          />
+        ));
 
       default:
         return <div>Si tu vois ça ya un soucis là...</div>;
@@ -110,10 +126,14 @@ const Profil = () => {
 
   //___________________________________________________________ Render
 
+  if (usersStatus === "loading")
+    return <div className="profil-page">Loading Profile...</div>;
+  else if (usersStatus === "error")
+    return <div className="profil-page">Profile error</div>;
   return (
     <div className="profil-page">
       <div className="profil">
-        <h1>{usersData?.data[0].userName}</h1>
+        <h1>{usersData?.data.user_name}</h1>
         <UserDatas
           masterpieces={masterpiecesData?.data.total}
           votes={votesData?.data.total}

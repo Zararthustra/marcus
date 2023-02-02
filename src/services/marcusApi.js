@@ -5,6 +5,7 @@ import {
   watchlists,
   votes,
   users_data,
+  user_data,
 } from "./mockedApi";
 import { MARCUS_BASE_PATH, IS_MOCKED_DATA } from "./apiVariables";
 import { getLocalStorage } from "../utils/localStorage";
@@ -54,4 +55,10 @@ export const getUsersData = () => {
   return users_data;
   // if (IS_MOCKED_DATA) return users_data;
   // return axios.get(`${MARCUS_BASE_PATH}/users`);
+};
+
+export const getUserData = (user_id) => {
+  return user_data;
+  // if (IS_MOCKED_DATA) return user_data;
+  // return axios.get(`${MARCUS_BASE_PATH}/users/${user_id}`);
 };
