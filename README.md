@@ -30,7 +30,8 @@
       "movie_id": 108,
       "movie_name": "Matrix",
       "user_id": 18,
-      "user_name": "roberto17"
+      "user_name": "roberto17",
+      "platform": "movie"
     }
   ]
 }
@@ -79,7 +80,8 @@
   "data": [
     {
       "movie_id": 254,
-      "movie_name": "Alice au pays des merveilles"
+      "movie_name": "Alice au pays des merveilles",
+      "platform": "tv"
     }
   ]
 }
@@ -131,7 +133,8 @@
             "movie_name": "Le cercle des poètes disparus",
             "value": 4.5,
             "user_id": 2,
-            "user_name": "Robert"
+            "user_name": "Robert",
+            "platform": "movie"
     ]
 }
 ```
@@ -183,7 +186,8 @@
             "movie_name": "Titanic",
             "content": "J'adooooore ce film mais à la fin il meurt."
             "user_id": 2,
-            "user_name": "Robert"
+            "user_name": "Robert",
+            "platform": "movie"
         }
     ]
 }
