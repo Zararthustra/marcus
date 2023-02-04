@@ -6,6 +6,7 @@ import Movie from "./Movie";
 
 import "../styles/Critic.css";
 import { addToWatchlist } from "../services/marcusApi";
+import Stars from "./Stars";
 
 const Critic = ({
   movieId,
@@ -36,7 +37,7 @@ const Critic = ({
         </main>
         <footer className="critic-footer">
           {currentPage === "movie" ? (
-            <div>{vote}</div>
+            <Stars value={vote} displayOnly={true} />
           ) : (
             <>
               {currentPage === "profil" ? (

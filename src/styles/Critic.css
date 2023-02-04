@@ -85,6 +85,12 @@
   fill: var(--dark-color);
 }
 
+.critic-footer .stars svg {
+  fill: black;
+  width: 1.2rem;
+  cursor: default;
+}
+
 @media (max-width: 800px) {
   .critic {
     width: 100%;

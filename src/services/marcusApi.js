@@ -51,6 +51,11 @@ export const getCritics = (user_id) => {
   return axios.get(`${MARCUS_BASE_PATH}/critics`);
 };
 
+export const getCriticsVotes = (movie_id) => {
+  // if (IS_MOCKED_DATA) return criticsVotes;
+  return axios.get(`${MARCUS_BASE_PATH}/critics?movie_id=${movie_id}`);
+};
+
 export const getUsersData = () => {
   if (IS_MOCKED_DATA) return users_data;
   return axios.get(`${MARCUS_BASE_PATH}/users`);

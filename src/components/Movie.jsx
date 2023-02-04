@@ -8,7 +8,12 @@ import { ReactComponent as Close } from "../assets/svg/close.svg";
 import Stars from "./Stars";
 
 import { getMovieById } from "../services/tmdbApi";
-import { addToWatchlist, getCritics, getVotes } from "../services/marcusApi";
+import {
+  addToWatchlist,
+  getCritics,
+  getCriticsVotes,
+  getVotes,
+} from "../services/marcusApi";
 import { MARCUS_BASE_PATH } from "../services/apiVariables";
 import { getLocalStorage } from "../utils/localStorage";
 
@@ -21,8 +26,9 @@ const Movie = ({ movieId, setShowMovie }) => {
   const { data, isLoading, error } = useQuery(["getMovie"], () =>
     getMovieById(movieId)
   );
-  const { data: critics, status: criticsStatus } = useQuery("critics", () =>
-    getCritics()
+  const { data: critics, status: criticsStatus } = useQuery(
+    "criticsVotes",
+    () => getCriticsVotes(movieId)
   );
   const { data: votes, status: votesStatus } = useQuery("votes", () =>
     getVotes()
@@ -180,7 +186,7 @@ const Movie = ({ movieId, setShowMovie }) => {
         ) : (
           <div className="movie-critics">
             <h1>Notes & Critiques</h1>
-            {critics.data.data.map((critic, index) => (
+            {critics?.data.data.map((critic, index) => (
               <Critic
                 key={index}
                 movieId={critic.movie_id}
@@ -189,7 +195,7 @@ const Movie = ({ movieId, setShowMovie }) => {
                 userId={critic.user_id}
                 userName={critic.user_name}
                 currentPage="movie"
-                vote={"* * * *"}
+                vote={critic.vote}
               />
             ))}
           </div>
