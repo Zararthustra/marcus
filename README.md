@@ -170,7 +170,7 @@
 <td>/critics</td>
 <td>GET</td>
 <td></td>
-<td>user_id<br><strong>optional</strong></td>
+<td>user_id<br><strong>optional</strong> <br><br> movie_id<br><strong>optional</strong></td>
 <td></td>
 <td>
 
