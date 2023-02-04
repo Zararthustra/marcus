@@ -52,9 +52,8 @@ export const getCritics = (user_id) => {
 };
 
 export const getUsersData = () => {
-  return users_data;
-  // if (IS_MOCKED_DATA) return users_data;
-  // return axios.get(`${MARCUS_BASE_PATH}/users`);
+  if (IS_MOCKED_DATA) return users_data;
+  return axios.get(`${MARCUS_BASE_PATH}/users`);
 };
 
 export const getUserData = (user_id) => {

@@ -108,12 +108,13 @@ const Home = () => {
         return usersData?.data.map((user, index) => (
           <Users
             key={index}
-            userName={user.userName}
-            genderMovie={user.genders}
-            masterPieces={user.masterpiece}
-            critics={user.critic}
-            votes={user.vote}
-            watchList={user.watchlist}
+            userName={user.username}
+            userId={user.id}
+            genderMovie={["genre1", "genre2"]}
+            masterPieces={user.user_masterpieces}
+            critics={user.user_critics}
+            votes={user.user_votes}
+            watchList={user.user_watchlists}
           />
         ));
 
