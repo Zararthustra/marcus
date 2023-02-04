@@ -90,11 +90,9 @@ const Home = () => {
             movieId={masterpiece.movie_id}
             userName={masterpiece.user_name}
             userId={masterpiece.user_id}
-            releasedDate={"XXXX"}
-            description={
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            }
-            poster={"/9ifSmhXDP36tFZXdcczJzRDGo5b.jpg"}
+            releasedDate={masterpiece.movie_details.released_date}
+            description={masterpiece.movie_details.synopsis}
+            poster={masterpiece.movie_details.poster_path}
           />
         ));
 

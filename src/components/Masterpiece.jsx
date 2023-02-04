@@ -32,7 +32,7 @@ const Masterpiece = ({
           <h2 onClick={() => setShowMovie(true)} className="masterpiece-title">
             {movieName}
           </h2>
-          <p className="masterpiece-director">{releasedDate}</p>
+          <p className="masterpiece-director">{releasedDate.split('-')[0]}</p>
           <p className="masterpiece-description">{description}</p>
           <footer className="masterpiece-footer">
             {currentPage === "profil" ? (
