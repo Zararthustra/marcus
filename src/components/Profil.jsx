@@ -10,11 +10,13 @@ import Vote from "./Vote";
 import {
   getCritics,
   getMasterpieces,
-  getUserData,
+  // getUserData,
+  getUsersData,
   getVotes,
   getWatchlists,
 } from "../services/marcusApi";
 import { useQuery } from "react-query";
+import { getLocalStorage } from "../utils/localStorage";
 
 const Profil = () => {
   //___________________________________________________________ Variables
@@ -37,9 +39,17 @@ const Profil = () => {
     "watchlists",
     () => getWatchlists(user_id)
   );
-  const { data: usersData, status: usersStatus } = useQuery("usersData", () =>
-    getUserData(user_id)
+
+  // To be redefined when users/id will be available
+  const { data: usersData, status: communityStatus } = useQuery(
+    "usersData",
+    () => getUsersData()
   );
+  const userName =
+    parseInt(user_id) === getLocalStorage("userid")
+      ? getLocalStorage("username")
+      : usersData?.data.filter((item) => item.id === parseInt(user_id))[0]
+          .username;
 
   //___________________________________________________________ Functions
 
@@ -127,14 +137,14 @@ const Profil = () => {
 
   //___________________________________________________________ Render
 
-  if (usersStatus === "loading")
-    return <div className="profil-page">Loading Profile...</div>;
-  else if (usersStatus === "error")
-    return <div className="profil-page">Profile error</div>;
+  // if (status === "loading")
+  //   return <div className="profil-page">Loading Profile...</div>;
+  // else if (status === "error")
+  //   return <div className="profil-page">Profile error</div>;
   return (
     <div className="profil-page">
       <div className="profil">
-        <h1>{usersData?.data.user_name}</h1>
+        <h1>{userName}</h1>
         <UserDatas
           masterpieces={masterpiecesData?.data.total}
           votes={votesData?.data.total}
