@@ -1,14 +1,23 @@
 import "../styles/Navbar.css";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
+import { useState } from "react";
+
 import { ReactComponent as Logo } from "../assets/svg/logo.svg";
 import { ReactComponent as Profil } from "../assets/svg/profil.svg";
-import { useState } from "react";
+import { ReactComponent as Logout } from "../assets/svg/logout.svg";
+
 import Login from "./Login";
 import { getLocalStorage } from "../utils/localStorage";
 
 const Navbar = () => {
+  const { user_id } = useParams();
   const isLogged = getLocalStorage("access");
   const [showLogin, setShowLogin] = useState(false);
+
+  const logout = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
 
   return (
     <>
@@ -20,9 +29,13 @@ const Navbar = () => {
         <ul className="nav-links">
           {isLogged ? (
             <li>
-              <Link to={`/profil/${getLocalStorage("userid")}`}>
-                <Profil className="nav-icon" />
-              </Link>
+              {user_id ? (
+                <Logout className="logout-icon" onClick={logout} />
+              ) : (
+                <Link to={`/profil/${getLocalStorage("userid")}`}>
+                  <Profil className="profile-icon" />
+                </Link>
+              )}
             </li>
           ) : (
             <>

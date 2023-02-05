@@ -27,6 +27,17 @@
   overflow-y: scroll;
 }
 
+.movie-header {
+  overflow: hidden;
+  position: fixed;
+  top: 5rem;
+  right: 5rem;
+  display: flex;
+  cursor: pointer;
+  justify-content: flex-end;
+  fill: black;
+}
+
 .movie-description {
   margin-top: 4rem;
   display: flex;

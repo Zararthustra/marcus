@@ -14,6 +14,11 @@
   margin-left: 2rem;
   width: 10rem;
 }
+.logout-icon {
+  cursor: pointer;
+  fill: white;
+  width: 2rem;
+}
 
 .nav-links {
   display: flex;
@@ -33,12 +38,15 @@
   .nav-logo {
     width: 6rem;
   }
-  .nav-icon {
+  .profile-icon {
     width: 2.5rem;
+  }
+  .logout-icon {
+    width: 1.8rem;
   }
   .nav-links {
     font-size: 0.6rem;
-    margin: 0 1rem 0 0;
+    margin: 0 2rem 0 0;
   }
   .nav .button-primary {
     font-size: 0.7rem;
