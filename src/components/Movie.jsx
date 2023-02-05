@@ -115,7 +115,9 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
   return (
     <div className="movie-page">
       <div className="movie">
-        <Close className="movie-header" onClick={() => setShowMovie(false)} />
+        <header className="movie-header">
+          <Close onClick={() => setShowMovie(false)} />
+        </header>
         <MovieDescription
           posterPath={data?.data.poster_path}
           id={data.data.id}

@@ -28,13 +28,14 @@
 }
 
 .movie-header {
-  overflow: hidden;
-  position: fixed;
-  top: 5rem;
-  right: 5rem;
   display: flex;
-  cursor: pointer;
   justify-content: flex-end;
+  width: 100%;
+  cursor: pointer;
+}
+.movie-header svg {
+  position: fixed;
+  margin: 1rem 1rem 0 0;
   fill: black;
 }
 
