@@ -16,6 +16,7 @@ const Critic = ({
   userName,
   currentPage,
   vote,
+  platform,
 }) => {
   // const [triggerToast, setTriggerToast] = useState(false);
   const [showMovie, setShowMovie] = useState(false);
@@ -49,7 +50,7 @@ const Critic = ({
               )}
               <div className="critic-footer-icons">
                 <CriticWatchList
-                  onClick={() => addToWatchlist(movieId, movieName)}
+                  onClick={() => addToWatchlist(movieId, movieName, platform)}
                 />
                 <CriticInfo onClick={() => setShowMovie(true)} />
               </div>

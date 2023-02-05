@@ -16,6 +16,7 @@ const Masterpiece = ({
   userId,
   poster,
   currentPage,
+  platform,
 }) => {
   // const [triggerToast, setTriggerToast] = useState(false);
   const [showMovie, setShowMovie] = useState(false);
@@ -44,7 +45,7 @@ const Masterpiece = ({
             )}
             <div className="masterpiece-footer-icons">
               <CriticWatchList
-                onClick={() => addToWatchlist(movieId, movieName)}
+                onClick={() => addToWatchlist(movieId, movieName, platform)}
               />
               <CriticInfo onClick={() => setShowMovie(true)} />
             </div>

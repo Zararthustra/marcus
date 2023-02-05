@@ -70,6 +70,7 @@ const Profil = () => {
             userId={critic.user_id}
             userName={critic.user_name}
             currentPage={"profil"}
+            platform={critic.platform}
           />
         ));
 
@@ -82,6 +83,7 @@ const Profil = () => {
             userName={vote.user_name}
             userId={vote.user_id}
             value={vote.value}
+            platform={vote.platform}
             currentPage={"profil"}
           />
         ));
@@ -97,6 +99,7 @@ const Profil = () => {
             releasedDate={masterpiece.movie_details.released_date}
             description={masterpiece.movie_details.synopsis}
             poster={masterpiece.movie_details.poster_path}
+            platform={masterpiece.platform}
             currentPage={"profil"}
           />
         ));
@@ -109,11 +112,11 @@ const Profil = () => {
             movieId={watchlist.movie_id}
             userName={watchlist.user_name}
             userId={watchlist.user_id}
-            releasedDate={"XXXX"}
-            description={
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            }
-            poster={"/3WjbxaqYB4vAbdUfdr5vbglD2JZ.jpg"}
+            releasedDate={watchlist.movie_details.released_date}
+            description={watchlist.movie_details.synopsis}
+            poster={watchlist.movie_details.poster_path}
+            platform={watchlist.platform}
+            currentPage={"profil"}
           />
         ));
 

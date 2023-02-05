@@ -2,6 +2,7 @@ import "../styles/Movie.css";
 // import { useState } from "react";
 import { ReactComponent as AddToWatchList } from "../assets/svg/watchList.svg";
 import { TMDB_IMG_PATH } from "../services/apiVariables";
+import { addToWatchlist } from "../services/marcusApi";
 
 const MovieDescription = ({
   id,
@@ -9,7 +10,6 @@ const MovieDescription = ({
   title,
   synopsis,
   releasedDate,
-  addToWatchlist,
 }) => {
   return (
     <div className="movie-description">
@@ -18,7 +18,7 @@ const MovieDescription = ({
         <h1>{title}</h1>
         <p>{releasedDate.split("-")[0]}</p>
         <p>{synopsis}</p>
-        <AddToWatchList onClick={() => addToWatchlist(id, title)} />
+        <AddToWatchList onClick={() => addToWatchlist(id, title, "movie")} />
       </div>
     </div>
   );

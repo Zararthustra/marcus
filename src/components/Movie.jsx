@@ -9,8 +9,6 @@ import Stars from "./Stars";
 
 import { getMovieById } from "../services/tmdbApi";
 import {
-  addToWatchlist,
-  getCritics,
   getCriticsVotes,
   getVotes,
 } from "../services/marcusApi";
@@ -136,7 +134,6 @@ const Movie = ({ movieId, setShowMovie }) => {
           title={data.data.title}
           synopsis={data.data.overview}
           releasedDate={data.data.release_date}
-          addToWatchlist={addToWatchlist}
         />
 
         {data?.data.videos.results.length > 0 && (

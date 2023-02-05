@@ -6,7 +6,15 @@ import Movie from "./Movie";
 import { addToWatchlist } from "../services/marcusApi";
 import Stars from "./Stars";
 
-const Vote = ({ movieName, movieId, value, userName, userId, currentPage }) => {
+const Vote = ({
+  movieName,
+  movieId,
+  value,
+  userName,
+  userId,
+  currentPage,
+  platform,
+}) => {
   // const [showLogin, setShowLogin] = useState(false);
   const [showMovie, setShowMovie] = useState(false);
 
@@ -29,7 +37,9 @@ const Vote = ({ movieName, movieId, value, userName, userId, currentPage }) => {
             gap: "1rem",
           }}
         >
-          <WatchList onClick={() => addToWatchlist(movieId, movieName)} />
+          <WatchList
+            onClick={() => addToWatchlist(movieId, movieName, platform)}
+          />
           <Info onClick={() => setShowMovie(true)} />
         </div>
       </div>

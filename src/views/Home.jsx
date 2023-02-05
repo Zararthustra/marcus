@@ -67,6 +67,7 @@ const Home = () => {
             content={critic.content}
             userId={critic.user_id}
             userName={critic.user_name}
+            platform={critic.platform}
           />
         ));
 
@@ -79,6 +80,7 @@ const Home = () => {
             userName={vote.user_name}
             userId={vote.user_id}
             value={vote.value}
+            platform={vote.platform}
           />
         ));
 
@@ -93,6 +95,7 @@ const Home = () => {
             releasedDate={masterpiece.movie_details.released_date}
             description={masterpiece.movie_details.synopsis}
             poster={masterpiece.movie_details.poster_path}
+            platform={masterpiece.platform}
           />
         ));
 
