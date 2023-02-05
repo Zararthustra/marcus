@@ -31,13 +31,16 @@
 
 @media (max-width: 650px) {
   .nav-logo {
-    width: 5rem;
+    width: 6rem;
+  }
+  .nav-icon {
+    width: 2.5rem;
   }
   .nav-links {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     margin: 0 1rem 0 0;
   }
   .nav .button-primary {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
   }
 }

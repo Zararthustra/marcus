@@ -15,8 +15,8 @@ export const IS_MOCKED_DATA = false;
 // const IS_MOCKED_DATA = false
 
 // Toggle this value to get data from local or prod environment
-export const MARCUS_BASE_PATH = protocol.unsecure + "://" + host.localhost + "/api";
-// export const MARCUS_BASE_PATH = protocol.secure + "://" + host.domain + "/api";
+// export const MARCUS_BASE_PATH = protocol.unsecure + "://" + host.localIP + "/api";
+export const MARCUS_BASE_PATH = protocol.secure + "://" + host.domain + "/api";
 
 // const token = getLocalStorage('access')
 // export const MARCUS_BASE_HEADER = "Bearer " + token;

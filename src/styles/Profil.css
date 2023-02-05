@@ -1,18 +1,27 @@
 .profil-page {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   padding-top: 10rem;
 }
+.profil-img {
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
 .profil {
   width: 50rem;
 }
-.profil h1 {
+.profil > h1 {
   align-self: flex-start;
   font-family: var(--font-title);
   font-size: 2.5rem;
+  color: white;
+  margin-left: 2rem;
 }
 
 @media (max-width: 800px) {

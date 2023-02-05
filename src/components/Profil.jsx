@@ -1,6 +1,9 @@
 import "../styles/Profil.css";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+
+import projector from "../assets/img/projector.jpg"
 
 import Critic from "./Critic";
 import Masterpiece from "./Masterpiece";
@@ -15,7 +18,6 @@ import {
   getVotes,
   getWatchlists,
 } from "../services/marcusApi";
-import { useQuery } from "react-query";
 import { getLocalStorage } from "../utils/localStorage";
 
 const Profil = () => {
@@ -143,6 +145,7 @@ const Profil = () => {
   //   return <div className="profil-page">Profile error</div>;
   return (
     <div className="profil-page">
+      <img className="profil-img" src={projector} alt="projecteur de film" />
       <div className="profil">
         <h1>{userName}</h1>
         <UserDatas

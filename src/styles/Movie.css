@@ -14,7 +14,7 @@
   position: relative;
   border-radius: 5px;
   max-width: 90%;
-  height: 90vh;
+  height: 80vh;
   padding-bottom: 5rem;
   display: flex;
   align-items: center;
@@ -23,7 +23,8 @@
   background-color: var(--background-color);
   color: var(--dark-color);
   z-index: 2;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .movie-description {

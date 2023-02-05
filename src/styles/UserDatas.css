@@ -19,6 +19,7 @@
   padding: 1rem;
   height: 12rem;
   cursor: pointer;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
 .user-data:hover {
   background-color: var(--light-color);

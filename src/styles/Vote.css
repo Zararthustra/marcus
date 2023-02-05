@@ -6,6 +6,9 @@
   text-align: center;
   width: 45rem;
 }
+.profil .vote {
+  grid-template-columns: 2fr 1fr 1fr;
+}
 .vote div:first-child {
   font-weight: 600;
   cursor: pointer;
@@ -38,6 +41,10 @@
   .vote {
     width: 100%;
     grid-template-columns: 2fr 1fr 1fr;
+  }
+  .profil .vote {
+    width: 100%;
+    grid-template-columns: 2fr 1fr;
   }
   .vote div:last-child {
     display: none !important;
