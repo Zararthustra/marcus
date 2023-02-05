@@ -32,7 +32,13 @@ const Release = ({ releaseType }) => {
 
   return (
     <>
-      {showMovie && <Movie movieId={showMovie} setShowMovie={setShowMovie} />}
+      {showMovie && (
+        <Movie
+          movieId={showMovie}
+          setShowMovie={setShowMovie}
+          platform={releaseType === "Cinéma" ? "movie" : "tv"}
+        />
+      )}
       <div className="release">
         <h1>{releaseType}</h1>
         <div className="posters">

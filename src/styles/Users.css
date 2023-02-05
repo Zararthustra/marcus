@@ -26,13 +26,6 @@
   text-decoration: underline;
 }
 
-.addUser {
-  bottom: 3rem;
-  position: absolute;
-  right: 0.5rem;
-  cursor: pointer;
-}
-
 .user-datas div {
   align-items: center;
   display: flex;

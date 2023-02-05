@@ -23,7 +23,13 @@ const Masterpiece = ({
 
   return (
     <>
-      {showMovie && <Movie movieId={movieId} setShowMovie={setShowMovie} />}
+      {showMovie && (
+        <Movie
+          movieId={movieId}
+          setShowMovie={setShowMovie}
+          platform={platform}
+        />
+      )}
       <article className="masterpiece">
         <img
           src={`https://image.tmdb.org/t/p/original/${poster}`}
@@ -33,7 +39,7 @@ const Masterpiece = ({
           <h2 onClick={() => setShowMovie(true)} className="masterpiece-title">
             {movieName}
           </h2>
-          <p className="masterpiece-director">{releasedDate.split('-')[0]}</p>
+          <p className="masterpiece-director">{releasedDate.split("-")[0]}</p>
           <p className="masterpiece-description">{description}</p>
           <footer className="masterpiece-footer">
             {currentPage === "profil" ? (

@@ -23,7 +23,13 @@ const Critic = ({
 
   return (
     <>
-      {showMovie && <Movie movieId={movieId} setShowMovie={setShowMovie} />}
+      {showMovie && (
+        <Movie
+          movieId={movieId}
+          setShowMovie={setShowMovie}
+          platform={platform}
+        />
+      )}
       <article className="critic">
         <header className="critic-header">
           <h2

@@ -113,7 +113,7 @@ const Home = () => {
             key={index}
             userName={user.username}
             userId={user.id}
-            genderMovie={["genre1", "genre2"]}
+            favoriteGenders={["genre1", "genre2"]}
             masterPieces={user.user_masterpieces}
             critics={user.user_critics}
             votes={user.user_votes}

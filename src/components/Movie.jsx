@@ -8,17 +8,14 @@ import { ReactComponent as Close } from "../assets/svg/close.svg";
 import Stars from "./Stars";
 
 import { getMovieById } from "../services/tmdbApi";
-import {
-  getCriticsVotes,
-  getVotes,
-} from "../services/marcusApi";
+import { getCriticsVotes, getVotes } from "../services/marcusApi";
 import { MARCUS_BASE_PATH } from "../services/apiVariables";
 import { getLocalStorage } from "../utils/localStorage";
 
 import Critic from "./Critic";
 import MovieDescription from "./MovieDescription";
 
-const Movie = ({ movieId, setShowMovie }) => {
+const Movie = ({ movieId, setShowMovie, platform }) => {
   //___________________________________________________________ Variables
 
   const { data, isLoading, error } = useQuery(["getMovie"], () =>
@@ -66,6 +63,7 @@ const Movie = ({ movieId, setShowMovie }) => {
           movie_id: data.data.id,
           movie_name: data.data.title,
           content: criticContent,
+          platform: platform,
         },
         { headers: { authorization: "Bearer " + getLocalStorage("access") } }
       )
@@ -87,6 +85,7 @@ const Movie = ({ movieId, setShowMovie }) => {
           movie_id: data.data.id,
           movie_name: data.data.title,
           value: voteValue,
+          platform: platform,
         },
         { headers: { authorization: "Bearer " + getLocalStorage("access") } }
       )

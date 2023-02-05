@@ -20,7 +20,13 @@ const Vote = ({
 
   return (
     <>
-      {showMovie && <Movie movieId={movieId} setShowMovie={setShowMovie} />}
+      {showMovie && (
+        <Movie
+          movieId={movieId}
+          setShowMovie={setShowMovie}
+          platform={platform}
+        />
+      )}
       <div className="vote">
         <div onClick={() => setShowMovie(true)}>{movieName}</div>
         <Stars value={value} displayOnly={true} />

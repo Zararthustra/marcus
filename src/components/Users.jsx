@@ -1,5 +1,4 @@
 import "../styles/Users.css";
-import { ReactComponent as AddUser } from "../assets/svg/addUser.svg";
 
 import { ReactComponent as Palette } from "../assets/svg/palette.svg";
 import { ReactComponent as Critics } from "../assets/svg/critics.svg";
@@ -9,7 +8,7 @@ import { ReactComponent as WatchList } from "../assets/svg/watchList.svg";
 const Users = ({
   userName,
   userId,
-  genderMovie,
+  favoriteGenders,
   masterPieces,
   critics,
   votes,
@@ -21,13 +20,12 @@ const Users = ({
         <h3>
           <a href={`/profil/${userId}`}>{userName}</a>
         </h3>
-        <AddUser className="addUser" />
       </header>
-      <article className="genderMovie">
+      {/* <article className="genderMovie">
         {genderMovie.map((gender, index) => {
           return <p key={index}>{gender}</p>;
         })}
-      </article>
+      </article> */}
       <article className="user-datas">
         <div>
           <Palette />
