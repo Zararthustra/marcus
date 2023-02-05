@@ -8,7 +8,7 @@ import { ReactComponent as Close } from "../assets/svg/close.svg";
 import Stars from "./Stars";
 
 import { getMovieById } from "../services/tmdbApi";
-import { getCriticsVotes, getVotes } from "../services/marcusApi";
+import { getCritics, getCriticsVotes, getVotes } from "../services/marcusApi";
 import { MARCUS_BASE_PATH } from "../services/apiVariables";
 import { getLocalStorage } from "../utils/localStorage";
 
@@ -21,13 +21,12 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
   const { data, isLoading, error } = useQuery(["getMovie"], () =>
     getMovieById(movieId)
   );
-  const { data: critics, status: criticsStatus } = useQuery(
+  const { data: critics } = useQuery("critics", () => getCritics());
+  const { data: criticsVotes, status: criticsVotesStatus } = useQuery(
     "criticsVotes",
     () => getCriticsVotes(movieId)
   );
-  const { data: votes, status: votesStatus } = useQuery("votes", () =>
-    getVotes()
-  );
+  const { data: votes } = useQuery("votes", () => getVotes());
 
   // User inputs
   const [voteValue, setVoteValue] = useState(0);
@@ -46,7 +45,6 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
         item.movie_id === movieId && item.user_id === getLocalStorage("userid")
     ).length > 0
   );
-
   //___________________________________________________________ Functions
 
   const handleChange = (e) => {
@@ -72,7 +70,7 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
         setCriticSent(true);
       })
       .catch((error) => {
-        return console.log(error);
+        return console.error(error);
       });
     return;
   };
@@ -94,7 +92,7 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
         setVoteSent(true);
       })
       .catch((error) => {
-        return console.log(error);
+        return console.error(error);
       });
     return;
   };
@@ -177,12 +175,12 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
           </form>
         )}
 
-        {criticsStatus === "error" ? (
+        {criticsVotesStatus === "error" ? (
           <div>Error</div>
         ) : (
           <div className="movie-critics">
             <h1>Notes & Critiques</h1>
-            {critics?.data.data.map((critic, index) => (
+            {criticsVotes?.data.data.map((critic, index) => (
               <Critic
                 key={index}
                 movieId={critic.movie_id}
