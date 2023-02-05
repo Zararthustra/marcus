@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ReactComponent as Info } from "../assets/svg/info.svg";
 import { ReactComponent as WatchList } from "../assets/svg/watchList.svg";
 import Movie from "./Movie";
-import { addToWatchlist } from "../services/marcusApi";
+import { addToWatchlists } from "../services/marcusApi";
 import Stars from "./Stars";
 
 const Vote = ({
@@ -44,7 +44,7 @@ const Vote = ({
           }}
         >
           <WatchList
-            onClick={() => addToWatchlist(movieId, movieName, platform)}
+            onClick={() => addToWatchlists(movieId, movieName, platform)}
           />
           <Info onClick={() => setShowMovie(true)} />
         </div>

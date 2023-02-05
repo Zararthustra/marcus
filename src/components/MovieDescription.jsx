@@ -1,8 +1,10 @@
 import "../styles/Movie.css";
-// import { useState } from "react";
+
 import { ReactComponent as AddToWatchList } from "../assets/svg/watchList.svg";
+import { ReactComponent as AddMasterpiece } from "../assets/svg/addMasterpiece.svg";
+
 import { TMDB_IMG_PATH } from "../services/apiVariables";
-import { addToWatchlist } from "../services/marcusApi";
+import { addToMasterpieces, addToWatchlists } from "../services/marcusApi";
 
 const MovieDescription = ({
   id,
@@ -18,7 +20,17 @@ const MovieDescription = ({
         <h1>{title}</h1>
         <p>{releasedDate.split("-")[0]}</p>
         <p>{synopsis}</p>
-        <AddToWatchList onClick={() => addToWatchlist(id, title, "movie")} />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "1rem",
+          }}
+        >
+          <AddToWatchList onClick={() => addToWatchlists(id, title, "movie")} />
+          <AddMasterpiece onClick={() => addToMasterpieces(id, title, "movie")} />
+        </div>
       </div>
     </div>
   );

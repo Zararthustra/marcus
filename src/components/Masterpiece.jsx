@@ -5,7 +5,7 @@ import { ReactComponent as CriticWatchList } from "../assets/svg/watchList.svg";
 import Movie from "./Movie";
 
 import "../styles/Masterpiece.css";
-import { addToWatchlist } from "../services/marcusApi";
+import { addToWatchlists } from "../services/marcusApi";
 
 const Masterpiece = ({
   movieName,
@@ -51,7 +51,7 @@ const Masterpiece = ({
             )}
             <div className="masterpiece-footer-icons">
               <CriticWatchList
-                onClick={() => addToWatchlist(movieId, movieName, platform)}
+                onClick={() => addToWatchlists(movieId, movieName, platform)}
               />
               <CriticInfo onClick={() => setShowMovie(true)} />
             </div>

@@ -5,7 +5,7 @@ import { ReactComponent as CriticWatchList } from "../assets/svg/watchList.svg";
 import Movie from "./Movie";
 
 import "../styles/Critic.css";
-import { addToWatchlist } from "../services/marcusApi";
+import { addToWatchlists } from "../services/marcusApi";
 import Stars from "./Stars";
 
 const Critic = ({
@@ -62,7 +62,7 @@ const Critic = ({
               )}
               <div className="critic-footer-icons">
                 <CriticWatchList
-                  onClick={() => addToWatchlist(movieId, movieName, platform)}
+                  onClick={() => addToWatchlists(movieId, movieName, platform)}
                 />
                 <CriticInfo onClick={() => setShowMovie(true)} />
               </div>

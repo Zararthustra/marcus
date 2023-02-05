@@ -24,10 +24,25 @@ export const getWatchlists = (user_id) => {
   return axios.get(`${MARCUS_BASE_PATH}/watchlists`);
 };
 
-export const addToWatchlist = (movieId, movieName, platform) => {
+export const addToWatchlists = (movieId, movieName, platform) => {
   axios
     .post(
       `${MARCUS_BASE_PATH}/watchlists`,
+      {
+        movie_id: movieId,
+        movie_name: movieName,
+        platform: platform,
+      },
+      { headers: { authorization: "Bearer " + getLocalStorage("access") } }
+    )
+    .then((res) => console.log(res))
+    .catch((error) => console.error(error));
+};
+
+export const addToMasterpieces = (movieId, movieName, platform) => {
+  axios
+    .post(
+      `${MARCUS_BASE_PATH}/masterpieces`,
       {
         movie_id: movieId,
         movie_name: movieName,
