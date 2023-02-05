@@ -32,12 +32,18 @@ const Critic = ({
       )}
       <article className="critic">
         <header className="critic-header">
-          <h2
-            className="critic-header-title"
-            onClick={() => setShowMovie(true)}
-          >
-            {currentPage === "movie" ? userName : movieName}
-          </h2>
+          {currentPage === "movie" ? (
+            <h2 className="critic-header-title">
+              <a href={`/profil/${userId}`}>{userName}</a>
+            </h2>
+          ) : (
+            <h2
+              className="critic-header-title"
+              onClick={() => setShowMovie(true)}
+            >
+              {movieName}
+            </h2>
+          )}
         </header>
         <main className="critic-main">
           <p className="critic-main-content">{content}</p>

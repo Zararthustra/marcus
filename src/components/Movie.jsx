@@ -68,7 +68,7 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
         { headers: { authorization: "Bearer " + getLocalStorage("access") } }
       )
       .then((user) => {
-        console.log(user);
+        // console.log(user);
         setCriticSent(true);
       })
       .catch((error) => {
@@ -90,7 +90,7 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
         { headers: { authorization: "Bearer " + getLocalStorage("access") } }
       )
       .then((user) => {
-        console.log(user);
+        // console.log(user);
         setVoteSent(true);
       })
       .catch((error) => {
