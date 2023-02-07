@@ -21,7 +21,7 @@ const Home = () => {
   //___________________________________________________________ Variables
 
   const [activeTab, setActiveTab] = useState("critic");
-
+  const [searchResults, setSearchResults] = useState([]);
   const { data: masterpiecesData, status: masterpiecesStatus } = useQuery(
     "masterpieces",
     () => getMasterpieces()
@@ -37,6 +37,7 @@ const Home = () => {
     () => getUsersData()
   );
 
+  // console.log("searchResults : ", searchResults);
   //___________________________________________________________ Functions
 
   const activeStatus = (activeData) => {
@@ -131,7 +132,11 @@ const Home = () => {
   return (
     <div className="App">
       <Header />
-      <NavPanel activeTab={activeTab} setActiveTab={setActiveTab} />
+      <NavPanel
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        setSearchResults={setSearchResults}
+      />
 
       <main
         style={{
@@ -147,7 +152,18 @@ const Home = () => {
           overflow: "hidden",
         }}
       >
-        {activeStatus(activeTab) === "loading" ? (
+        {searchResults.length > 0 && activeTab === "release" ? (
+          searchResults.map((item, index) => (
+            <Masterpiece
+              key={index}
+              movieName={item.title || item.name}
+              movieId={item.id}
+              releasedDate={item.release_date || item.first_air_date}
+              description={item.overview}
+              poster={item.poster_path}
+            />
+          ))
+        ) : activeStatus(activeTab) === "loading" ? (
           <p>Loading ...</p>
         ) : activeStatus(activeTab) === "error" ? (
           <p>Error</p>

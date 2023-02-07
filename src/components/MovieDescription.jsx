@@ -15,7 +15,7 @@ const MovieDescription = ({
 }) => {
   return (
     <div className="movie-description">
-      <img src={TMDB_IMG_PATH + posterPath} alt={title} />
+      {posterPath && <img src={TMDB_IMG_PATH + posterPath} alt={title} />}
       <div className="movie-infos">
         <h1>{title}</h1>
         <p>{releasedDate.split("-")[0]}</p>
@@ -29,7 +29,9 @@ const MovieDescription = ({
           }}
         >
           <AddToWatchList onClick={() => addToWatchlists(id, title, "movie")} />
-          <AddMasterpiece onClick={() => addToMasterpieces(id, title, "movie")} />
+          <AddMasterpiece
+            onClick={() => addToMasterpieces(id, title, "movie")}
+          />
         </div>
       </div>
     </div>

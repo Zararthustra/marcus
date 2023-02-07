@@ -19,8 +19,9 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
   //___________________________________________________________ Variables
 
   const { data, isLoading, error } = useQuery(["getMovie"], () =>
-    getMovieById(movieId)
+  getMovieById(movieId)
   );
+  // console.log("🚀 ~ file: Movie.jsx:22 ~ Movie ~ data", data)
   const { data: critics } = useQuery("critics", () => getCritics());
   const { data: criticsVotes, status: criticsVotesStatus } = useQuery(
     "criticsVotes",

@@ -31,15 +31,23 @@ const Masterpiece = ({
         />
       )}
       <article className="masterpiece">
-        <img
-          src={`https://image.tmdb.org/t/p/original/${poster}`}
-          alt={movieName}
-        />
+        {poster ? (
+          <img
+            src={`https://image.tmdb.org/t/p/original/${poster}`}
+            alt={movieName}
+          />
+        ) : (
+          <div
+            style={{ width: "12rem", textAlign: "center", fontSize: "5rem" }}
+          >
+            🤷
+          </div>
+        )}
         <div className="masterpiece-right">
           <h2 onClick={() => setShowMovie(true)} className="masterpiece-title">
             {movieName}
           </h2>
-          <p className="masterpiece-director">{releasedDate.split("-")[0]}</p>
+          <p className="masterpiece-director">{releasedDate?.split("-")[0]}</p>
           <p className="masterpiece-description">{description}</p>
           <footer className="masterpiece-footer">
             {currentPage === "profil" ? (

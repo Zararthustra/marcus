@@ -52,12 +52,46 @@
 }
 
 .tab-name {
-  height: 5rem;
+  height: 6rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  font-size: 1.2rem;
+  flex-direction: column;
   width: 100%;
+  padding-top: 1rem;
+}
+.tab-name h1 {
+  font-size: 1.7rem;
+}
+.search-bar {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  max-width: 20rem;
+  width: 70%;
+  height: 2rem;
+  padding-left: 1rem;
+}
+.tab-name button {
+  border: none;
+  padding: 0.5rem 1rem;
+  width: 10rem;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.tab-name button:hover {
+  background-color: white;
+  color: black;
+}
+.tab-name button:first-child {
+  border-radius: 25px 0 0 25px;
+  border-right: 1px solid white;
+}
+.tab-name button:last-child {
+  border-radius: 0 25px 25px 0;
+  border-left: 1px solid white;
 }
 
 .separation-bar {

@@ -26,3 +26,15 @@ export const getNetflixReleases = () => {
     params: Object.assign(TMDB_BASE_PARAMS, { with_networks: 213 }),
   });
 };
+
+export const searchMovie = (movie_name) => {
+  return axios.get(`${TMDB_BASE_PATH}/search/movie`, {
+    params: Object.assign(TMDB_BASE_PARAMS, { query: movie_name }),
+  });
+};
+
+export const searchTV = (tv_name) => {
+  return axios.get(`${TMDB_BASE_PATH}/search/tv`, {
+    params: Object.assign(TMDB_BASE_PARAMS, { query: tv_name }),
+  });
+};

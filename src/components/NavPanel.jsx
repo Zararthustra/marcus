@@ -5,20 +5,53 @@ import { ReactComponent as Vote } from "../assets/svg/votes.svg";
 import { ReactComponent as Masterpiece } from "../assets/svg/palette.svg";
 import { ReactComponent as Release } from "../assets/svg/movieSearch.svg";
 import { ReactComponent as Communaute } from "../assets/svg/communaute.svg";
+import { useState } from "react";
+import { searchMovie, searchTV } from "../services/tmdbApi";
 
-const NavPanel = ({ activeTab, setActiveTab }) => {
+const NavPanel = ({ activeTab, setActiveTab, setSearchResults }) => {
+  const [movieName, setMovieName] = useState("");
+
+  const handleChange = (e) => {
+    return setMovieName(e.target.value);
+  };
+
+  const movieSearch = () => {
+    searchMovie(movieName).then((res) => setSearchResults(res.data.results));
+    return;
+  };
+  const tvSearch = () => {
+    searchTV(movieName).then((res) => setSearchResults(res.data.results));
+    return;
+  };
+
   const formatTabName = (tabName) => {
     switch (tabName) {
       case "critic":
-        return "Critiques";
+        return <h1>Critiques</h1>;
       case "vote":
-        return "Votes";
+        return <h1>Votes</h1>;
       case "masterpiece":
-        return "Chefs d'oeuvre";
+        return <h1>Chefs d'oeuvres</h1>;
       case "release":
-        return "Sorties";
+        return (
+          <>
+            <input
+              className="search-bar"
+              type="text"
+              placeholder="Game of thrones, Matrix reloaded, ..."
+              value={movieName}
+              onChange={handleChange}
+              name="moviename"
+              id="moviename"
+            />
+            <div className="search-buttons">
+              <button onClick={movieSearch}>Chercher un film</button>
+              <button onClick={tvSearch}>Chercher une série</button>
+            </div>
+          </>
+        );
       case "community":
-        return "Communauté";
+        return <h1>Communauté</h1>;
       default:
         return "";
     }
@@ -64,12 +97,8 @@ const NavPanel = ({ activeTab, setActiveTab }) => {
         </li>
         <li className="tab-bar" style={{ left: moveTabBar(activeTab) }}></li>
       </ul>
-      <div className="tab-name">
-        <h1>{formatTabName(activeTab)}</h1>
-      </div>
-      <div
-      className="separation-bar"
-      />
+      <div className="tab-name">{formatTabName(activeTab)}</div>
+      <div className="separation-bar" />
     </nav>
   );
 };
