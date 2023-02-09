@@ -16,4 +16,14 @@
   color: #646464;
   font-weight: 300;
   text-align: center;
+  animation: fadeIn 4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
 }

@@ -1,10 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-import jwt_decode from "jwt-decode";
 import "../styles/Login.css";
 
 import { MARCUS_BASE_PATH } from "../services/apiVariables";
-import { saveLocalStorage } from "../utils/localStorage";
 import { ReactComponent as Close } from "../assets/svg/close.svg";
 
 const Register = ({ triggerToaster, setTriggerToaster, setShowRegister }) => {

@@ -32,6 +32,18 @@
   margin-right: 5rem;
   right: 0;
   top: 0.5rem;
+  animation: lazyIn 2s ease;
+}
+@keyframes lazyIn {
+  0% {
+    opacity: 0%;
+  }
+  80% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
 
 @media (max-width: 650px) {

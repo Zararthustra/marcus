@@ -52,8 +52,12 @@ const NavPanel = ({
               id="moviename"
             />
             <div className="search-buttons">
-              <button onClick={movieSearch}>Chercher un film</button>
-              <button onClick={tvSearch}>Chercher une série</button>
+              <button onClick={movieSearch} disabled={movieName === ""}>
+                Chercher un film
+              </button>
+              <button onClick={tvSearch} disabled={movieName === ""}>
+                Chercher une série
+              </button>
             </div>
           </>
         );
