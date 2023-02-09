@@ -2,7 +2,7 @@ import "../styles/Movie.css";
 
 import axios from "axios";
 import { useState } from "react";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import { ReactComponent as Close } from "../assets/svg/close.svg";
 import Stars from "./Stars";
@@ -16,23 +16,75 @@ import Critic from "./Critic";
 import MovieDescription from "./MovieDescription";
 
 const Movie = ({ movieId, setShowMovie, platform }) => {
-  //___________________________________________________________ Variables
+  //___________________________________________________________ React Query
 
+  const queryClient = useQueryClient();
   const { data, isLoading, error } = useQuery(["getMovie"], () =>
-  getMovieById(movieId)
+    getMovieById(movieId)
   );
   // console.log("🚀 ~ file: Movie.jsx:22 ~ Movie ~ data", data)
-  const { data: critics } = useQuery("critics", () => getCritics());
+  const { data: critics } = useQuery(["critics"], () => getCritics());
   const { data: criticsVotes, status: criticsVotesStatus } = useQuery(
-    "criticsVotes",
+    ["critics", "votes", movieId],
     () => getCriticsVotes(movieId)
   );
-  const { data: votes } = useQuery("votes", () => getVotes());
+  const { data: votes } = useQuery(["votes"], () => getVotes());
+
+  // Add critic
+  const { mutate: addCritic } = useMutation(
+    async (e) => {
+      e.preventDefault();
+
+      await axios.post(
+        `${MARCUS_BASE_PATH}/critics`,
+        {
+          movie_id: data.data.id,
+          movie_name: data.data.title,
+          content: criticContent,
+          platform: platform,
+        },
+        { headers: { authorization: "Bearer " + getLocalStorage("access") } }
+      );
+    },
+    {
+      onSuccess: () => {
+        setCriticSent(true);
+        queryClient.invalidateQueries(["critics"]); // Trigger toast here
+      },
+      onError: (err) => console.log(err), // Trigger toast here
+    }
+  );
+
+  // Add vote
+  const { mutate: addVote } = useMutation(
+    async () => {
+      if (voteValue === 0) return console.log("olala"); // toast here
+      await axios.post(
+        `${MARCUS_BASE_PATH}/votes`,
+        {
+          movie_id: data.data.id,
+          movie_name: data.data.title,
+          value: voteValue,
+          platform: platform,
+        },
+        { headers: { authorization: "Bearer " + getLocalStorage("access") } }
+      );
+    },
+    {
+      onSuccess: () => {
+        setVoteSent(true);
+        queryClient.invalidateQueries(["critics"]); // Trigger toast here
+        queryClient.invalidateQueries(["votes"]); // Trigger toast here
+      },
+      onError: (err) => console.log(err), // Trigger toast here
+    }
+  );
+
+  //___________________________________________________________ Variables
 
   // User inputs
   const [voteValue, setVoteValue] = useState(0);
   const [criticContent, setCriticContent] = useState("");
-
   // Default do not show if user has already voted or criticized
   const [voteSent, setVoteSent] = useState(
     votes?.data.data.filter(
@@ -46,56 +98,12 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
         item.movie_id === movieId && item.user_id === getLocalStorage("userid")
     ).length > 0
   );
+
   //___________________________________________________________ Functions
 
   const handleChange = (e) => {
     if (e.target.value.length > 1000) return;
     return setCriticContent(e.target.value);
-  };
-  const handleCritic = (e) => {
-    e.preventDefault();
-
-    axios
-      .post(
-        `${MARCUS_BASE_PATH}/critics`,
-        {
-          movie_id: data.data.id,
-          movie_name: data.data.title,
-          content: criticContent,
-          platform: platform,
-        },
-        { headers: { authorization: "Bearer " + getLocalStorage("access") } }
-      )
-      .then((user) => {
-        // console.log(user);
-        setCriticSent(true);
-      })
-      .catch((error) => {
-        return console.error(error);
-      });
-    return;
-  };
-  const handleVote = () => {
-    if (voteValue === 0) return; // toast here
-    axios
-      .post(
-        `${MARCUS_BASE_PATH}/votes`,
-        {
-          movie_id: data.data.id,
-          movie_name: data.data.title,
-          value: voteValue,
-          platform: platform,
-        },
-        { headers: { authorization: "Bearer " + getLocalStorage("access") } }
-      )
-      .then((user) => {
-        // console.log(user);
-        setVoteSent(true);
-      })
-      .catch((error) => {
-        return console.error(error);
-      });
-    return;
   };
 
   //___________________________________________________________ Render
@@ -145,14 +153,14 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
               voteValue={voteValue}
               setVoteValue={setVoteValue}
             />
-            <div className="button-primary" onClick={handleVote}>
+            <div className="button-primary" onClick={addVote}>
               Voter
             </div>
           </div>
         )}
 
         {!criticSent && (
-          <form onSubmit={handleCritic}>
+          <form onSubmit={addCritic}>
             <div className="inputLabel">
               <label htmlFor="criticContent">Donnez votre avis !</label>
               <textarea
