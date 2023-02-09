@@ -19,7 +19,7 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
   //___________________________________________________________ React Query
 
   const queryClient = useQueryClient();
-  const { data, isLoading, error } = useQuery(["getMovie"], () =>
+  const { data, isLoading, error } = useQuery(["getMovie", movieId], () =>
     getMovieById(movieId)
   );
   // console.log("🚀 ~ file: Movie.jsx:22 ~ Movie ~ data", data)

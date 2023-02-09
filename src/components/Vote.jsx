@@ -5,6 +5,7 @@ import { ReactComponent as WatchList } from "../assets/svg/watchList.svg";
 import Movie from "./Movie";
 import { addToWatchlists } from "../services/marcusApi";
 import Stars from "./Stars";
+import { useMutation, useQueryClient } from "react-query";
 
 const Vote = ({
   movieName,
@@ -17,6 +18,17 @@ const Vote = ({
 }) => {
   // const [showLogin, setShowLogin] = useState(false);
   const [showMovie, setShowMovie] = useState(false);
+
+  const queryClient = useQueryClient();
+  const { mutate: mutateWatchlist } = useMutation(
+    () => addToWatchlists(movieId, movieName, platform),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["watchlists"]);
+      }, // Trigger toast here
+      onError: (err) => console.error(err), // Trigger toast here
+    }
+  );
 
   return (
     <>
@@ -43,9 +55,7 @@ const Vote = ({
             gap: "1rem",
           }}
         >
-          <WatchList
-            onClick={() => addToWatchlists(movieId, movieName, platform)}
-          />
+          <WatchList onClick={mutateWatchlist} />
           <Info onClick={() => setShowMovie(true)} />
         </div>
       </div>

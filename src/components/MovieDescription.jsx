@@ -5,6 +5,7 @@ import { ReactComponent as AddMasterpiece } from "../assets/svg/addMasterpiece.s
 
 import { TMDB_IMG_PATH } from "../services/apiVariables";
 import { addToMasterpieces, addToWatchlists } from "../services/marcusApi";
+import { useMutation, useQueryClient } from "react-query";
 
 const MovieDescription = ({
   id,
@@ -13,6 +14,27 @@ const MovieDescription = ({
   synopsis,
   releasedDate,
 }) => {
+  const queryClient = useQueryClient();
+  const { mutate: addMasterpiece } = useMutation(
+    () => addToMasterpieces(id, title, "movie"),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["masterpieces"]);
+      }, // Trigger toast here
+      onError: (err) => console.error(err), // Trigger toast here
+    }
+  );
+
+  const { mutate: addWatchlist } = useMutation(
+    () => addToWatchlists(id, title, "movie"),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["watchlists"]);
+      }, // Trigger toast here
+      onError: (err) => console.error(err), // Trigger toast here
+    }
+  );
+
   return (
     <div className="movie-description">
       {posterPath && <img src={TMDB_IMG_PATH + posterPath} alt={title} />}
@@ -28,10 +50,8 @@ const MovieDescription = ({
             gap: "1rem",
           }}
         >
-          <AddToWatchList onClick={() => addToWatchlists(id, title, "movie")} />
-          <AddMasterpiece
-            onClick={() => addToMasterpieces(id, title, "movie")}
-          />
+          <AddToWatchList onClick={addWatchlist} />
+          <AddMasterpiece onClick={addMasterpiece} />
         </div>
       </div>
     </div>

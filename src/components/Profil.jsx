@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 
-import projector from "../assets/img/projector.jpg"
+import projector from "../assets/img/projector.jpg";
 
 import Critic from "./Critic";
 import Masterpiece from "./Masterpiece";
@@ -28,23 +28,25 @@ const Profil = () => {
   const [activeTab, setActiveTab] = useState("critic");
 
   const { data: masterpiecesData, status: masterpiecesStatus } = useQuery(
-    "masterpieces",
+    ["masterpieces", user_id],
     () => getMasterpieces(user_id)
   );
-  const { data: votesData, status: votesStatus } = useQuery("votes", () =>
-    getVotes(user_id)
+  const { data: votesData, status: votesStatus } = useQuery(
+    ["votes", user_id],
+    () => getVotes(user_id)
   );
-  const { data: criticsData, status: criticsStatus } = useQuery("critics", () =>
-    getCritics(user_id)
+  const { data: criticsData, status: criticsStatus } = useQuery(
+    ["critics", user_id],
+    () => getCritics(user_id)
   );
   const { data: watchlistsData, status: watchlistsStatus } = useQuery(
-    "watchlists",
+    ["watchlists", user_id],
     () => getWatchlists(user_id)
   );
 
   // To be redefined when users/id will be available
   const { data: usersData, status: communityStatus } = useQuery(
-    "usersData",
+    ["usersData", user_id],
     () => getUsersData()
   );
   const userName =

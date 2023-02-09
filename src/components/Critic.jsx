@@ -7,6 +7,7 @@ import Movie from "./Movie";
 import "../styles/Critic.css";
 import { addToWatchlists } from "../services/marcusApi";
 import Stars from "./Stars";
+import { useMutation, useQueryClient } from "react-query";
 
 const Critic = ({
   movieId,
@@ -20,6 +21,17 @@ const Critic = ({
 }) => {
   // const [triggerToast, setTriggerToast] = useState(false);
   const [showMovie, setShowMovie] = useState(false);
+
+  const queryClient = useQueryClient();
+  const { mutate: mutateWatchlist } = useMutation(
+    () => addToWatchlists(movieId, movieName, platform),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["watchlists"]);
+      }, // Trigger toast here
+      onError: (err) => console.error(err), // Trigger toast here
+    }
+  );
 
   return (
     <>
@@ -61,9 +73,7 @@ const Critic = ({
                 </p>
               )}
               <div className="critic-footer-icons">
-                <CriticWatchList
-                  onClick={() => addToWatchlists(movieId, movieName, platform)}
-                />
+                <CriticWatchList onClick={mutateWatchlist} />
                 <CriticInfo onClick={() => setShowMovie(true)} />
               </div>
             </>
