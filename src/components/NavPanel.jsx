@@ -8,7 +8,12 @@ import { ReactComponent as Communaute } from "../assets/svg/communaute.svg";
 import { useState } from "react";
 import { searchMovie, searchTV } from "../services/tmdbApi";
 
-const NavPanel = ({ activeTab, setActiveTab, setSearchResults }) => {
+const NavPanel = ({
+  activeTab,
+  setActiveTab,
+  setSearchResults,
+  setSearchtype,
+}) => {
   const [movieName, setMovieName] = useState("");
 
   const handleChange = (e) => {
@@ -16,10 +21,12 @@ const NavPanel = ({ activeTab, setActiveTab, setSearchResults }) => {
   };
 
   const movieSearch = () => {
+    setSearchtype("movie");
     searchMovie(movieName).then((res) => setSearchResults(res.data.results));
     return;
   };
   const tvSearch = () => {
+    setSearchtype("tv");
     searchTV(movieName).then((res) => setSearchResults(res.data.results));
     return;
   };

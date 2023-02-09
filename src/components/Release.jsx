@@ -9,13 +9,11 @@ import Movie from "./Movie";
 
 const Release = ({ releaseType }) => {
   const [showMovie, setShowMovie] = useState(false);
-  const { data: cinemaData, status: cinemaStatus } = useQuery(
-    ["getCinemaReleases"],
-    () => getCinemaReleases()
+  const { data: cinemaData } = useQuery(["getCinemaReleases"], () =>
+    getCinemaReleases()
   );
-  const { data: netflixData, status: netflixStatus } = useQuery(
-    ["getNetflixReleases"],
-    () => getNetflixReleases()
+  const { data: netflixData } = useQuery(["getNetflixReleases"], () =>
+    getNetflixReleases()
   );
 
   const getReleases = (type) => {
@@ -40,7 +38,9 @@ const Release = ({ releaseType }) => {
         />
       )}
       <div className="release">
-        <h1>{releaseType}</h1>
+        <h1>
+          {releaseType === "Cinéma" ? "À la une" : "Sorties " + releaseType}
+        </h1>
         <div className="posters">
           {getReleases(releaseType)?.map((item, index) => {
             return (

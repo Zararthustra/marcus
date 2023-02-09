@@ -17,6 +17,8 @@
 
 .release img {
   width: 10rem;
+  height: 15rem;
+  object-fit: cover;
   cursor: pointer;
   border-radius: 5px;
   transition: all 0.3s ease;
@@ -44,6 +46,7 @@
 @media (max-width: 550px) {
   .release img {
     width: 7rem;
+  height: 10rem;
   }
   .release p {
     width: 10ch;

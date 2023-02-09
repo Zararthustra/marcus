@@ -18,7 +18,10 @@ export const getTvById = (tvId) => {
 
 export const getCinemaReleases = () => {
   return axios.get(`${TMDB_BASE_PATH}/discover/movie`, {
-    params: TMDB_BASE_PARAMS,
+    params: Object.assign(TMDB_BASE_PARAMS, {
+      append_to_response: "videos,images",
+      include_image_language: "fr, null",
+    }),
   });
 };
 export const getNetflixReleases = () => {

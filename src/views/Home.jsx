@@ -22,6 +22,7 @@ const Home = () => {
 
   const [activeTab, setActiveTab] = useState("critic");
   const [searchResults, setSearchResults] = useState([]);
+  const [searchType, setSearchtype] = useState("");
   const { data: masterpiecesData, status: masterpiecesStatus } = useQuery(
     "masterpieces",
     () => getMasterpieces()
@@ -37,7 +38,6 @@ const Home = () => {
     () => getUsersData()
   );
 
-  // console.log("searchResults : ", searchResults);
   //___________________________________________________________ Functions
 
   const activeStatus = (activeData) => {
@@ -104,7 +104,7 @@ const Home = () => {
         return (
           <>
             <Release releaseType={"Cinéma"} />
-            {/* <Release releaseType={"Netflix"} /> */}
+            <Release releaseType={"Netflix"} />
           </>
         );
 
@@ -136,6 +136,7 @@ const Home = () => {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         setSearchResults={setSearchResults}
+        setSearchtype={setSearchtype}
       />
 
       <main
@@ -161,6 +162,7 @@ const Home = () => {
               releasedDate={item.release_date || item.first_air_date}
               description={item.overview}
               poster={item.poster_path}
+              platform={searchType}
             />
           ))
         ) : activeStatus(activeTab) === "loading" ? (

@@ -13,10 +13,11 @@ const MovieDescription = ({
   title,
   synopsis,
   releasedDate,
+  platform,
 }) => {
   const queryClient = useQueryClient();
   const { mutate: addMasterpiece } = useMutation(
-    () => addToMasterpieces(id, title, "movie"),
+    () => addToMasterpieces(id, title, platform),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["masterpieces"]);
@@ -26,7 +27,7 @@ const MovieDescription = ({
   );
 
   const { mutate: addWatchlist } = useMutation(
-    () => addToWatchlists(id, title, "movie"),
+    () => addToWatchlists(id, title, platform),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["watchlists"]);

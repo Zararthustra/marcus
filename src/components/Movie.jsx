@@ -7,7 +7,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { ReactComponent as Close } from "../assets/svg/close.svg";
 import Stars from "./Stars";
 
-import { getMovieById } from "../services/tmdbApi";
+import { getMovieById, getTvById } from "../services/tmdbApi";
 import { getCritics, getCriticsVotes, getVotes } from "../services/marcusApi";
 import { MARCUS_BASE_PATH } from "../services/apiVariables";
 import { getLocalStorage } from "../utils/localStorage";
@@ -20,9 +20,9 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
 
   const queryClient = useQueryClient();
   const { data, isLoading, error } = useQuery(["getMovie", movieId], () =>
-    getMovieById(movieId)
+    platform === "movie" ? getMovieById(movieId) : getTvById(movieId)
   );
-  // console.log("🚀 ~ file: Movie.jsx:22 ~ Movie ~ data", data)
+  // console.log("🚀 ~ Movie ~ data", data);
   const { data: critics } = useQuery(["critics"], () => getCritics());
   const { data: criticsVotes, status: criticsVotesStatus } = useQuery(
     ["critics", "votes", movieId],
@@ -39,7 +39,7 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
         `${MARCUS_BASE_PATH}/critics`,
         {
           movie_id: data.data.id,
-          movie_name: data.data.title,
+          movie_name: platform === "movie" ? data.data.title : data.data.name,
           content: criticContent,
           platform: platform,
         },
@@ -63,7 +63,7 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
         `${MARCUS_BASE_PATH}/votes`,
         {
           movie_id: data.data.id,
-          movie_name: data.data.title,
+          movie_name: platform === "movie" ? data.data.title : data.data.name,
           value: voteValue,
           platform: platform,
         },
@@ -130,12 +130,17 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
         <MovieDescription
           posterPath={data?.data.poster_path}
           id={data.data.id}
-          title={data.data.title}
+          title={platform === "movie" ? data.data.title : data.data.name}
           synopsis={data.data.overview}
-          releasedDate={data.data.release_date}
+          releasedDate={
+            platform === "movie"
+              ? data?.data.release_date
+              : data?.data.first_air_date
+          }
+          platform={platform}
         />
 
-        {data?.data.videos.results.length > 0 && (
+        {data?.data.videos?.results.length > 0 && (
           <div className="movie-trailer">
             <iframe
               src={`https://www.youtube.com/embed/${data?.data.videos.results[0].key}`}
