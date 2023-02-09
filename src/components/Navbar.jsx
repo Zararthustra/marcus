@@ -8,11 +8,13 @@ import { ReactComponent as Logout } from "../assets/svg/logout.svg";
 
 import Login from "./Login";
 import { getLocalStorage } from "../utils/localStorage";
+import Register from "./Register";
 
 const Navbar = () => {
   const { user_id } = useParams();
   const isLogged = getLocalStorage("access");
   const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
 
   const logout = () => {
     localStorage.clear();
@@ -22,6 +24,7 @@ const Navbar = () => {
   return (
     <>
       {showLogin && <Login setShowLogin={setShowLogin} />}
+      {showRegister && <Register setShowRegister={setShowRegister} />}
       <nav className="nav">
         <Link to="/">
           <Logo className="nav-logo" />
@@ -42,7 +45,12 @@ const Navbar = () => {
               <li className="button-primary" onClick={() => setShowLogin(true)}>
                 Se connecter
               </li>
-              <li style={{ cursor: "pointer" }}>Créer un compte</li>
+              <li
+                style={{ cursor: "pointer" }}
+                onClick={() => setShowRegister(true)}
+              >
+                Créer un compte
+              </li>
             </>
           )}
         </ul>

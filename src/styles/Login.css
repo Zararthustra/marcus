@@ -16,7 +16,8 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  width: 25rem;
+    width: 90%;
+    max-width: 25rem;
   height: 35rem;
   border-radius: 20px;
   display: flex;
@@ -34,6 +35,7 @@
   font-family: var(--font-title);
   cursor: default;
   font-size: 2.4rem;
+  text-align: center;
 }
 .login .inputLabel {
   display: flex;

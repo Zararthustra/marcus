@@ -7,12 +7,7 @@ import { MARCUS_BASE_PATH } from "../services/apiVariables";
 import { saveLocalStorage } from "../utils/localStorage";
 import { ReactComponent as Close } from "../assets/svg/close.svg";
 
-const Login = ({
-  triggerToaster,
-  setTriggerToaster,
-  setShowLogin,
-  setShowRegister,
-}) => {
+const Register = ({ triggerToaster, setTriggerToaster, setShowRegister }) => {
   const [username, setName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -33,17 +28,13 @@ const Login = ({
     e.preventDefault();
 
     axios
-      .post(`${MARCUS_BASE_PATH}/token/`, {
+      .post(`${MARCUS_BASE_PATH}/register`, {
         username,
         password,
       })
       .then((user) => {
-        const decoded = jwt_decode(user.data.access);
-        saveLocalStorage("userid", decoded.user_id);
-        saveLocalStorage("username", username);
-        saveLocalStorage("access", user.data.access);
-        saveLocalStorage("refresh", user.data.refresh);
-        setShowLogin(false);
+        // trigger toast
+        setShowRegister(false);
       })
       .catch((error) => {
         if (error.response.status === 401) return console.log(error);
@@ -59,7 +50,7 @@ const Login = ({
     <div className="loginPage">
       <div className="login">
         <Close
-          onClick={() => setShowLogin(false)}
+          onClick={() => setShowRegister(false)}
           style={{
             position: "absolute",
             top: "1rem",
@@ -68,10 +59,10 @@ const Login = ({
             fill: "white",
           }}
         />
-        <h1>Se connecter</h1>
+        <h1>Créer un compte</h1>
         <form onSubmit={handleLogin}>
           <div className="inputLabel">
-            <label htmlFor="username">Compte</label>
+            <label htmlFor="username">Nom du Compte</label>
             <input
               required
               type="text"
@@ -93,7 +84,7 @@ const Login = ({
             />
           </div>
           <div className="buttons">
-            <input type="submit" className="button-primary" value="Connexion" />
+            <input type="submit" className="button-primary" value="S'enregistrer" />
           </div>
         </form>
       </div>
@@ -101,4 +92,4 @@ const Login = ({
   );
 };
 
-export default Login;
+export default Register;
