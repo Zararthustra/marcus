@@ -14,6 +14,7 @@ import { getLocalStorage } from "../utils/localStorage";
 
 import Critic from "./Critic";
 import MovieDescription from "./MovieDescription";
+import Toast from "./Toast";
 
 const Movie = ({ movieId, setShowMovie, platform }) => {
   //___________________________________________________________ React Query
@@ -48,17 +49,37 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
     },
     {
       onSuccess: () => {
+        setTriggerToast({
+          type: "success",
+          message: "Merci pour votre avis !",
+        });
         setCriticSent(true);
-        queryClient.invalidateQueries(["critics"]); // Trigger toast here
+        queryClient.invalidateQueries(["critics"]);
       },
-      onError: (err) => console.log(err), // Trigger toast here
+      onError: (err) => {
+        if (err.response.status === 400)
+          setTriggerToast({
+            type: "error",
+            message: "Erreur: " + err,
+          });
+        if (err.response.status === 401)
+          setTriggerToast({
+            type: "error",
+            message: "Vous devez être connecté pour effectuer cette action.",
+          });
+        else
+          setTriggerToast({
+            type: "error",
+            message: "Une erreur est survenue : " + err,
+          });
+      },
     }
   );
 
   // Add vote
   const { mutate: addVote } = useMutation(
     async () => {
-      if (voteValue === 0) return console.log("olala"); // toast here
+      if (voteValue === 0) return;
       await axios.post(
         `${MARCUS_BASE_PATH}/votes`,
         {
@@ -72,16 +93,42 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
     },
     {
       onSuccess: () => {
+        if (voteValue === 0)
+          return setTriggerToast({
+            type: "error",
+            message: "Si nul que ça ? La note minimale est 1 !",
+          });
+        setTriggerToast({
+          type: "success",
+          message: "À voté !",
+        });
         setVoteSent(true);
-        queryClient.invalidateQueries(["critics"]); // Trigger toast here
-        queryClient.invalidateQueries(["votes"]); // Trigger toast here
+        queryClient.invalidateQueries(["critics"]);
+        queryClient.invalidateQueries(["votes"]);
       },
-      onError: (err) => console.log(err), // Trigger toast here
+      onError: (err) => {
+        if (err.response.status === 400)
+          setTriggerToast({
+            type: "error",
+            message: "Erreur: " + err,
+          });
+        if (err.response.status === 401)
+          setTriggerToast({
+            type: "error",
+            message: "Vous devez être connecté pour effectuer cette action.",
+          });
+        else
+          setTriggerToast({
+            type: "error",
+            message: "Une erreur est survenue : " + err,
+          });
+      },
     }
   );
 
   //___________________________________________________________ Variables
 
+  const [triggerToast, setTriggerToast] = useState(false);
   // User inputs
   const [voteValue, setVoteValue] = useState(0);
   const [criticContent, setCriticContent] = useState("");
@@ -123,6 +170,13 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
 
   return (
     <div className="movie-page">
+      {triggerToast && (
+        <Toast
+          type={triggerToast.type}
+          message={triggerToast.message}
+          setTriggerToast={setTriggerToast}
+        />
+      )}
       <div className="movie">
         <header className="movie-header">
           <Close onClick={() => setShowMovie(false)} />
@@ -138,6 +192,7 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
               : data?.data.first_air_date
           }
           platform={platform}
+          setTriggerToast={setTriggerToast}
         />
 
         {data?.data.videos?.results.length > 0 && (
@@ -167,7 +222,11 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
         {!criticSent && (
           <form onSubmit={addCritic}>
             <div className="inputLabel">
-              <label htmlFor="criticContent">Donnez votre avis !</label>
+              <label htmlFor="criticContent">
+                {criticsVotes?.data.data.length > 0
+                  ? "Donnez votre avis !"
+                  : "Soyez le premier à donner un avis !"}
+              </label>
               <textarea
                 required
                 rows="7"
@@ -182,25 +241,27 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
           </form>
         )}
 
-        {criticsVotesStatus === "error" ? (
-          <div>Error</div>
-        ) : (
-          <div className="movie-critics">
-            <h1>Notes & Critiques</h1>
-            {criticsVotes?.data.data.map((critic, index) => (
-              <Critic
-                key={index}
-                movieId={critic.movie_id}
-                movieName={critic.movie_name}
-                content={critic.content}
-                userId={critic.user_id}
-                userName={critic.user_name}
-                currentPage="movie"
-                vote={critic.vote}
-              />
-            ))}
-          </div>
-        )}
+        {criticsVotes?.data.data.length > 0 &&
+          (criticsVotesStatus === "error" ? (
+            <div>Error</div>
+          ) : (
+            <div className="movie-critics">
+              <h1>Notes & Critiques</h1>
+              {criticsVotes?.data.data.map((critic, index) => (
+                <Critic
+                  key={index}
+                  movieId={critic.movie_id}
+                  movieName={critic.movie_name}
+                  content={critic.content}
+                  userId={critic.user_id}
+                  userName={critic.user_name}
+                  currentPage="movie"
+                  vote={critic.vote}
+                  setTriggerToast={setTriggerToast}
+                />
+              ))}
+            </div>
+          ))}
       </div>
     </div>
   );

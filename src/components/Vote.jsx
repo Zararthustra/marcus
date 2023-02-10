@@ -15,6 +15,7 @@ const Vote = ({
   userId,
   currentPage,
   platform,
+  setTriggerToast,
 }) => {
   // const [showLogin, setShowLogin] = useState(false);
   const [showMovie, setShowMovie] = useState(false);
@@ -24,9 +25,29 @@ const Vote = ({
     () => addToWatchlists(movieId, movieName, platform),
     {
       onSuccess: () => {
+        setTriggerToast({
+          type: "success",
+          message: movieName + " ajouté à votre watchlist !",
+        });
         queryClient.invalidateQueries(["watchlists"]);
-      }, // Trigger toast here
-      onError: (err) => console.error(err), // Trigger toast here
+      },
+      onError: (err) => {
+        if (err.response.status === 400)
+          return setTriggerToast({
+            type: "error",
+            message: "Ce film fait déjà partie de votre watchlist !",
+          });
+        if (err.response.status === 401)
+          return setTriggerToast({
+            type: "error",
+            message: "Vous devez être connecté pour effectuer cette action.",
+          });
+        else
+          return setTriggerToast({
+            type: "error",
+            message: "Une erreur est survenue : " + err,
+          });
+      },
     }
   );
 

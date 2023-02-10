@@ -16,11 +16,13 @@ import {
   getUsersData,
 } from "../services/marcusApi";
 import Release from "../components/Release";
+import Toast from "../components/Toast";
 
 const Home = () => {
   //___________________________________________________________ Variables
 
-  const [activeTab, setActiveTab] = useState("critic");
+  const [triggerToast, setTriggerToast] = useState(null);
+  const [activeTab, setActiveTab] = useState("release");
   const [searchResults, setSearchResults] = useState([]);
   const [searchType, setSearchtype] = useState("");
   const { data: masterpiecesData, status: masterpiecesStatus } = useQuery(
@@ -69,6 +71,7 @@ const Home = () => {
             userId={critic.user_id}
             userName={critic.user_name}
             platform={critic.platform}
+            setTriggerToast={setTriggerToast}
           />
         ));
 
@@ -82,6 +85,7 @@ const Home = () => {
             userId={vote.user_id}
             value={vote.value}
             platform={vote.platform}
+            setTriggerToast={setTriggerToast}
           />
         ));
 
@@ -97,6 +101,7 @@ const Home = () => {
             description={masterpiece.movie_details.synopsis}
             poster={masterpiece.movie_details.poster_path}
             platform={masterpiece.platform}
+            setTriggerToast={setTriggerToast}
           />
         ));
 
@@ -131,14 +136,21 @@ const Home = () => {
 
   return (
     <div className="App">
+      {triggerToast && (
+        <Toast
+          type={triggerToast.type}
+          message={triggerToast.message}
+          setTriggerToast={setTriggerToast}
+        />
+      )}
       <Header />
       <NavPanel
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         setSearchResults={setSearchResults}
         setSearchtype={setSearchtype}
-      />
-
+        setTriggerToast={setTriggerToast}
+        />
       <main
         style={{
           padding: "5rem 0",
@@ -163,6 +175,7 @@ const Home = () => {
               description={item.overview}
               poster={item.poster_path}
               platform={searchType}
+              setTriggerToast={setTriggerToast}
             />
           ))
         ) : activeStatus(activeTab) === "loading" ? (

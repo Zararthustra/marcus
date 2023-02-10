@@ -19,11 +19,12 @@ import {
   getWatchlists,
 } from "../services/marcusApi";
 import { getLocalStorage } from "../utils/localStorage";
+import Toast from "./Toast";
 
 const Profil = () => {
   //___________________________________________________________ Variables
 
-  // const [showLogin, setShowLogin] = useState(false);
+  const [triggerToast, setTriggerToast] = useState(false);
   const { user_id } = useParams();
   const [activeTab, setActiveTab] = useState("critic");
 
@@ -45,9 +46,8 @@ const Profil = () => {
   );
 
   // To be redefined when users/id will be available
-  const { data: usersData, status: communityStatus } = useQuery(
-    ["usersData", user_id],
-    () => getUsersData()
+  const { data: usersData } = useQuery(["usersData", user_id], () =>
+    getUsersData()
   );
   const userName =
     parseInt(user_id) === getLocalStorage("userid")
@@ -85,6 +85,7 @@ const Profil = () => {
             userName={critic.user_name}
             currentPage={"profil"}
             platform={critic.platform}
+            setTriggerToast={setTriggerToast}
           />
         ));
 
@@ -99,6 +100,7 @@ const Profil = () => {
             value={vote.value}
             platform={vote.platform}
             currentPage={"profil"}
+            setTriggerToast={setTriggerToast}
           />
         ));
 
@@ -115,6 +117,7 @@ const Profil = () => {
             poster={masterpiece.movie_details.poster_path}
             platform={masterpiece.platform}
             currentPage={"profil"}
+            setTriggerToast={setTriggerToast}
           />
         ));
 
@@ -131,6 +134,7 @@ const Profil = () => {
             poster={watchlist.movie_details.poster_path}
             platform={watchlist.platform}
             currentPage={"profil"}
+            setTriggerToast={setTriggerToast}
           />
         ));
 
@@ -147,6 +151,13 @@ const Profil = () => {
   //   return <div className="profil-page">Profile error</div>;
   return (
     <div className="profil-page">
+      {triggerToast && (
+        <Toast
+          type={triggerToast.type}
+          message={triggerToast.message}
+          setTriggerToast={setTriggerToast}
+        />
+      )}
       <img className="profil-img" src={projector} alt="projecteur de film" />
       <div className="profil">
         <h1>{userName}</h1>

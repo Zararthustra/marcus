@@ -13,19 +13,31 @@ const NavPanel = ({
   setActiveTab,
   setSearchResults,
   setSearchtype,
+  setTriggerToast,
 }) => {
   const [movieName, setMovieName] = useState("");
 
   const handleChange = (e) => {
+    if (e.target.value[0] === " ") return;
     return setMovieName(e.target.value);
   };
 
   const movieSearch = () => {
+    if (movieName === "")
+      return setTriggerToast({
+        type: "error",
+        message: "Entrez le nom d'un film !",
+      });
     setSearchtype("movie");
     searchMovie(movieName).then((res) => setSearchResults(res.data.results));
     return;
   };
   const tvSearch = () => {
+    if (movieName === "")
+      return setTriggerToast({
+        type: "error",
+        message: "Entrez le nom d'une série !",
+      });
     setSearchtype("tv");
     searchTV(movieName).then((res) => setSearchResults(res.data.results));
     return;
@@ -52,12 +64,8 @@ const NavPanel = ({
               id="moviename"
             />
             <div className="search-buttons">
-              <button onClick={movieSearch} disabled={movieName === ""}>
-                Chercher un film
-              </button>
-              <button onClick={tvSearch} disabled={movieName === ""}>
-                Chercher une série
-              </button>
+              <button onClick={movieSearch}>Chercher un film</button>
+              <button onClick={tvSearch}>Chercher une série</button>
             </div>
           </>
         );
