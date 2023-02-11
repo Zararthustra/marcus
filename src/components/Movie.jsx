@@ -15,6 +15,7 @@ import { getLocalStorage } from "../utils/localStorage";
 import Critic from "./Critic";
 import MovieDescription from "./MovieDescription";
 import Toast from "./Toast";
+import Providers from "./Providers";
 
 const Movie = ({ movieId, setShowMovie, platform }) => {
   //___________________________________________________________ React Query
@@ -191,6 +192,8 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
               ? data?.data.release_date
               : data?.data.first_air_date
           }
+          actors={data?.data.credits.cast}
+          crew={data?.data.credits.crew}
           platform={platform}
           setTriggerToast={setTriggerToast}
         />
@@ -204,6 +207,10 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
               allowFullScreen
             ></iframe>
           </div>
+        )}
+
+        {data?.data["watch/providers"].results.FR && (
+          <Providers providers={data?.data["watch/providers"].results.FR} />
         )}
 
         {!voteSent && (

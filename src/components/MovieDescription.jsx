@@ -6,6 +6,8 @@ import { ReactComponent as AddMasterpiece } from "../assets/svg/addMasterpiece.s
 import { TMDB_IMG_PATH } from "../services/apiVariables";
 import { addToMasterpieces, addToWatchlists } from "../services/marcusApi";
 import { useMutation, useQueryClient } from "react-query";
+import Persons from "./Persons";
+
 
 const MovieDescription = ({
   id,
@@ -15,6 +17,8 @@ const MovieDescription = ({
   releasedDate,
   platform,
   setTriggerToast,
+  actors,
+  crew,
 }) => {
   const queryClient = useQueryClient();
   const { mutate: addMasterpiece } = useMutation(
@@ -95,6 +99,7 @@ const MovieDescription = ({
           <AddToWatchList onClick={addWatchlist} />
           <AddMasterpiece onClick={addMasterpiece} />
         </div>
+        <Persons actors={actors} crew={crew} />
       </div>
     </div>
   );
