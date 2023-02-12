@@ -84,6 +84,7 @@
 .providers img {
   width: 2.5rem;
   box-shadow: none;
+  border-radius: 3px;
   margin: 0;
 }
 

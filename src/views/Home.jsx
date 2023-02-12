@@ -150,7 +150,7 @@ const Home = () => {
         setSearchResults={setSearchResults}
         setSearchtype={setSearchtype}
         setTriggerToast={setTriggerToast}
-        />
+      />
       <main
         style={{
           padding: "5rem 0",
@@ -166,18 +166,26 @@ const Home = () => {
         }}
       >
         {searchResults.length > 0 && activeTab === "release" ? (
-          searchResults.map((item, index) => (
-            <Masterpiece
-              key={index}
-              movieName={item.title || item.name}
-              movieId={item.id}
-              releasedDate={item.release_date || item.first_air_date}
-              description={item.overview}
-              poster={item.poster_path}
-              platform={searchType}
-              setTriggerToast={setTriggerToast}
-            />
-          ))
+          searchResults
+            .sort((p1, p2) =>
+              p1.popularity < p2.popularity
+                ? 1
+                : p1.popularity > p2.popularity
+                ? -1
+                : 0
+            )
+            .map((item, index) => (
+              <Masterpiece
+                key={index}
+                movieName={item.title || item.name}
+                movieId={item.id}
+                releasedDate={item.release_date || item.first_air_date}
+                description={item.overview}
+                poster={item.poster_path}
+                platform={searchType}
+                setTriggerToast={setTriggerToast}
+              />
+            ))
         ) : activeStatus(activeTab) === "loading" ? (
           <p>Loading ...</p>
         ) : activeStatus(activeTab) === "error" ? (
