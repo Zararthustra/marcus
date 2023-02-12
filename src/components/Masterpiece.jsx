@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ReactComponent as CriticInfo } from "../assets/svg/info.svg";
-import { ReactComponent as CriticWatchList } from "../assets/svg/watchList.svg";
+import { ReactComponent as CriticWatchList } from "../assets/svg/addWatchList.svg";
 
 import Movie from "./Movie";
 

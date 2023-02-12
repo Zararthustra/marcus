@@ -1,13 +1,12 @@
 import "../styles/Movie.css";
 
-import { ReactComponent as AddToWatchList } from "../assets/svg/watchList.svg";
+import { ReactComponent as AddToWatchList } from "../assets/svg/addWatchList.svg";
 import { ReactComponent as AddMasterpiece } from "../assets/svg/addMasterpiece.svg";
 
 import { TMDB_IMG_PATH } from "../services/apiVariables";
 import { addToMasterpieces, addToWatchlists } from "../services/marcusApi";
 import { useMutation, useQueryClient } from "react-query";
 import Persons from "./Persons";
-
 
 const MovieDescription = ({
   id,

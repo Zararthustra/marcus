@@ -20,10 +20,24 @@
   height: 12rem;
   cursor: pointer;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 }
 .user-data:hover {
-  background-color: var(--light-color);
+  background-color: black;
+  color: white;
 }
+.user-data:hover .user-data-icon {
+  fill: white;
+}
+
+/* Specific to list icon */
+.user-data:hover .user-data-icon path:nth-child(n + 2) {
+  fill: black;
+}
+.user-data-icon-active path:nth-child(n + 2) {
+  fill: #890d2a;
+}
+
 .user-data-icon {
   fill: var(--dark-color);
 }

@@ -44,7 +44,11 @@ const UserData = ({ data, value, setActiveTab, activeTab }) => {
         <WatchList
           style={{ fill: activeTab === data ? "white" : "" }}
           alt="Watchlist Icon"
-          className="user-data-icon"
+          className={
+            activeTab === data
+              ? "user-data-icon user-data-icon-active"
+              : "user-data-icon"
+          }
         />
       );
       title = "À regarder";
@@ -59,7 +63,7 @@ const UserData = ({ data, value, setActiveTab, activeTab }) => {
       className="user-data"
       onClick={() => setActiveTab(data)}
       style={{
-        backgroundColor: activeTab === data ? "var(--dark-color)" : "",
+        background: activeTab === data ? "var(--gradient)" : "",
         color: activeTab === data ? "white" : "",
       }}
     >

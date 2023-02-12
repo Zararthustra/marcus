@@ -1,7 +1,7 @@
 import "../styles/Vote.css";
 import { useState } from "react";
 import { ReactComponent as Info } from "../assets/svg/info.svg";
-import { ReactComponent as WatchList } from "../assets/svg/watchList.svg";
+import { ReactComponent as WatchList } from "../assets/svg/addWatchList.svg";
 import Movie from "./Movie";
 import { addToWatchlists } from "../services/marcusApi";
 import Stars from "./Stars";
