@@ -9,7 +9,7 @@ import Stars from "./Stars";
 
 import { getMovieById, getTvById } from "../services/tmdbApi";
 import { getCritics, getCriticsVotes, getVotes } from "../services/marcusApi";
-import { MARCUS_BASE_PATH } from "../services/apiVariables";
+import { MARCUS_BASE_PATH, TMDB_IMG_PATH } from "../services/apiVariables";
 import { getLocalStorage } from "../utils/localStorage";
 
 import Critic from "./Critic";
@@ -182,6 +182,13 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
         <header className="movie-header">
           <Close onClick={() => setShowMovie(false)} />
         </header>
+        {data?.data.backdrop_path && (
+          <img
+            className="backdrop-img"
+            src={TMDB_IMG_PATH + data?.data.backdrop_path}
+            alt={platform === "movie" ? data.data.title : data.data.name}
+          />
+        )}
         <MovieDescription
           posterPath={data?.data.poster_path}
           id={data.data.id}
