@@ -4,15 +4,17 @@ import "../styles/Login.css";
 
 import { MARCUS_BASE_PATH } from "../services/apiVariables";
 import { ReactComponent as Close } from "../assets/svg/close.svg";
+import Toast from "./Toast";
 
-const Register = ({ triggerToaster, setTriggerToaster, setShowRegister }) => {
+const Register = ({ setShowRegister }) => {
+  const [triggerToast, setTriggerToast] = useState(null);
   const [username, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const handleChange = (e) => {
     switch (e.target.name) {
       case "username":
-        if (e.target.value.length > 10) return;
+        if (e.target.value.length > 20) return;
         return setName(e.target.value.trim().toLowerCase());
       case "password":
         if (e.target.value.length > 15) return;
@@ -30,22 +32,26 @@ const Register = ({ triggerToaster, setTriggerToaster, setShowRegister }) => {
         username,
         password,
       })
-      .then((user) => {
-        // trigger toast
-        setShowRegister(false);
-      })
+      .then((user) => setShowRegister(false))
       .catch((error) => {
-        if (error.response.status === 401) return console.log(error);
-        return setTriggerToaster({
-          type: "error",
-          message: "Compte inconnu.",
-        });
+        if (error.response.status === 400)
+          return setTriggerToast({
+            type: "error",
+            message: "Ce nom existe déjà !",
+          });
       });
     return;
   };
 
   return (
     <div className="loginPage">
+      {triggerToast && (
+        <Toast
+          type={triggerToast.type}
+          message={triggerToast.message}
+          setTriggerToast={setTriggerToast}
+        />
+      )}
       <div className="login">
         <Close
           onClick={() => setShowRegister(false)}
@@ -82,7 +88,11 @@ const Register = ({ triggerToaster, setTriggerToaster, setShowRegister }) => {
             />
           </div>
           <div className="buttons">
-            <input type="submit" className="button-primary" value="S'enregistrer" />
+            <input
+              type="submit"
+              className="button-primary"
+              value="S'enregistrer"
+            />
           </div>
         </form>
       </div>

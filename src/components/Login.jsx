@@ -6,20 +6,17 @@ import "../styles/Login.css";
 import { MARCUS_BASE_PATH } from "../services/apiVariables";
 import { saveLocalStorage } from "../utils/localStorage";
 import { ReactComponent as Close } from "../assets/svg/close.svg";
+import Toast from "./Toast";
 
-const Login = ({
-  triggerToaster,
-  setTriggerToaster,
-  setShowLogin,
-  setShowRegister,
-}) => {
+const Login = ({ setShowLogin }) => {
+  const [triggerToast, setTriggerToast] = useState(null);
   const [username, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const handleChange = (e) => {
     switch (e.target.name) {
       case "username":
-        if (e.target.value.length > 10) return;
+        if (e.target.value.length > 20) return;
         return setName(e.target.value.trim().toLowerCase());
       case "password":
         if (e.target.value.length > 15) return;
@@ -46,17 +43,24 @@ const Login = ({
         setShowLogin(false);
       })
       .catch((error) => {
-        if (error.response.status === 401) return console.log(error);
-        return setTriggerToaster({
-          type: "error",
-          message: "Compte inconnu.",
-        });
+        if (error.response.status === 401)
+          return setTriggerToast({
+            type: "error",
+            message: "Compte inconnu",
+          });
       });
     return;
   };
 
   return (
     <div className="loginPage">
+      {triggerToast && (
+        <Toast
+          type={triggerToast.type}
+          message={triggerToast.message}
+          setTriggerToast={setTriggerToast}
+        />
+      )}
       <div className="login">
         <Close
           onClick={() => setShowLogin(false)}

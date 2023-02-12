@@ -19,8 +19,8 @@
   text-align: center;
   height: 3rem;
   margin: 0;
-  width: 10.5rem;
   cursor: pointer;
+  text-transform: capitalize;
 }
 .users header h3:hover {
   text-decoration: underline;

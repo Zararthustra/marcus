@@ -27,6 +27,10 @@
   cursor: default;
 }
 
+.vote a {
+  text-transform: capitalize;
+}
+
 .vote svg {
   cursor: pointer;
   transition: 0.5s fill;
