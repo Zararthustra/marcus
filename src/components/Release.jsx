@@ -44,14 +44,14 @@ const Release = ({ releaseType }) => {
         <div className="posters">
           {getReleases(releaseType)?.map((item, index) => {
             return (
-              <div className="truc" key={index}>
+              <article key={index}>
                 <img
                   onClick={() => setShowMovie(item.id)}
                   src={TMDB_IMG_PATH + item.poster_path}
                   alt={item.title || item.name}
                 />
                 <p>{item.title || item.name}</p>
-              </div>
+              </article>
             );
           })}
         </div>
