@@ -57,8 +57,8 @@
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  width: 100%;
   padding-top: 1rem;
+  position: relative;
 }
 .tab-name h1 {
   font-size: 1.7rem;
@@ -68,9 +68,17 @@
   outline: none;
   border-radius: 5px;
   max-width: 20rem;
-  width: 70%;
+  width: 90%;
   height: 2rem;
   padding-left: 1rem;
+}
+.reset-input {
+  cursor: pointer;
+  position: absolute;
+  top: 1.5rem;
+  right: 1rem;
+  fill: black;
+  width: 1rem;
 }
 .tab-name button {
   border: none;

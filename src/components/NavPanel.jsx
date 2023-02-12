@@ -5,6 +5,7 @@ import { ReactComponent as Vote } from "../assets/svg/votes.svg";
 import { ReactComponent as Masterpiece } from "../assets/svg/palette.svg";
 import { ReactComponent as Release } from "../assets/svg/movieSearch.svg";
 import { ReactComponent as Communaute } from "../assets/svg/communaute.svg";
+import { ReactComponent as Close } from "../assets/svg/close.svg";
 import { useState } from "react";
 import { searchMovie, searchTV } from "../services/tmdbApi";
 
@@ -54,6 +55,15 @@ const NavPanel = ({
       case "release":
         return (
           <>
+            {movieName && (
+              <Close
+                className="reset-input"
+                onClick={() => {
+                  setSearchResults([]);
+                  setMovieName("");
+                }}
+              />
+            )}
             <input
               className="search-bar"
               type="text"
