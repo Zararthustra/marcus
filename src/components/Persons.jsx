@@ -26,9 +26,11 @@ const Persons = ({ actors, crew }) => {
                   ) : (
                     <div
                       style={{
-                        width: "12rem",
+                        display: "flex",
+                        alignItems: "center",
+                        height: "55%",
                         textAlign: "center",
-                        fontSize: "5rem",
+                        fontSize: "3rem",
                       }}
                     >
                       🤷
@@ -36,7 +38,11 @@ const Persons = ({ actors, crew }) => {
                   )}
                   <div className="names">
                     <p>{actor.name}</p>
-                    <p className="character">{actor.character}</p>
+                    <p className="character">
+                      {actor.character.includes("/")
+                        ? actor.character.split("/")[1]
+                        : actor.character}
+                    </p>
                   </div>
                 </article>
               );
