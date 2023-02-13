@@ -92,7 +92,7 @@ const Masterpiece = ({
               </p>
             )}
             <div className="masterpiece-footer-icons">
-              {isOwner && <DelMasterpiece onClick={mutateDelMasterpiece} />}
+              {isOwner && <DelMasterpiece className="delete-icon" onClick={mutateDelMasterpiece} />}
               <MovieInfo onClick={() => setShowMovie(true)} />
             </div>
           </footer>

@@ -95,8 +95,8 @@ const MovieDescription = ({
             gap: "1rem",
           }}
         >
-          <AddToWatchList onClick={addWatchlist} />
-          <AddMasterpiece onClick={addMasterpiece} />
+          <AddToWatchList className="add-icon" onClick={addWatchlist} />
+          <AddMasterpiece className="add-icon" onClick={addMasterpiece} />
         </div>
         <Persons actors={actors} crew={crew} />
       </div>

@@ -76,7 +76,7 @@ const Vote = ({
             gap: "1rem",
           }}
         >
-          {isOwner && <DelVote onClick={mutateDelVote} />}
+          {isOwner && <DelVote className="delete-icon" onClick={mutateDelVote} />}
           <Info className="movie-info-svg" onClick={() => setShowMovie(true)} />
         </div>
       </div>

@@ -92,7 +92,7 @@ const Watchlist = ({
               </p>
             )}
             <div className="masterpiece-footer-icons">
-              {isOwner && <DelWatchlist onClick={mutateDelWatchlist} />}
+              {isOwner && <DelWatchlist className="delete-icon" onClick={mutateDelWatchlist} />}
               <MovieInfo onClick={() => setShowMovie(true)} />
             </div>
           </footer>

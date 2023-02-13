@@ -92,7 +92,7 @@ const Critic = ({
                 </p>
               )}
               <div className="critic-footer-icons">
-                {isOwner && <DelCritic onClick={mutateDelCritic} />}
+                {isOwner && <DelCritic className="delete-icon" onClick={mutateDelCritic} />}
                 <CriticInfo onClick={() => setShowMovie(true)} />
               </div>
             </>
