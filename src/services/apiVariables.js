@@ -10,17 +10,9 @@ const host = {
   localhost: "localhost:8000",
 };
 
-// Toggle this value to get data from server or from mockedAPI
-export const IS_MOCKED_DATA = false;
-// const IS_MOCKED_DATA = false
-
 // Toggle this value to get data from local or prod environment
-// export const MARCUS_BASE_PATH = protocol.unsecure + "://" + host.localIP + "/api";
-export const MARCUS_BASE_PATH = protocol.secure + "://" + host.domain + "/api";
-
-// const token = getLocalStorage('access')
-// export const MARCUS_BASE_HEADER = "Bearer " + token;
-
+export const MARCUS_BASE_PATH = protocol.unsecure + "://" + host.localIP + "/api";
+// export const MARCUS_BASE_PATH = protocol.secure + "://" + host.domain + "/api";
 
 //______________________ TMDB _______________________
 

@@ -1,13 +1,14 @@
-import { useState, React } from "react";
-import { ReactComponent as CriticInfo } from "../assets/svg/info.svg";
-import { ReactComponent as CriticWatchList } from "../assets/svg/addWatchList.svg";
-
-import Movie from "./Movie";
-
 import "../styles/Critic.css";
-import { addToWatchlists } from "../services/marcusApi";
-import Stars from "./Stars";
+import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
+
+import { ReactComponent as CriticInfo } from "../assets/svg/info.svg";
+import { ReactComponent as DelCritic } from "../assets/svg/close.svg";
+
+import { deleteCritic } from "../services/marcusApi";
+
+import Stars from "./Stars";
+import Movie from "./Movie";
 
 const Critic = ({
   movieId,
@@ -19,39 +20,37 @@ const Critic = ({
   vote,
   platform,
   setTriggerToast,
+  isOwner,
 }) => {
   const [showMovie, setShowMovie] = useState(false);
 
   const queryClient = useQueryClient();
-  const { mutate: mutateWatchlist } = useMutation(
-    () => addToWatchlists(movieId, movieName, platform),
-    {
-      onSuccess: () => {
-        setTriggerToast({
-          type: "success",
-          message: movieName + " ajouté à votre watchlist !",
+  const { mutate: mutateDelCritic } = useMutation(() => deleteCritic(movieId), {
+    onSuccess: () => {
+      setTriggerToast({
+        type: "success",
+        message: "Votre critique a bien été supprimée",
+      });
+      queryClient.invalidateQueries(["critics"]);
+    },
+    onError: (err) => {
+      if (err.response.status === 404)
+        return setTriggerToast({
+          type: "error",
+          message: "Cette critique n'existe plus !",
         });
-        queryClient.invalidateQueries(["watchlists"]);
-      },
-      onError: (err) => {
-        if (err.response.status === 400)
-          return setTriggerToast({
-            type: "error",
-            message: "Ce film fait déjà partie de votre watchlist !",
-          });
-        if (err.response.status === 401)
-          return setTriggerToast({
-            type: "error",
-            message: "Vous devez être connecté pour effectuer cette action.",
-          });
-        else
-          return setTriggerToast({
-            type: "error",
-            message: "Une erreur est survenue : " + err,
-          });
-      },
-    }
-  );
+      if (err.response.status === 401)
+        return setTriggerToast({
+          type: "error",
+          message: "Vous devez être connecté pour effectuer cette action.",
+        });
+      else
+        return setTriggerToast({
+          type: "error",
+          message: "Une erreur est survenue : " + err,
+        });
+    },
+  });
 
   return (
     <>
@@ -93,7 +92,7 @@ const Critic = ({
                 </p>
               )}
               <div className="critic-footer-icons">
-                <CriticWatchList onClick={mutateWatchlist} />
+                {isOwner && <DelCritic onClick={mutateDelCritic} />}
                 <CriticInfo onClick={() => setShowMovie(true)} />
               </div>
             </>

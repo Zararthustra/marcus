@@ -5,17 +5,17 @@ import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import { ReactComponent as Close } from "../assets/svg/close.svg";
-import Stars from "./Stars";
 
 import { getMovieById, getTvById } from "../services/tmdbApi";
 import { getCritics, getCriticsVotes, getVotes } from "../services/marcusApi";
 import { MARCUS_BASE_PATH, TMDB_IMG_PATH } from "../services/apiVariables";
 import { getLocalStorage } from "../utils/localStorage";
 
+import Stars from "./Stars";
 import Critic from "./Critic";
-import MovieDescription from "./MovieDescription";
 import Toast from "./Toast";
 import Providers from "./Providers";
+import MovieDescription from "./MovieDescription";
 
 const Movie = ({ movieId, setShowMovie, platform }) => {
   //___________________________________________________________ React Query

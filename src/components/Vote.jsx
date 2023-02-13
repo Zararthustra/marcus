@@ -1,11 +1,14 @@
 import "../styles/Vote.css";
 import { useState } from "react";
-import { ReactComponent as Info } from "../assets/svg/info.svg";
-import { ReactComponent as WatchList } from "../assets/svg/addWatchList.svg";
-import Movie from "./Movie";
-import { addToWatchlists } from "../services/marcusApi";
-import Stars from "./Stars";
 import { useMutation, useQueryClient } from "react-query";
+
+import { ReactComponent as Info } from "../assets/svg/info.svg";
+import { ReactComponent as DelVote } from "../assets/svg/close.svg";
+
+import { deleteVote } from "../services/marcusApi";
+
+import Movie from "./Movie";
+import Stars from "./Stars";
 
 const Vote = ({
   movieName,
@@ -16,40 +19,37 @@ const Vote = ({
   currentPage,
   platform,
   setTriggerToast,
+  isOwner,
 }) => {
-  // const [showLogin, setShowLogin] = useState(false);
   const [showMovie, setShowMovie] = useState(false);
 
   const queryClient = useQueryClient();
-  const { mutate: mutateWatchlist } = useMutation(
-    () => addToWatchlists(movieId, movieName, platform),
-    {
-      onSuccess: () => {
-        setTriggerToast({
-          type: "success",
-          message: movieName + " ajouté à votre watchlist !",
+  const { mutate: mutateDelVote } = useMutation(() => deleteVote(movieId), {
+    onSuccess: () => {
+      setTriggerToast({
+        type: "success",
+        message: "Votre vote a bien été supprimé",
+      });
+      queryClient.invalidateQueries(["votes"]);
+    },
+    onError: (err) => {
+      if (err.response.status === 404)
+        return setTriggerToast({
+          type: "error",
+          message: "Ce vote n'existe plus !",
         });
-        queryClient.invalidateQueries(["watchlists"]);
-      },
-      onError: (err) => {
-        if (err.response.status === 400)
-          return setTriggerToast({
-            type: "error",
-            message: "Ce film fait déjà partie de votre watchlist !",
-          });
-        if (err.response.status === 401)
-          return setTriggerToast({
-            type: "error",
-            message: "Vous devez être connecté pour effectuer cette action.",
-          });
-        else
-          return setTriggerToast({
-            type: "error",
-            message: "Une erreur est survenue : " + err,
-          });
-      },
-    }
-  );
+      if (err.response.status === 401)
+        return setTriggerToast({
+          type: "error",
+          message: "Vous devez être connecté pour effectuer cette action.",
+        });
+      else
+        return setTriggerToast({
+          type: "error",
+          message: "Une erreur est survenue : " + err,
+        });
+    },
+  });
 
   return (
     <>
@@ -76,7 +76,7 @@ const Vote = ({
             gap: "1rem",
           }}
         >
-          <WatchList onClick={mutateWatchlist} />
+          {isOwner && <DelVote onClick={mutateDelVote} />}
           <Info onClick={() => setShowMovie(true)} />
         </div>
       </div>

@@ -1,31 +1,13 @@
 import axios from "axios";
-import {
-  masterpieces,
-  critics,
-  watchlists,
-  votes,
-  users_data,
-  user_data,
-} from "./mockedApi";
-import { MARCUS_BASE_PATH, IS_MOCKED_DATA } from "./apiVariables";
+import { MARCUS_BASE_PATH } from "./apiVariables";
 import { getLocalStorage } from "../utils/localStorage";
 
-export const getMasterpieces = async (user_id) => {
-  if (IS_MOCKED_DATA) return masterpieces;
-  if (user_id)
-    return await axios.get(
-      `${MARCUS_BASE_PATH}/masterpieces?user_id=${user_id}`
-    );
-  return await axios.get(`${MARCUS_BASE_PATH}/masterpieces`);
-};
-
+//__________________________________ Watchlist
 export const getWatchlists = async (user_id) => {
-  if (IS_MOCKED_DATA) return watchlists;
   if (user_id)
     return await axios.get(`${MARCUS_BASE_PATH}/watchlists?user_id=${user_id}`);
   return await axios.get(`${MARCUS_BASE_PATH}/watchlists`);
 };
-
 export const addToWatchlists = async (movieId, movieName, platform) => {
   return await axios.post(
     `${MARCUS_BASE_PATH}/watchlists`,
@@ -37,7 +19,21 @@ export const addToWatchlists = async (movieId, movieName, platform) => {
     { headers: { authorization: "Bearer " + getLocalStorage("access") } }
   );
 };
+export const deleteWatchlist = async (movieId) => {
+  return await axios.delete(`${MARCUS_BASE_PATH}/watchlists`, {
+    headers: { authorization: "Bearer " + getLocalStorage("access") },
+    params: { movie_id: movieId },
+  });
+};
 
+//__________________________________ Masterpiece
+export const getMasterpieces = async (user_id) => {
+  if (user_id)
+    return await axios.get(
+      `${MARCUS_BASE_PATH}/masterpieces?user_id=${user_id}`
+    );
+  return await axios.get(`${MARCUS_BASE_PATH}/masterpieces`);
+};
 export const addToMasterpieces = async (movieId, movieName, platform) => {
   return await axios.post(
     `${MARCUS_BASE_PATH}/masterpieces`,
@@ -49,33 +45,47 @@ export const addToMasterpieces = async (movieId, movieName, platform) => {
     { headers: { authorization: "Bearer " + getLocalStorage("access") } }
   );
 };
+export const deleteMasterpiece = async (movieId) => {
+  return await axios.delete(`${MARCUS_BASE_PATH}/masterpieces`, {
+    headers: { authorization: "Bearer " + getLocalStorage("access") },
+    params: { movie_id: movieId },
+  });
+};
 
+//__________________________________ Vote
 export const getVotes = async (user_id) => {
-  if (IS_MOCKED_DATA) return votes;
   if (user_id)
     return await axios.get(`${MARCUS_BASE_PATH}/votes?user_id=${user_id}`);
   return await axios.get(`${MARCUS_BASE_PATH}/votes`);
 };
+export const deleteVote = async (movieId) => {
+  return await axios.delete(`${MARCUS_BASE_PATH}/votes`, {
+    headers: { authorization: "Bearer " + getLocalStorage("access") },
+    params: { movie_id: movieId },
+  });
+};
 
+//__________________________________ Critic
 export const getCritics = async (user_id) => {
-  if (IS_MOCKED_DATA) return critics;
   if (user_id)
     return await axios.get(`${MARCUS_BASE_PATH}/critics?user_id=${user_id}`);
   return await axios.get(`${MARCUS_BASE_PATH}/critics`);
 };
+export const deleteCritic = async (movieId) => {
+  return await axios.delete(`${MARCUS_BASE_PATH}/critics`, {
+    headers: { authorization: "Bearer " + getLocalStorage("access") },
+    params: { movie_id: movieId },
+  });
+};
 
 export const getCriticsVotes = async (movie_id) => {
-  // if (IS_MOCKED_DATA) return criticsVotes;
   return await axios.get(`${MARCUS_BASE_PATH}/critics?movie_id=${movie_id}`);
 };
 
+//__________________________________ User
 export const getUsersData = async () => {
-  if (IS_MOCKED_DATA) return users_data;
   return await axios.get(`${MARCUS_BASE_PATH}/users`);
 };
-
 export const getUserData = async (user_id) => {
-  return user_data;
-  // if (IS_MOCKED_DATA) return user_data;
-  // return axios.get(`${MARCUS_BASE_PATH}/users/${user_id}`);
+  return await axios.get(`${MARCUS_BASE_PATH}/users/${user_id}`);
 };

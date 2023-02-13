@@ -1,4 +1,3 @@
-import React from "react";
 import { ReactComponent as Palette } from "../assets/svg/palette.svg";
 import { ReactComponent as Critics } from "../assets/svg/critics.svg";
 import { ReactComponent as Votes } from "../assets/svg/votes.svg";
@@ -37,7 +36,7 @@ const UserData = ({ data, value, setActiveTab, activeTab }) => {
           style={{ fill: activeTab === data ? "white" : "" }}
         />
       );
-      title = "Chefs d'oeuvres";
+      title = "Chefs d'oeuvre";
       break;
     case "watchlist":
       icon = (

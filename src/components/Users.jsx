@@ -28,16 +28,16 @@ const Users = ({
       </article> */}
       <article className="user-datas">
         <div>
-          <Palette />
-          <p>{masterPieces}</p>
-        </div>
-        <div>
           <Critics />
           <p>{critics}</p>
         </div>
         <div>
           <Votes />
           <p>{votes}</p>
+        </div>
+        <div>
+          <Palette />
+          <p>{masterPieces}</p>
         </div>
         <div>
           <WatchList />

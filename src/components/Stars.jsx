@@ -5,6 +5,7 @@ const Stars = ({ value, displayOnly, voteValue, setVoteValue }) => {
   if (displayOnly)
     return (
       <div className="stars">
+        {!value && <StarFull style={{ visibility: "hidden" }} />}
         {value >= 1 && <StarFull />}
         {value >= 2 && <StarFull />}
         {value >= 3 && <StarFull />}

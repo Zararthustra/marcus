@@ -5,21 +5,21 @@ import { useQuery } from "react-query";
 
 import projector from "../assets/img/projector.jpg";
 
-import Critic from "./Critic";
-import Masterpiece from "./Masterpiece";
-import UserDatas from "./UserDatas";
-import Vote from "./Vote";
-
 import {
   getCritics,
   getMasterpieces,
-  // getUserData,
-  getUsersData,
+  getUserData,
   getVotes,
   getWatchlists,
 } from "../services/marcusApi";
 import { getLocalStorage } from "../utils/localStorage";
+
+import Vote from "./Vote";
 import Toast from "./Toast";
+import Critic from "./Critic";
+import UserDatas from "./UserDatas";
+import Watchlist from "./Watchlist";
+import Masterpiece from "./Masterpiece";
 
 const Profil = () => {
   //___________________________________________________________ Variables
@@ -27,6 +27,8 @@ const Profil = () => {
   const [triggerToast, setTriggerToast] = useState(false);
   const { user_id } = useParams();
   const [activeTab, setActiveTab] = useState("critic");
+
+  //___________________________________________________________ React Query
 
   const { data: masterpiecesData, status: masterpiecesStatus } = useQuery(
     ["masterpieces", user_id],
@@ -44,16 +46,11 @@ const Profil = () => {
     ["watchlists", user_id],
     () => getWatchlists(user_id)
   );
-
-  // To be redefined when users/id will be available
-  const { data: usersData } = useQuery(["usersData", user_id], () =>
-    getUsersData()
+  const { data: userData } = useQuery(["userData", user_id], () =>
+    getUserData(user_id)
   );
-  const userName =
-    parseInt(user_id) === getLocalStorage("userid")
-      ? getLocalStorage("username")
-      : usersData?.data.filter((item) => item.id === parseInt(user_id))[0]
-          .username;
+  const userName = userData?.data.username;
+  const isOwner = userData?.data.id === getLocalStorage("userid");
 
   //___________________________________________________________ Functions
 
@@ -86,6 +83,7 @@ const Profil = () => {
             currentPage={"profil"}
             platform={critic.platform}
             setTriggerToast={setTriggerToast}
+            isOwner={isOwner}
           />
         ));
 
@@ -101,6 +99,7 @@ const Profil = () => {
             platform={vote.platform}
             currentPage={"profil"}
             setTriggerToast={setTriggerToast}
+            isOwner={isOwner}
           />
         ));
 
@@ -118,12 +117,13 @@ const Profil = () => {
             platform={masterpiece.platform}
             currentPage={"profil"}
             setTriggerToast={setTriggerToast}
+            isOwner={isOwner}
           />
         ));
 
       case "watchlist":
         return watchlistsData?.data.data.map((watchlist, index) => (
-          <Masterpiece
+          <Watchlist
             key={index}
             movieName={watchlist.movie_name}
             movieId={watchlist.movie_id}
@@ -135,6 +135,7 @@ const Profil = () => {
             platform={watchlist.platform}
             currentPage={"profil"}
             setTriggerToast={setTriggerToast}
+            isOwner={isOwner}
           />
         ));
 

@@ -199,24 +199,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// {isLoading && isLoading}
-// {error && error}
-// {data?.results.map((item, index) => {
-//     return <div key={index}>{item.title}</div>;
-//   })}
-
-// const basePath = 'https://api.themoviedb.org/3';
-// const query = 'titanic';
-// const getMovies = async () => {
-//   const res = await axios.get(basePath + '/search/movie', {
-//     params: { api_key: apiKey, query },
-//   });
-//   return res.data;
-// };
-
-// const { data, isLoading, error } = useQuery(['getMovie'], () => getMovie());
-
-// console.log(data);
-// console.log(isLoading);
-// console.log(error);

@@ -2,14 +2,14 @@ import "../styles/Masterpiece.css";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 
+import { ReactComponent as DelWatchlist } from "../assets/svg/delWatchList.svg";
 import { ReactComponent as MovieInfo } from "../assets/svg/info.svg";
-import { ReactComponent as DelMasterpiece } from "../assets/svg/delMasterpiece.svg";
 
-import { deleteMasterpiece } from "../services/marcusApi";
+import { deleteWatchlist } from "../services/marcusApi";
 
 import Movie from "./Movie";
 
-const Masterpiece = ({
+const Watchlist = ({
   movieName,
   movieId,
   releasedDate,
@@ -25,15 +25,15 @@ const Masterpiece = ({
   const [showMovie, setShowMovie] = useState(false);
 
   const queryClient = useQueryClient();
-  const { mutate: mutateDelMasterpiece } = useMutation(
-    () => deleteMasterpiece(movieId),
+  const { mutate: mutateDelWatchlist } = useMutation(
+    () => deleteWatchlist(movieId),
     {
       onSuccess: () => {
         setTriggerToast({
           type: "success",
-          message: "Ce chef d'oeuvre a bien été supprimé",
+          message: movieName + " supprimé de votre watchlist",
         });
-        queryClient.invalidateQueries(["masterpieces"]);
+        queryClient.invalidateQueries(["watchlists"]);
       },
       onError: (err) => {
         if (err.response.status === 400)
@@ -41,10 +41,10 @@ const Masterpiece = ({
             type: "error",
             message: "Ce film fait déjà partie de votre watchlist !",
           });
-        if (err.response.status === 401)
+        if (err.response.status === 404)
           return setTriggerToast({
             type: "error",
-            message: "Vous devez être connecté pour effectuer cette action.",
+            message: movieName + " ne fait déjà plus partie de votre watchlist",
           });
         else
           return setTriggerToast({
@@ -92,7 +92,7 @@ const Masterpiece = ({
               </p>
             )}
             <div className="masterpiece-footer-icons">
-              {isOwner && <DelMasterpiece onClick={mutateDelMasterpiece} />}
+              {isOwner && <DelWatchlist onClick={mutateDelWatchlist} />}
               <MovieInfo onClick={() => setShowMovie(true)} />
             </div>
           </footer>
@@ -102,4 +102,4 @@ const Masterpiece = ({
   );
 };
 
-export default Masterpiece;
+export default Watchlist;

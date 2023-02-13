@@ -1,6 +1,5 @@
-import React from "react";
-import UserData from "./UserData";
 import "../styles/UserDatas.css";
+import UserData from "./UserData";
 
 const UserDatas = ({
   masterpieces,

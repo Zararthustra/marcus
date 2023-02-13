@@ -9,7 +9,7 @@
         <path d="M20.6363 24.4319C20.6363 22.8629 19.3644 21.5909 17.7954 21.5909C16.2264 21.5909 14.9545 22.8629 14.9545 24.4319C14.9545 26.0008 16.2264 27.2728 17.7954 27.2728C19.3644 27.2728 20.6363 26.0008 20.6363 24.4319Z" fill="white"/>
         <path d="M20.6363 34.6591C20.6363 33.0902 19.3644 31.8182 17.7954 31.8182C16.2264 31.8182 14.9545 33.0902 14.9545 34.6591C14.9545 36.2281 16.2264 37.5001 17.7954 37.5001C19.3644 37.5001 20.6363 36.2281 20.6363 34.6591Z" fill="white"/>
     </g>
-    <circle cx="13" cy="46" r="11.5" stroke="var(--background-color)" stroke-width="3"/>
+    <circle cx="13" cy="46" r="11.5" fill="green" stroke="var(--background-color)" stroke-width="3"/>
     <path d="M13 42V50" stroke="white" stroke-width="2" stroke-linecap="round"/>
     <path d="M9 46H17" stroke="white" stroke-width="2" stroke-linecap="round"/>
     <defs>
