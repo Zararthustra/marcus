@@ -1,6 +1,6 @@
 .vote {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr 0.5fr;
   align-items: center;
   justify-items: center;
   text-align: center;
@@ -43,14 +43,13 @@
 
 @media (max-width: 800px) {
   .vote {
-    width: 100%;
-    grid-template-columns: 2fr 1fr 1fr;
+    width: 95%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
   }
   .profil .vote {
-    width: 100%;
-    grid-template-columns: 2fr 1fr;
-  }
-  .vote div:last-child {
-    display: none !important;
+    width: 99%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
   }
 }

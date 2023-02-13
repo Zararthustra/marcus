@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 
 import { ReactComponent as CriticInfo } from "../assets/svg/info.svg";
-import { ReactComponent as DelCritic } from "../assets/svg/close.svg";
+import { ReactComponent as DelCritic } from "../assets/svg/delCritic.svg";
 
 import { deleteCritic } from "../services/marcusApi";
 

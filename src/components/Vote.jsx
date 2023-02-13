@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 
 import { ReactComponent as Info } from "../assets/svg/info.svg";
-import { ReactComponent as DelVote } from "../assets/svg/close.svg";
+import { ReactComponent as DelVote } from "../assets/svg/delVote.svg";
 
 import { deleteVote } from "../services/marcusApi";
 
@@ -77,7 +77,7 @@ const Vote = ({
           }}
         >
           {isOwner && <DelVote onClick={mutateDelVote} />}
-          <Info onClick={() => setShowMovie(true)} />
+          <Info className="movie-info-svg" onClick={() => setShowMovie(true)} />
         </div>
       </div>
     </>
