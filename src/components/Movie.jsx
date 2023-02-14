@@ -1,13 +1,19 @@
 import "../styles/Movie.css";
 
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import { ReactComponent as Close } from "../assets/svg/close.svg";
 
 import { getMovieById, getTvById } from "../services/tmdbApi";
-import { getCritics, getCriticsVotes, getVotes } from "../services/marcusApi";
+import {
+  addToCritics,
+  addToVotes,
+  getCritics,
+  getCriticsVotes,
+  getVotes,
+} from "../services/marcusApi";
 import { MARCUS_BASE_PATH, TMDB_IMG_PATH } from "../services/apiVariables";
 import { getLocalStorage } from "../utils/localStorage";
 
@@ -20,33 +26,27 @@ import MovieDescription from "./MovieDescription";
 const Movie = ({ movieId, setShowMovie, platform }) => {
   //___________________________________________________________ React Query
 
+  const userId = getLocalStorage("userid");
   const queryClient = useQueryClient();
   const { data, isLoading, error } = useQuery(["getMovie", movieId], () =>
     platform === "movie" ? getMovieById(movieId) : getTvById(movieId)
   );
   // console.log("🚀 ~ Movie ~ data", data);
-  const { data: critics } = useQuery(["critics"], () => getCritics());
+  const { data: votes } = useQuery(["votes", userId], () => getVotes(userId));
+  const { data: critics } = useQuery(["critics", userId], () =>
+    getCritics(userId)
+  );
   const { data: criticsVotes, status: criticsVotesStatus } = useQuery(
     ["critics", "votes", movieId],
     () => getCriticsVotes(movieId)
   );
-  const { data: votes } = useQuery(["votes"], () => getVotes());
 
   // Add critic
   const { mutate: addCritic } = useMutation(
     async (e) => {
       e.preventDefault();
-
-      await axios.post(
-        `${MARCUS_BASE_PATH}/critics`,
-        {
-          movie_id: data.data.id,
-          movie_name: platform === "movie" ? data.data.title : data.data.name,
-          content: criticContent,
-          platform: platform,
-        },
-        { headers: { authorization: "Bearer " + getLocalStorage("access") } }
-      );
+      const movie = platform === "movie" ? data.data.title : data.data.name;
+      await addToCritics(movieId, movie, criticContent, platform);
     },
     {
       onSuccess: () => {
@@ -81,16 +81,8 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
   const { mutate: addVote } = useMutation(
     async () => {
       if (voteValue === 0) return;
-      await axios.post(
-        `${MARCUS_BASE_PATH}/votes`,
-        {
-          movie_id: data.data.id,
-          movie_name: platform === "movie" ? data.data.title : data.data.name,
-          value: voteValue,
-          platform: platform,
-        },
-        { headers: { authorization: "Bearer " + getLocalStorage("access") } }
-      );
+      const movie = platform === "movie" ? data.data.title : data.data.name;
+      await addToVotes(movieId, movie, voteValue, platform);
     },
     {
       onSuccess: () => {
@@ -130,24 +122,19 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
   //___________________________________________________________ Variables
 
   const [triggerToast, setTriggerToast] = useState(false);
-  // User inputs
   const [voteValue, setVoteValue] = useState(0);
   const [criticContent, setCriticContent] = useState("");
-  // Default do not show if user has already voted or criticized
-  const [voteSent, setVoteSent] = useState(
-    votes?.data.data.filter(
-      (item) =>
-        item.movie_id === movieId && item.user_id === getLocalStorage("userid")
-    ).length > 0
-  );
-  const [criticSent, setCriticSent] = useState(
-    critics?.data.data.filter(
-      (item) =>
-        item.movie_id === movieId && item.user_id === getLocalStorage("userid")
-    ).length > 0
-  );
+  const [voteSent, setVoteSent] = useState(false);
+  const [criticSent, setCriticSent] = useState(false);
 
   //___________________________________________________________ Functions
+
+  // Default do not show inputs if user has already voted or criticized
+  useEffect(() => {
+    console.log("yo");
+    setVoteSent(votes?.data.data.some((item) => item.movie_id === movieId));
+    setCriticSent(critics?.data.data.some((item) => item.movie_id === movieId));
+  }, [movieId, votes, critics]);
 
   const handleChange = (e) => {
     if (e.target.value.length > 1000) return;

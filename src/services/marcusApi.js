@@ -64,6 +64,18 @@ export const deleteVote = async (movieId) => {
     params: { movie_id: movieId },
   });
 };
+export const addToVotes = async (movieId, movieName, voteValue, platform) => {
+  return await axios.post(
+    `${MARCUS_BASE_PATH}/votes`,
+    {
+      movie_id: movieId,
+      movie_name: movieName,
+      value: voteValue,
+      platform: platform,
+    },
+    { headers: { authorization: "Bearer " + getLocalStorage("access") } }
+  );
+};
 
 //__________________________________ Critic
 export const getCritics = async (user_id) => {
@@ -76,6 +88,23 @@ export const deleteCritic = async (movieId) => {
     headers: { authorization: "Bearer " + getLocalStorage("access") },
     params: { movie_id: movieId },
   });
+};
+export const addToCritics = async (
+  movieId,
+  movieName,
+  criticContent,
+  platform
+) => {
+  return await axios.post(
+    `${MARCUS_BASE_PATH}/critics`,
+    {
+      movie_id: movieId,
+      movie_name: movieName,
+      content: criticContent,
+      platform: platform,
+    },
+    { headers: { authorization: "Bearer " + getLocalStorage("access") } }
+  );
 };
 
 export const getCriticsVotes = async (movie_id) => {
