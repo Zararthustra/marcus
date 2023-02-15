@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 
+import { ReactComponent as Clap } from "../assets/svg/clap.svg";
 import projector from "../assets/img/projector.jpg";
 
 import {
@@ -46,8 +47,9 @@ const Profil = () => {
     ["watchlists", user_id],
     () => getWatchlists(user_id)
   );
-  const { data: userData } = useQuery(["userData", user_id], () =>
-    getUserData(user_id)
+  const { data: userData, status: userStatus } = useQuery(
+    ["userData", user_id],
+    () => getUserData(user_id)
   );
   const userName = userData?.data.username;
   const isOwner = userData?.data.id === getLocalStorage("userid");
@@ -146,10 +148,14 @@ const Profil = () => {
 
   //___________________________________________________________ Render
 
-  // if (status === "loading")
-  //   return <div className="profil-page">Loading Profile...</div>;
-  // else if (status === "error")
-  //   return <div className="profil-page">Profile error</div>;
+  if (userStatus === "loading")
+    return (
+      <div className="profil-page">
+        <Clap className="loader" />
+      </div>
+    );
+  else if (userStatus === "error")
+    return <div className="profil-page">Profile error</div>;
   return (
     <div className="profil-page">
       {triggerToast && (
@@ -189,9 +195,9 @@ const Profil = () => {
           }}
         >
           {activeStatus(activeTab) === "loading" ? (
-            <p>Loading ...</p>
+            <Clap className="loader" />
           ) : activeStatus(activeTab) === "error" ? (
-            <p>Error</p>
+            <p>Une erreur est survenue ...</p>
           ) : (
             activeData(activeTab)
           )}

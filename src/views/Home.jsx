@@ -2,6 +2,8 @@ import "../styles/Home.css";
 import { useState } from "react";
 import { useQuery } from "react-query";
 
+import { ReactComponent as Clap } from "../assets/svg/clap.svg";
+
 import Header from "../components/Header";
 import NavPanel from "../components/NavPanel";
 import Users from "../components/Users";
@@ -187,9 +189,9 @@ const Home = () => {
               />
             ))
         ) : activeStatus(activeTab) === "loading" ? (
-          <p>Loading ...</p>
+          <Clap className="loader"/>
         ) : activeStatus(activeTab) === "error" ? (
-          <p>Error</p>
+          <p>Une erreur est survenue...</p>
         ) : (
           activeData(activeTab)
         )}

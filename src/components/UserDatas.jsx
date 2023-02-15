@@ -1,5 +1,6 @@
 import "../styles/UserDatas.css";
 import UserData from "./UserData";
+import { ReactComponent as Clap } from "../assets/svg/clap.svg";
 
 const UserDatas = ({
   masterpieces,
@@ -15,7 +16,9 @@ const UserDatas = ({
 }) => (
   <section className="userDatas">
     {criticsStatus === "loading" ? (
-      <p>Loading critics...</p>
+      <Clap className="loader" />
+    ) : criticsStatus === "error" ? (
+      <p>Une erreur est survenue ...</p>
     ) : (
       <UserData
         data="critic"
@@ -25,7 +28,9 @@ const UserDatas = ({
       />
     )}
     {votesStatus === "loading" ? (
-      <p>Loading votes...</p>
+      <Clap className="loader" />
+    ) : votesStatus === "error" ? (
+      <p>Une erreur est survenue ...</p>
     ) : (
       <UserData
         data="vote"
@@ -35,7 +40,9 @@ const UserDatas = ({
       />
     )}
     {masterpiecesStatus === "loading" ? (
-      <p>Loading masterpieces...</p>
+      <Clap className="loader" />
+    ) : masterpiecesStatus === "error" ? (
+      <p>Une erreur est survenue ...</p>
     ) : (
       <UserData
         data="masterpiece"
@@ -45,7 +52,9 @@ const UserDatas = ({
       />
     )}
     {watchlistsStatus === "loading" ? (
-      <p>Loading watchlists...</p>
+      <Clap className="loader" />
+    ) : watchlistsStatus === "error" ? (
+      <p>Une erreur est survenue ...</p>
     ) : (
       <UserData
         data="watchlist"

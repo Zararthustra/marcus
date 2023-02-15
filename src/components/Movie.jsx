@@ -1,10 +1,10 @@
 import "../styles/Movie.css";
 
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import { ReactComponent as Close } from "../assets/svg/close.svg";
+import { ReactComponent as Clap } from "../assets/svg/clap.svg";
 
 import { getMovieById, getTvById } from "../services/tmdbApi";
 import {
@@ -14,7 +14,7 @@ import {
   getCriticsVotes,
   getVotes,
 } from "../services/marcusApi";
-import { MARCUS_BASE_PATH, TMDB_IMG_PATH } from "../services/apiVariables";
+import { TMDB_IMG_PATH } from "../services/apiVariables";
 import { getLocalStorage } from "../utils/localStorage";
 
 import Stars from "./Stars";
@@ -31,7 +31,6 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
   const { data, isLoading, error } = useQuery(["getMovie", movieId], () =>
     platform === "movie" ? getMovieById(movieId) : getTvById(movieId)
   );
-  // console.log("🚀 ~ Movie ~ data", data);
   const { data: votes } = useQuery(["votes", userId], () => getVotes(userId));
   const { data: critics } = useQuery(["critics", userId], () =>
     getCritics(userId)
@@ -146,13 +145,15 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
   if (isLoading)
     return (
       <div className="movie-page">
-        <div className="movie">Movie loading</div>
+        <div className="movie">
+          <Clap className="loader" />
+        </div>
       </div>
     );
   else if (error)
     return (
       <div className="movie-page">
-        <div className="movie">Movie error</div>
+        <div className="movie">Une erreur est survenue...</div>
       </div>
     );
 
