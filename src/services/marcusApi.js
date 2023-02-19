@@ -3,11 +3,11 @@ import { MARCUS_BASE_PATH } from "./apiVariables";
 import { getLocalStorage } from "../utils/localStorage";
 
 //__________________________________ Watchlist
-export const getWatchlists = async (user_id) => {
-  if (user_id)
-    return await axios.get(`${MARCUS_BASE_PATH}/watchlists?user_id=${user_id}`);
-  return await axios.get(`${MARCUS_BASE_PATH}/watchlists`);
-};
+export const getWatchlists = async (user_id, watchlistsPage) =>
+  await axios.get(`${MARCUS_BASE_PATH}/watchlists`, {
+    params: { user_id: user_id, page: watchlistsPage },
+  });
+
 export const addToWatchlists = async (movieId, movieName, platform) => {
   return await axios.post(
     `${MARCUS_BASE_PATH}/watchlists`,
@@ -27,13 +27,11 @@ export const deleteWatchlist = async (movieId) => {
 };
 
 //__________________________________ Masterpiece
-export const getMasterpieces = async (user_id) => {
-  if (user_id)
-    return await axios.get(
-      `${MARCUS_BASE_PATH}/masterpieces?user_id=${user_id}`
-    );
-  return await axios.get(`${MARCUS_BASE_PATH}/masterpieces`);
-};
+export const getMasterpieces = async (user_id, watchlistsPage) =>
+  await axios.get(`${MARCUS_BASE_PATH}/masterpieces`, {
+    params: { user_id: user_id, page: watchlistsPage },
+  });
+
 export const addToMasterpieces = async (movieId, movieName, platform) => {
   return await axios.post(
     `${MARCUS_BASE_PATH}/masterpieces`,
@@ -53,11 +51,11 @@ export const deleteMasterpiece = async (movieId) => {
 };
 
 //__________________________________ Vote
-export const getVotes = async (user_id) => {
-  if (user_id)
-    return await axios.get(`${MARCUS_BASE_PATH}/votes?user_id=${user_id}`);
-  return await axios.get(`${MARCUS_BASE_PATH}/votes`);
-};
+export const getVotes = async (user_id, watchlistsPage) =>
+  await axios.get(`${MARCUS_BASE_PATH}/votes`, {
+    params: { user_id: user_id, page: watchlistsPage },
+  });
+
 export const deleteVote = async (movieId) => {
   return await axios.delete(`${MARCUS_BASE_PATH}/votes`, {
     headers: { authorization: "Bearer " + getLocalStorage("access") },
@@ -78,11 +76,11 @@ export const addToVotes = async (movieId, movieName, voteValue, platform) => {
 };
 
 //__________________________________ Critic
-export const getCritics = async (user_id) => {
-  if (user_id)
-    return await axios.get(`${MARCUS_BASE_PATH}/critics?user_id=${user_id}`);
-  return await axios.get(`${MARCUS_BASE_PATH}/critics`);
-};
+export const getCritics = async (user_id, watchlistsPage) =>
+  await axios.get(`${MARCUS_BASE_PATH}/critics`, {
+    params: { user_id : user_id, page: watchlistsPage },
+  });
+
 export const deleteCritic = async (movieId) => {
   return await axios.delete(`${MARCUS_BASE_PATH}/critics`, {
     headers: { authorization: "Bearer " + getLocalStorage("access") },

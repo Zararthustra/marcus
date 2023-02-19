@@ -30,7 +30,14 @@ const NavPanel = ({
         message: "Entrez le nom d'un film !",
       });
     setSearchtype("movie");
-    searchMovie(movieName).then((res) => setSearchResults(res.data.results));
+    searchMovie(movieName).then((res) => {
+      setSearchResults(res.data.results);
+      if (res.data.results.length === 0)
+        return setTriggerToast({
+          type: "info",
+          message: "Auncun résultat !",
+        });
+    });
     return;
   };
   const tvSearch = () => {
@@ -40,7 +47,14 @@ const NavPanel = ({
         message: "Entrez le nom d'une série !",
       });
     setSearchtype("tv");
-    searchTV(movieName).then((res) => setSearchResults(res.data.results));
+    searchTV(movieName).then((res) => {
+      setSearchResults(res.data.results);
+      if (res.data.results.length === 0)
+        return setTriggerToast({
+          type: "info",
+          message: "Auncun résultat !",
+        });
+    });
     return;
   };
 
@@ -87,13 +101,13 @@ const NavPanel = ({
   };
   const moveTabBar = (tabName) => {
     switch (tabName) {
-      case "critic":
-        return "6rem";
-      case "vote":
-        return "14.9rem";
-      case "masterpiece":
-        return "23.7rem";
       case "release":
+        return "6rem";
+      case "critic":
+        return "14.9rem";
+      case "vote":
+        return "23.7rem";
+      case "masterpiece":
         return "32.4rem";
       case "community":
         return "41.2rem";
@@ -105,6 +119,9 @@ const NavPanel = ({
   return (
     <nav className="navPanel">
       <ul>
+        <li onClick={() => setActiveTab("release")}>
+          <Release className={activeTab === "release" ? "tab-active" : "tab"} />
+        </li>
         <li onClick={() => setActiveTab("critic")}>
           <Critic className={activeTab === "critic" ? "tab-active" : "tab"} />
         </li>
@@ -115,9 +132,6 @@ const NavPanel = ({
           <Masterpiece
             className={activeTab === "masterpiece" ? "tab-active" : "tab"}
           />
-        </li>
-        <li onClick={() => setActiveTab("release")}>
-          <Release className={activeTab === "release" ? "tab-active" : "tab"} />
         </li>
         <li onClick={() => setActiveTab("community")}>
           <Communaute

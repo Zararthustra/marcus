@@ -28,24 +28,28 @@ const Profil = () => {
   const [triggerToast, setTriggerToast] = useState(false);
   const { user_id } = useParams();
   const [activeTab, setActiveTab] = useState("critic");
+  const [criticsPage, setCriticsPage] = useState(1);
+  const [masterpiecesPage, setMasterpiecesPage] = useState(1);
+  const [votesPage, setVotesPage] = useState(1);
+  const [watchlistsPage, setWatchlistsPage] = useState(1);
 
   //___________________________________________________________ React Query
 
   const { data: masterpiecesData, status: masterpiecesStatus } = useQuery(
-    ["masterpieces", user_id],
-    () => getMasterpieces(user_id)
+    ["masterpieces", user_id, masterpiecesPage],
+    () => getMasterpieces(user_id, masterpiecesPage)
   );
   const { data: votesData, status: votesStatus } = useQuery(
-    ["votes", user_id],
-    () => getVotes(user_id)
+    ["votes", user_id, votesPage],
+    () => getVotes(user_id, votesPage)
   );
   const { data: criticsData, status: criticsStatus } = useQuery(
-    ["critics", user_id],
-    () => getCritics(user_id)
+    ["critics", user_id, criticsPage],
+    () => getCritics(user_id, criticsPage)
   );
   const { data: watchlistsData, status: watchlistsStatus } = useQuery(
-    ["watchlists", user_id],
-    () => getWatchlists(user_id)
+    ["watchlists", user_id, watchlistsPage],
+    () => getWatchlists(user_id, watchlistsPage)
   );
   const { data: userData, status: userStatus } = useQuery(
     ["userData", user_id],
@@ -53,7 +57,6 @@ const Profil = () => {
   );
   const userName = userData?.data.username;
   const isOwner = userData?.data.id === getLocalStorage("userid");
-
   //___________________________________________________________ Functions
 
   const activeStatus = (activeData) => {
@@ -66,6 +69,43 @@ const Profil = () => {
         return masterpiecesStatus;
       case "watchlist":
         return watchlistsStatus;
+      default:
+        return;
+    }
+  };
+  const activeDataPage = (activeData, nextORPrev) => {
+    switch (activeData) {
+      case "critic":
+        return nextORPrev === "next"
+          ? setCriticsPage(criticsPage + 1)
+          : setCriticsPage(criticsPage - 1);
+      case "masterpiece":
+        return nextORPrev === "next"
+          ? setMasterpiecesPage(masterpiecesPage + 1)
+          : setMasterpiecesPage(masterpiecesPage - 1);
+      case "vote":
+        return nextORPrev === "next"
+          ? setVotesPage(votesPage + 1)
+          : setVotesPage(votesPage - 1);
+      case "watchlist":
+        return nextORPrev === "next"
+          ? setWatchlistsPage(watchlistsPage + 1)
+          : setWatchlistsPage(watchlistsPage - 1);
+      default:
+        return;
+    }
+  };
+
+  const pageInfos = (activeData) => {
+    switch (activeData) {
+      case "critic":
+        return criticsData?.data;
+      case "vote":
+        return votesData?.data;
+      case "masterpiece":
+        return masterpiecesData?.data;
+      case "watchlist":
+        return watchlistsData?.data;
       default:
         return;
     }
@@ -147,7 +187,6 @@ const Profil = () => {
   };
 
   //___________________________________________________________ Render
-
   if (userStatus === "loading")
     return (
       <div className="profil-page">
@@ -184,10 +223,9 @@ const Profil = () => {
           style={{
             padding: "5rem 0",
             display: "flex",
-            justifyContent: "center",
             alignItems: "center",
             flexWrap: "wrap",
-            flexDirection: activeTab === "community" ? "row" : "column",
+            flexDirection: "column",
             gap: "3rem",
             backgroundColor: "var(--background-color)",
             width: "100%",
@@ -199,7 +237,67 @@ const Profil = () => {
           ) : activeStatus(activeTab) === "error" ? (
             <p>Une erreur est survenue ...</p>
           ) : (
-            activeData(activeTab)
+            <>
+              {pageInfos(activeTab).total > 5 && (
+                <div
+                  style={{
+                    width: "90%",
+                    display: "flex",
+                    gap: "1rem",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <button
+                    className="button-default"
+                    disabled={pageInfos(activeTab).from === 1}
+                    onClick={() => activeDataPage(activeTab, "prev")}
+                  >
+                    Précédent
+                  </button>
+                  <p>
+                    {pageInfos(activeTab).from} à {pageInfos(activeTab).to}
+                  </p>
+                  <button
+                    className="button-default"
+                    disabled={pageInfos(activeTab).is_last_page}
+                    onClick={() => activeDataPage(activeTab, "next")}
+                  >
+                    Suivant
+                  </button>
+                </div>
+              )}
+              {activeData(activeTab)}
+              {pageInfos(activeTab).total > 5 && (
+                <div
+                  style={{
+                    width: "90%",
+                    display: "flex",
+                    gap: "1rem",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <button
+                    className="button-default"
+                    disabled={pageInfos(activeTab).from === 1}
+                    onClick={() => activeDataPage(activeTab, "prev")}
+                  >
+                    Précédent
+                  </button>
+                  <p>
+                    {pageInfos(activeTab).from} à {pageInfos(activeTab).to}
+                  </p>
+                  <button
+                    className="button-default"
+                    disabled={pageInfos(activeTab).is_last_page}
+                    onClick={() => activeDataPage(activeTab, "next")}
+                  >
+                    Suivant
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </main>
       </div>

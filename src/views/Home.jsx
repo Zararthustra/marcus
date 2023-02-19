@@ -27,15 +27,21 @@ const Home = () => {
   const [activeTab, setActiveTab] = useState("release");
   const [searchResults, setSearchResults] = useState([]);
   const [searchType, setSearchtype] = useState("");
+  const [criticsPage, setCriticsPage] = useState(1);
+  const [masterpiecesPage, setMasterpiecesPage] = useState(1);
+  const [votesPage, setVotesPage] = useState(1);
+
   const { data: masterpiecesData, status: masterpiecesStatus } = useQuery(
-    "masterpieces",
-    () => getMasterpieces()
+    ["masterpieces", masterpiecesPage],
+    () => getMasterpieces(null, masterpiecesPage)
   );
-  const { data: votesData, status: votesStatus } = useQuery("votes", () =>
-    getVotes()
+  const { data: votesData, status: votesStatus } = useQuery(
+    ["votes", votesPage],
+    () => getVotes(null, votesPage)
   );
-  const { data: criticsData, status: criticsStatus } = useQuery("critics", () =>
-    getCritics()
+  const { data: criticsData, status: criticsStatus } = useQuery(
+    ["critics", criticsPage],
+    () => getCritics(null, criticsPage)
   );
   const { data: usersData, status: communityStatus } = useQuery(
     "usersData",
@@ -43,6 +49,38 @@ const Home = () => {
   );
 
   //___________________________________________________________ Functions
+
+  const activeDataPage = (activeData, nextORPrev) => {
+    switch (activeData) {
+      case "critic":
+        return nextORPrev === "next"
+          ? setCriticsPage(criticsPage + 1)
+          : setCriticsPage(criticsPage - 1);
+      case "masterpiece":
+        return nextORPrev === "next"
+          ? setMasterpiecesPage(masterpiecesPage + 1)
+          : setMasterpiecesPage(masterpiecesPage - 1);
+      case "vote":
+        return nextORPrev === "next"
+          ? setVotesPage(votesPage + 1)
+          : setVotesPage(votesPage - 1);
+      default:
+        return;
+    }
+  };
+
+  const pageInfos = (activeData) => {
+    switch (activeData) {
+      case "critic":
+        return criticsData?.data;
+      case "vote":
+        return votesData?.data;
+      case "masterpiece":
+        return masterpiecesData?.data;
+      default:
+        return;
+    }
+  };
 
   const activeStatus = (activeData) => {
     switch (activeData) {
@@ -189,11 +227,75 @@ const Home = () => {
               />
             ))
         ) : activeStatus(activeTab) === "loading" ? (
-          <Clap className="loader"/>
+          <Clap className="loader" />
         ) : activeStatus(activeTab) === "error" ? (
           <p>Une erreur est survenue...</p>
         ) : (
-          activeData(activeTab)
+          <>
+            {!["community", "release"].includes(activeTab) && (
+              <div
+                style={{
+                  width: "90%",
+                  maxWidth: "45rem",
+                  display: "flex",
+                  gap: "1rem",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <button
+                  className="button-default"
+                  disabled={pageInfos(activeTab)?.from === 1}
+                  onClick={() => activeDataPage(activeTab, "prev")}
+                >
+                  Précédent
+                </button>
+                <p>
+                  {pageInfos(activeTab)?.from} à {pageInfos(activeTab)?.to} sur{" "}
+                  {pageInfos(activeTab)?.total}
+                </p>
+                <button
+                  className="button-default"
+                  disabled={pageInfos(activeTab)?.is_last_page}
+                  onClick={() => activeDataPage(activeTab, "next")}
+                >
+                  Suivant
+                </button>
+              </div>
+            )}
+            {activeData(activeTab)}
+            {!["community", "release"].includes(activeTab) && (
+              <div
+                style={{
+                  width: "90%",
+                  maxWidth: "45rem",
+                  display: "flex",
+                  gap: "1rem",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <button
+                  className="button-default"
+                  disabled={pageInfos(activeTab)?.from === 1}
+                  onClick={() => activeDataPage(activeTab, "prev")}
+                >
+                  Précédent
+                </button>
+                <p>
+                  {pageInfos(activeTab)?.from} à {pageInfos(activeTab)?.to} sur{" "}
+                  {pageInfos(activeTab)?.total}
+                </p>
+                <button
+                  className="button-default"
+                  disabled={pageInfos(activeTab)?.is_last_page}
+                  onClick={() => activeDataPage(activeTab, "next")}
+                >
+                  Suivant
+                </button>
+              </div>
+            )}
+          </>
         )}
       </main>
     </div>

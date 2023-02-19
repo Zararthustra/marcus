@@ -121,6 +121,28 @@ a {
 }
 
 /*
+** Primary Button
+*/
+.button-default {
+  background-color: white;
+  cursor: pointer;
+  height: 1.7rem;
+  padding: 0 1.5rem;
+  border-radius: 3px;
+  font-weight: 600;
+  outline: none;
+  border: none;
+  transition: all 0.3s;
+}
+.button-default:hover:not(:disabled) {
+  background-color: black;
+  color: white;
+}
+.button-default:disabled {
+  cursor:default;
+}
+
+/*
 ** ScrollBar
 */
 

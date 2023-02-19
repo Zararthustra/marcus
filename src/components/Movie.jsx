@@ -130,7 +130,6 @@ const Movie = ({ movieId, setShowMovie, platform }) => {
 
   // Default do not show inputs if user has already voted or criticized
   useEffect(() => {
-    console.log("yo");
     setVoteSent(votes?.data.data.some((item) => item.movie_id === movieId));
     setCriticSent(critics?.data.data.some((item) => item.movie_id === movieId));
   }, [movieId, votes, critics]);
