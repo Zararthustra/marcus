@@ -35,7 +35,7 @@ const NavPanel = ({
       if (res.data.results.length === 0)
         return setTriggerToast({
           type: "info",
-          message: "Auncun résultat !",
+          message: "Aucun résultat !",
         });
     });
     return;
@@ -52,7 +52,7 @@ const NavPanel = ({
       if (res.data.results.length === 0)
         return setTriggerToast({
           type: "info",
-          message: "Auncun résultat !",
+          message: "Aucun résultat !",
         });
     });
     return;
