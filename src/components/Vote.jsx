@@ -7,7 +7,7 @@ import { ReactComponent as DelVote } from "../assets/svg/delVote.svg";
 
 import { deleteVote } from "../services/marcusApi";
 
-import Movie from "./Movie";
+import Movie from "../views/Movie";
 import Stars from "./Stars";
 
 const Vote = ({

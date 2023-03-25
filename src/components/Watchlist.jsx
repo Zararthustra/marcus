@@ -7,7 +7,7 @@ import { ReactComponent as MovieInfo } from "../assets/svg/info.svg";
 
 import { deleteWatchlist } from "../services/marcusApi";
 
-import Movie from "./Movie";
+import Movie from "../views/Movie";
 
 const Watchlist = ({
   movieName,

@@ -17,11 +17,11 @@ import {
 import { TMDB_IMG_PATH } from "../services/apiVariables";
 import { getLocalStorage } from "../utils/localStorage";
 
-import Stars from "./Stars";
-import Critic from "./Critic";
-import Toast from "./Toast";
-import Providers from "./Providers";
-import MovieDescription from "./MovieDescription";
+import Stars from "../components/Stars";
+import Critic from "../components/Critic";
+import Toast from "../components/Toast";
+import Providers from "../components/Providers";
+import MovieDescription from "../components/MovieDescription";
 
 const Movie = ({ movieId, setShowMovie, platform }) => {
   //___________________________________________________________ React Query

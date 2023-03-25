@@ -8,7 +8,7 @@ import { ReactComponent as DelCritic } from "../assets/svg/delCritic.svg";
 import { deleteCritic } from "../services/marcusApi";
 
 import Stars from "./Stars";
-import Movie from "./Movie";
+import Movie from "../views/Movie";
 
 const Critic = ({
   movieId,

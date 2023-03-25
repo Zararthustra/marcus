@@ -4,6 +4,7 @@
 
 .release h1 {
   margin-left: 1rem;
+  font-family: var(--font-title);
 }
 
 .posters {
@@ -32,6 +33,7 @@
   margin: 0;
   text-align: center;
   color: var(--dark-color);
+  font-family: var(--font-title);
 }
 
 @media (min-width: 800px) {

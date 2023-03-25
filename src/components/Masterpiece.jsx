@@ -7,7 +7,7 @@ import { ReactComponent as DelMasterpiece } from "../assets/svg/delMasterpiece.s
 
 import { deleteMasterpiece } from "../services/marcusApi";
 
-import Movie from "./Movie";
+import Movie from "../views/Movie";
 
 const Masterpiece = ({
   movieName,

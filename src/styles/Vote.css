@@ -21,6 +21,23 @@
   display: flex;
   gap: 0.2rem;
 }
+.votes-filter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid black;
+  padding: 0 1rem;
+  border-radius: 99px;
+  background: var(--gradient);
+  height: 2rem;
+  margin-bottom: 2rem;
+  color: white;
+}
+.votes-filter .stars svg {
+  fill: white;
+  width: 1.2rem;
+  cursor: pointer;
+}
 .vote .stars svg {
   fill: black;
   width: 1.2rem;
@@ -46,6 +63,7 @@
     width: 95%;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
+    margin: 1rem 0;
   }
   .profil .vote {
     width: 99%;

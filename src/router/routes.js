@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Home from '../views/Home';
 import Navbar from '../components/Navbar';
 import NoMatch from '../views/NoMatch';
-import Profil from '../components/Profil';
+import Profil from '../views/Profil';
 
 const routes = createBrowserRouter([
     {

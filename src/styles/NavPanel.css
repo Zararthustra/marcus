@@ -1,5 +1,6 @@
 .navPanel {
   background-color: var(--background-color);
+  font-family: var(--font-title);
   width: 100%;
   position: sticky;
   top: 0rem;

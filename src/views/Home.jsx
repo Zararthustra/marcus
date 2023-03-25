@@ -10,6 +10,7 @@ import Users from "../components/Users";
 import Critic from "../components/Critic";
 import Masterpiece from "../components/Masterpiece";
 import Vote from "../components/Vote";
+import Stars from "../components/Stars";
 
 import {
   getMasterpieces,
@@ -30,14 +31,15 @@ const Home = () => {
   const [criticsPage, setCriticsPage] = useState(1);
   const [masterpiecesPage, setMasterpiecesPage] = useState(1);
   const [votesPage, setVotesPage] = useState(1);
+  const [starsFilter, setStarsFilter] = useState(0);
 
   const { data: masterpiecesData, status: masterpiecesStatus } = useQuery(
     ["masterpieces", masterpiecesPage],
     () => getMasterpieces(null, masterpiecesPage)
   );
   const { data: votesData, status: votesStatus } = useQuery(
-    ["votes", votesPage],
-    () => getVotes(null, votesPage)
+    ["votes", votesPage, starsFilter],
+    () => getVotes(null, votesPage, starsFilter)
   );
   const { data: criticsData, status: criticsStatus } = useQuery(
     ["critics", criticsPage],
@@ -199,7 +201,6 @@ const Home = () => {
           alignItems: "center",
           flexWrap: "wrap",
           flexDirection: activeTab === "community" ? "row" : "column",
-          gap: "3rem",
           backgroundColor: "var(--background-color)",
           width: "100%",
           overflow: "hidden",
@@ -232,6 +233,7 @@ const Home = () => {
           <p>Une erreur est survenue...</p>
         ) : (
           <>
+            {/* Pagination */}
             {!["community", "release"].includes(activeTab) && (
               <div
                 style={{
@@ -241,6 +243,7 @@ const Home = () => {
                   gap: "1rem",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  marginBottom: "3rem",
                 }}
               >
                 <button
@@ -263,38 +266,58 @@ const Home = () => {
                 </button>
               </div>
             )}
+            {/* Filter */}
+            {activeTab === "vote" && (
+              <div className="votes-filter">
+                {starsFilter > 0 ? (
+                  <h3
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setStarsFilter(0)}
+                  >
+                    Annuler
+                  </h3>
+                ) : (
+                  <h3>Filtrer</h3>
+                )}
+                <Stars voteValue={starsFilter} setVoteValue={setStarsFilter} />
+              </div>
+            )}
+            {/* Data */}
             {activeData(activeTab)}
-            {!["community", "release"].includes(activeTab) && (
-              <div
-                style={{
-                  width: "90%",
-                  maxWidth: "45rem",
-                  display: "flex",
-                  gap: "1rem",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <button
-                  className="button-default"
-                  disabled={pageInfos(activeTab)?.from === 1}
-                  onClick={() => activeDataPage(activeTab, "prev")}
+            {/* Pagination */}
+            {!["community", "release"].includes(activeTab) &&
+              activeData(activeTab).length > 9 && (
+                <div
+                  style={{
+                    width: "90%",
+                    maxWidth: "45rem",
+                    display: "flex",
+                    gap: "1rem",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginTop: "2rem",
+                  }}
                 >
-                  Précédent
-                </button>
-                <p>
-                  {pageInfos(activeTab)?.from} à {pageInfos(activeTab)?.to} sur{" "}
-                  {pageInfos(activeTab)?.total}
-                </p>
-                <button
-                  className="button-default"
-                  disabled={pageInfos(activeTab)?.is_last_page}
-                  onClick={() => activeDataPage(activeTab, "next")}
-                >
-                  Suivant
-                </button>
-              </div>
-            )}
+                  <button
+                    className="button-default"
+                    disabled={pageInfos(activeTab)?.from === 1}
+                    onClick={() => activeDataPage(activeTab, "prev")}
+                  >
+                    Précédent
+                  </button>
+                  <p>
+                    {pageInfos(activeTab)?.from} à {pageInfos(activeTab)?.to}{" "}
+                    sur {pageInfos(activeTab)?.total}
+                  </p>
+                  <button
+                    className="button-default"
+                    disabled={pageInfos(activeTab)?.is_last_page}
+                    onClick={() => activeDataPage(activeTab, "next")}
+                  >
+                    Suivant
+                  </button>
+                </div>
+              )}
           </>
         )}
       </main>

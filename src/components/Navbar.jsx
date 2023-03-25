@@ -46,7 +46,7 @@ const Navbar = () => {
                 Se connecter
               </li>
               <li
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", fontFamily: "var(--font-title)" }}
                 onClick={() => setShowRegister(true)}
               >
                 Créer un compte

@@ -51,9 +51,12 @@ export const deleteMasterpiece = async (movieId) => {
 };
 
 //__________________________________ Vote
-export const getVotes = async (user_id, watchlistsPage) =>
+export const getVotes = async (user_id, watchlistsPage, stars) =>
   await axios.get(`${MARCUS_BASE_PATH}/votes`, {
-    params: { user_id: user_id, page: watchlistsPage },
+    params:
+      stars > 0
+        ? { user_id, page: watchlistsPage, stars: stars }
+        : { user_id, page: watchlistsPage },
   });
 
 export const deleteVote = async (movieId) => {
@@ -78,7 +81,7 @@ export const addToVotes = async (movieId, movieName, voteValue, platform) => {
 //__________________________________ Critic
 export const getCritics = async (user_id, watchlistsPage) =>
   await axios.get(`${MARCUS_BASE_PATH}/critics`, {
-    params: { user_id : user_id, page: watchlistsPage },
+    params: { user_id: user_id, page: watchlistsPage },
   });
 
 export const deleteCritic = async (movieId) => {

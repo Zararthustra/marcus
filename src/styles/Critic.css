@@ -7,6 +7,7 @@
   align-items: center;
   color: var(--dark-color);
   padding: 0 1rem;
+  margin: 1rem 0;
 }
 
 .critic-header {
@@ -14,6 +15,7 @@
 }
 
 .critic-header h2 {
+  font-family: var(--font-title);
   margin: 0;
   width: fit-content;
   cursor: pointer;
@@ -34,7 +36,7 @@
 }
 
 .critic-main-content {
-  font-family: "Josefin Sans";
+  text-indent: 2rem;
   font-size: 1.1rem;
   font-weight: 300;
   line-height: 1.875rem;
@@ -50,7 +52,6 @@
 }
 
 .critic-footer-userName {
-  font-family: "Josefin Sans";
   font-size: 1.2rem;
   font-weight: 700;
   line-height: 2.813rem;

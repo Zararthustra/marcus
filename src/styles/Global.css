@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;700&family=Limelight&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amaranth&family=Montserrat:wght@300;600&display=swap");
 
 /* Debug CSS */
 /* * {
@@ -11,8 +11,9 @@
   --background-color: #f0f0f0;
   --light-color: #a5a4a4;
   --dark-color: #111;
-  --font-title: "Limelight", cursive;
-  --font-text: "Josefin Sans", sans-serif;
+  --font-title: "Amaranth", sans-serif;
+  --font-text: 'Montserrat', sans-serif;
+
 
   font-family: var(--font-text);
   font-size: 16px;
@@ -106,14 +107,15 @@ a {
 */
 .button-primary {
   background: var(--gradient);
-  padding: 0.6rem 2rem 0.5rem;
+  padding: 0.5rem 2rem 0.6rem;
   border-radius: 5px;
+  letter-spacing: 1px;
   font-size: 1rem;
   cursor: pointer;
   border: none;
   outline: none;
   color: white;
-  font-family: var(--font-text);
+  font-family: var(--font-title);
   transition: all 0.5s;
 }
 .button-primary:hover {
@@ -128,6 +130,7 @@ a {
   cursor: pointer;
   height: 1.7rem;
   padding: 0 1.5rem;
+  font-family: var(--font-title);
   border-radius: 3px;
   font-weight: 600;
   outline: none;
@@ -139,7 +142,7 @@ a {
   color: white;
 }
 .button-default:disabled {
-  cursor:default;
+  cursor: default;
 }
 
 /*

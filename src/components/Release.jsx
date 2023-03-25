@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import { TMDB_IMG_PATH } from "../services/apiVariables";
 import { getCinemaReleases, getNetflixReleases } from "../services/tmdbApi";
 
-import Movie from "./Movie";
+import Movie from "../views/Movie";
 
 const Release = ({ releaseType }) => {
   const [showMovie, setShowMovie] = useState(false);

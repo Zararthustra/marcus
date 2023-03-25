@@ -15,12 +15,13 @@ import {
 } from "../services/marcusApi";
 import { getLocalStorage } from "../utils/localStorage";
 
-import Vote from "./Vote";
-import Toast from "./Toast";
-import Critic from "./Critic";
-import UserDatas from "./UserDatas";
-import Watchlist from "./Watchlist";
-import Masterpiece from "./Masterpiece";
+import Vote from "../components/Vote";
+import Toast from "../components/Toast";
+import Critic from "../components/Critic";
+import UserDatas from "../components/UserDatas";
+import Watchlist from "../components/Watchlist";
+import Masterpiece from "../components/Masterpiece";
+import Stars from "../components/Stars";
 
 const Profil = () => {
   //___________________________________________________________ Variables
@@ -32,6 +33,7 @@ const Profil = () => {
   const [masterpiecesPage, setMasterpiecesPage] = useState(1);
   const [votesPage, setVotesPage] = useState(1);
   const [watchlistsPage, setWatchlistsPage] = useState(1);
+  const [starsFilter, setStarsFilter] = useState(0);
 
   //___________________________________________________________ React Query
 
@@ -40,8 +42,8 @@ const Profil = () => {
     () => getMasterpieces(user_id, masterpiecesPage)
   );
   const { data: votesData, status: votesStatus } = useQuery(
-    ["votes", user_id, votesPage],
-    () => getVotes(user_id, votesPage)
+    ["votes", user_id, votesPage, starsFilter],
+    () => getVotes(user_id, votesPage, starsFilter)
   );
   const { data: criticsData, status: criticsStatus } = useQuery(
     ["critics", user_id, criticsPage],
@@ -194,7 +196,7 @@ const Profil = () => {
       </div>
     );
   else if (userStatus === "error")
-    return <div className="profil-page">Profile error</div>;
+    return <div className="profil-page">Une erreur est survenue</div>;
   return (
     <div className="profil-page">
       {triggerToast && (
@@ -226,7 +228,6 @@ const Profil = () => {
             alignItems: "center",
             flexWrap: "wrap",
             flexDirection: "column",
-            gap: "3rem",
             backgroundColor: "var(--background-color)",
             width: "100%",
             overflow: "hidden",
@@ -238,37 +239,59 @@ const Profil = () => {
             <p>Une erreur est survenue ...</p>
           ) : (
             <>
-              {pageInfos(activeTab).total > 5 && (
-                <div
-                  style={{
-                    width: "90%",
-                    display: "flex",
-                    gap: "1rem",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
+              {/* Pagination */}
+              <div
+                style={{
+                  width: "90%",
+                  display: "flex",
+                  gap: "1rem",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: "2rem",
+                }}
+              >
+                <button
+                  className="button-default"
+                  disabled={pageInfos(activeTab).from === 1}
+                  onClick={() => activeDataPage(activeTab, "prev")}
                 >
-                  <button
-                    className="button-default"
-                    disabled={pageInfos(activeTab).from === 1}
-                    onClick={() => activeDataPage(activeTab, "prev")}
-                  >
-                    Précédent
-                  </button>
-                  <p>
-                    {pageInfos(activeTab).from} à {pageInfos(activeTab).to}
-                  </p>
-                  <button
-                    className="button-default"
-                    disabled={pageInfos(activeTab).is_last_page}
-                    onClick={() => activeDataPage(activeTab, "next")}
-                  >
-                    Suivant
-                  </button>
+                  Précédent
+                </button>
+                <p>
+                  {pageInfos(activeTab).from} à {pageInfos(activeTab).to}
+                </p>
+                <button
+                  className="button-default"
+                  disabled={pageInfos(activeTab).is_last_page}
+                  onClick={() => activeDataPage(activeTab, "next")}
+                >
+                  Suivant
+                </button>
+              </div>
+
+              {/* Filter */}
+              {activeTab === "vote" && (
+                <div className="votes-filter">
+                  {starsFilter > 0 ? (
+                    <h3
+                      style={{ cursor: "pointer" }}
+                      onClick={() => setStarsFilter(0)}
+                    >
+                      Annuler
+                    </h3>
+                  ) : (
+                    <h3>Filtrer</h3>
+                  )}
+                  <Stars
+                    voteValue={starsFilter}
+                    setVoteValue={setStarsFilter}
+                  />
                 </div>
               )}
+              {/* Data */}
               {activeData(activeTab)}
-              {pageInfos(activeTab).total > 5 && (
+              {/* Pagination */}
+              {pageInfos(activeTab).total > 10 && (
                 <div
                   style={{
                     width: "90%",

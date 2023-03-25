@@ -11,8 +11,8 @@ const host = {
 };
 
 // Toggle this value to get data from local or prod environment
-// export const MARCUS_BASE_PATH = protocol.unsecure + "://" + host.localIP + "/api";
-export const MARCUS_BASE_PATH = protocol.secure + "://" + host.domain + "/api";
+export const MARCUS_BASE_PATH = protocol.unsecure + "://" + host.localIP + "/api";
+// export const MARCUS_BASE_PATH = protocol.secure + "://" + host.domain + "/api";
 
 //______________________ TMDB _______________________
 
